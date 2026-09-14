@@ -18,12 +18,12 @@ run "default_random_seed" {
   command = apply
 
   assert {
-    condition     = output.unique-seed == "a123456789012345678901234567890123456789012345678901234567890"
+    condition     = output.names.storage_account.unique_seed == "a123456789012345678901234567890123456789012345678901234567890"
     error_message = "The full 61-character seed must begin with the independently generated letter."
   }
 
   assert {
-    condition     = output.resource_group.name_unique == "rg-a123" && output.storage_account.name_unique == "sta123"
+    condition     = endswith(output.names.resource_group.name_unique, "-a123") && endswith(output.names.storage_account.name_unique, "a123")
     error_message = "Only the first four seed characters must be used by default."
   }
 
@@ -38,7 +38,7 @@ run "default_random_seed" {
       random_string.first_letter.special == false &&
       random_string.first_letter.upper == false
     )
-    error_message = "Legacy random resource addresses and configuration must remain unchanged."
+    error_message = "Random generation must use a leading letter and the configured number policy."
   }
 }
 
@@ -50,7 +50,7 @@ run "null_seed" {
   }
 
   assert {
-    condition     = output.unique-seed == run.default_random_seed.unique-seed
+    condition     = output.names.storage_account.unique_seed == run.default_random_seed.names.storage_account.unique_seed
     error_message = "A null custom seed must retain the state-persisted random fallback."
   }
 }
@@ -65,9 +65,9 @@ run "seed_longer_than_requested_suffix" {
 
   assert {
     condition = (
-      output.unique-seed == "Z9abcdefgh" &&
-      output.resource_group.name_unique == "rg-Z9" &&
-      output.storage_account.name_unique == "stz9"
+      output.names.storage_account.unique_seed == "Z9abcdefgh" &&
+      endswith(output.names.resource_group.name_unique, "-Z9") &&
+      endswith(output.names.storage_account.name_unique, "z9")
     )
     error_message = "Seed truncation and resource-specific lowercasing must not change the seed output."
   }
@@ -82,7 +82,7 @@ run "numbers_disabled" {
   }
 
   assert {
-    condition     = random_string.main.numeric == false && output.resource_group.name_unique == "rg-X9ab"
+    condition     = random_string.main.numeric == false && endswith(output.names.resource_group.name_unique, "-X9ab")
     error_message = "Disabling generated numbers must not alter a user-supplied seed."
   }
 }
@@ -98,8 +98,10 @@ run "unicode_components" {
 
   assert {
     condition = (
-      output.resource_group.name == "\u00c9quipe-rg-\u6771\u4eac-\u00e9" &&
-      output.storage_account.name == "\u00e9quipest\u6771\u4eac\u00e9"
+      startswith(output.names.resource_group.name, "\u00c9quipe-") &&
+      endswith(output.names.resource_group.name, "-\u6771\u4eac-\u00e9") &&
+      startswith(output.names.storage_account.name, "\u00e9quipe") &&
+      endswith(output.names.storage_account.name, "\u6771\u4eac\u00e9")
     )
     error_message = "Unicode case conversion and concatenation must retain Terraform string semantics."
   }

@@ -3,6 +3,7 @@
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 Import-Module (Join-Path $PSScriptRoot 'ResourceNameRules.psm1')
+Import-Module (Join-Path $PSScriptRoot 'ResourceNameCatalog.psm1')
 
 function Invoke-ResourceNameRulesNativeCommand {
     [CmdletBinding()]
@@ -58,21 +59,25 @@ function Publish-ResourceNameRulesUpdate {
         [Parameter(Mandatory)][string] $BaseBranch,
         [Parameter(Mandatory)][string] $RepositoryRoot,
         [Parameter(Mandatory)][AllowEmptyString()][string] $Markdown,
+        [Parameter(Mandatory)][AllowEmptyString()][string] $AbbreviationsMarkdown,
 
         # Local tests replace the process boundary; remote content is never executable input.
-        [scriptblock] $CommandRunner
+        [scriptblock] $CommandRunner,
+        [scriptblock] $ValidationRunner
     )
 
     $branch = 'automation/resource-name-rules-additions'
-    $inventoryGitPath = 'data/resource-name-rules.json'
-    $inventoryPath = Join-Path $RepositoryRoot 'data' 'resource-name-rules.json'
+    $catalogPaths = @('data/resource-name-rules.json', 'data/resource-name-rules.manual.json')
+    $generatedPath = Join-Path $RepositoryRoot 'data' 'resource-name-rules.json'
+    $manualPath = Join-Path $RepositoryRoot 'data' 'resource-name-rules.manual.json'
     if ($Repository -cne 'Azure/terraform-azurerm-avm-utl-naming') {
         throw 'Publication is restricted to the upstream naming module repository, never forks.'
     }
     if ([string]::IsNullOrWhiteSpace($BaseBranch) -or $BaseBranch -ceq $branch) {
         throw 'The publication base must be the repository default branch.'
     }
-    $sourceResources = ConvertFrom-ResourceNameRulesMarkdown -Markdown $Markdown
+    $null = ConvertFrom-ResourceNameRulesMarkdown -Markdown $Markdown
+    $null = ConvertFrom-ResourceAbbreviationsMarkdown -Markdown $AbbreviationsMarkdown
     if ($null -eq $CommandRunner) {
         $CommandRunner = {
             param($FileName, $Arguments, $Directory)
@@ -114,13 +119,29 @@ function Publish-ResourceNameRulesUpdate {
         $repositoryInfo.full_name -cne $Repository -or $repositoryInfo.default_branch -cne $BaseBranch) {
         throw 'Refusing publication to a fork or a non-default base branch.'
     }
+    $openResult = & $run 'gh' @(
+        'api', '--method', 'GET', "repos/$Repository/pulls",
+        '-f', 'state=open', '-f', "head=Azure:$branch", '-f', "base=$BaseBranch", '-f', 'per_page=100'
+    )
+    $open = ConvertFrom-Json -InputObject $openResult.StdOut -NoEnumerate
+    if ($open -isnot [array] -or $open.Count -gt 1) { throw 'Expected at most one open naming-catalog update.' }
+    if ($open.Count -eq 1) {
+        $existing = $open[0]
+        if ($existing.head.repo.full_name -cne $Repository -or $existing.head.ref -cne $branch -or
+            $existing.base.repo.full_name -cne $Repository -or $existing.base.ref -cne $BaseBranch -or
+            $existing.number -lt 1) {
+            throw 'The existing update does not belong to the expected upstream branch and base.'
+        }
+        return [pscustomobject]@{
+            Status = 'pending_review'; Changed = $false; Pushed = $false
+            PullRequestUrl = "https://github.com/$Repository/pull/$($existing.number)"
+        }
+    }
     $null = & $run 'git' @('check-ref-format', "refs/heads/$BaseBranch")
     $baseRef = "refs/remotes/origin/$BaseBranch"
     $updateRef = "refs/remotes/origin/$branch"
     $null = & $run 'git' ($authentication + @('fetch', '--no-tags', 'origin', "+refs/heads/${BaseBranch}:$baseRef"))
     $remote = & $run 'git' ($authentication + @('ls-remote', '--exit-code', '--heads', 'origin', "refs/heads/$branch")) @(0, 2)
-    $remoteInventoryJson = $null
-    $pendingInventory = $null
     $expectedHead = ''
     if ($remote.ExitCode -eq 0) {
         if ($remote.StdOut.Trim() -notmatch ('^[a-f0-9]{40}\s+refs/heads/' + [regex]::Escape($branch) + '$')) {
@@ -135,82 +156,68 @@ function Publish-ResourceNameRulesUpdate {
         if ($commonBase -notmatch '^[a-f0-9]{40}$') {
             throw 'The update branch has no verifiable common base.'
         }
-        $branchChanges = (& $run 'git' @('diff', '--name-only', $commonBase, $updateRef)).StdOut.Trim()
-        if ($branchChanges -ne '' -and $branchChanges -cne $inventoryGitPath) {
-            throw 'The reserved automation branch contains changes outside the discovery inventory; refusing to overwrite them.'
+        $branchChanges = @((& $run 'git' @('diff', '--name-only', $commonBase, $updateRef)).StdOut.Trim() -split '\r?\n' | Where-Object { $_ -ne '' })
+        if (@($branchChanges | Where-Object { $_ -notin $catalogPaths }).Count -gt 0) {
+            throw 'The reserved automation branch contains changes outside the naming catalogs; refusing to overwrite them.'
         }
-        $remoteInventoryJson = (& $run 'git' @('show', "${updateRef}:$inventoryGitPath")).StdOut
-        $pendingInventory = ConvertFrom-ResourceNameRulesInventoryJson -Json $remoteInventoryJson
     }
     elseif (-not [string]::IsNullOrWhiteSpace($remote.StdOut)) {
         throw 'Unexpected output while checking for an absent update branch.'
     }
 
     $null = & $run 'git' @('checkout', '-B', $branch, $baseRef)
-    $baseInventory = Read-ResourceNameRulesInventory -Path $inventoryPath
-    $inventory = $baseInventory
-    if ($null -ne $pendingInventory) {
-        # Preserve pending proposals even if a subsequent source revision removes them.
-        $inventory = Merge-ResourceNameRulesInventory -Inventory $inventory -Resources $pendingInventory.resources
+    $update = Update-ResourceNameCatalog -RulesMarkdown $Markdown -AbbreviationsMarkdown $AbbreviationsMarkdown -GeneratedPath $generatedPath -ManualPath $manualPath
+    if (-not $update.Changed) {
+        return [pscustomobject] @{ Status = 'unchanged'; Changed = $false; Pushed = $false; PullRequestUrl = $null }
     }
-    $inventory = Merge-ResourceNameRulesInventory -Inventory $inventory -Resources $sourceResources
-    $addedCount = $inventory.resources.Count - $baseInventory.resources.Count
-    if ($addedCount -eq 0) {
-        return [pscustomobject] @{ AddedCount = 0; Pushed = $false; PullRequestUrl = $null }
+    $changedPaths = @((& $run 'git' @('diff', '--name-only')).StdOut.Trim() -split '\r?\n' | Where-Object { $_ -ne '' })
+    if ($changedPaths.Count -eq 0 -or @($changedPaths | Where-Object { $_ -notin $catalogPaths }).Count -gt 0) {
+        throw 'Catalog generation produced an unexpected change set.'
     }
-    Write-ResourceNameRulesInventory -Inventory $inventory -Path $inventoryPath
-    $difference = & $run 'git' @('diff', '--quiet', '--', $inventoryGitPath) @(0, 1)
-    if ($difference.ExitCode -ne 1) {
-        throw 'The inventory reported additions but git found no changes.'
+    if ($null -eq $ValidationRunner) {
+        $ValidationRunner = { Import-Module Avm.Authoring -ErrorAction Stop; avm test unit }
     }
-    if ((& $run 'git' @('diff', '--name-only')).StdOut.Trim() -cne $inventoryGitPath) {
-        throw 'Discovery modified files outside its inventory; refusing publication.'
+    Push-Location -LiteralPath $RepositoryRoot
+    try { & $ValidationRunner }
+    finally { Pop-Location }
+    $null = & $run 'git' (@('add', '--') + $catalogPaths)
+    $stagedPaths = @((& $run 'git' @('diff', '--cached', '--name-only')).StdOut.Trim() -split '\r?\n' | Where-Object { $_ -ne '' })
+    if ($stagedPaths.Count -eq 0 -or @($stagedPaths | Where-Object { $_ -notin $catalogPaths }).Count -gt 0) {
+        throw 'The staged update contains unexpected files.'
     }
-
-    $json = ConvertTo-ResourceNameRulesInventoryJson -Inventory $inventory
-    $pushed = $false
-    if ($null -eq $remoteInventoryJson -or $json -cne $remoteInventoryJson) {
-        $null = & $run 'git' @('add', '--', $inventoryGitPath)
-        if ((& $run 'git' @('diff', '--cached', '--name-only')).StdOut.Trim() -cne $inventoryGitPath) {
-            throw 'The staged update contains unexpected files.'
-        }
-        $commitMessage = "chore: discover documented Azure naming-rule additions`n`nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>"
-        $null = & $run 'git' @(
-            '-c', 'user.name=github-actions[bot]',
-            '-c', 'user.email=41898282+github-actions[bot]@users.noreply.github.com',
-            '-c', 'commit.gpgsign=false', 'commit', '-m', $commitMessage
-        )
-        $null = & $run 'git' ($authentication + @(
-            'push', '--porcelain', "--force-with-lease=refs/heads/${branch}:$expectedHead",
-            'origin', "HEAD:refs/heads/$branch"
-        ))
-        $pushed = $true
-    }
-
-    $title = 'chore: discover documented Azure naming-rule additions'
+    $commitMessage = "chore: refresh documented Azure naming catalogs`n`nCo-authored-by: Copilot App <223556219+Copilot@users.noreply.github.com>"
+    $null = & $run 'git' @(
+        '-c', 'user.name=github-actions[bot]',
+        '-c', 'user.email=41898282+github-actions[bot]@users.noreply.github.com',
+        '-c', 'commit.gpgsign=false', 'commit', '-m', $commitMessage
+    )
+    $null = & $run 'git' ($authentication + @(
+        'push', '--porcelain', "--force-with-lease=refs/heads/${branch}:$expectedHead",
+        'origin', "HEAD:refs/heads/$branch"
+    ))
+    $title = 'chore: refresh documented Azure naming catalogs'
     $body = @'
-## Additions-only documentation discovery
+## Runtime naming-catalog refresh
 
-This pull request proposes __COUNT__ documented resource type additions to `data/resource-name-rules.json`, compared with the repository default branch.
+This change refreshes `data/resource-name-rules.json` and its manual fallback from the current documented sources.
 
-Source: [Microsoft's Azure resource naming rules](https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/azure-resource-manager/management/resource-name-rules.md).
+Sources: [Azure naming rules](https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/azure-resource-manager/management/resource-name-rules.md) and [CAF abbreviations](https://github.com/MicrosoftDocs/cloud-adoption-framework/blob/main/docs/ready/azure-best-practices/resource-abbreviations.md).
 
 ### Review boundary
 
-- This is a review inventory, **not an update to the module's runtime naming catalog**.
-- Existing inventory records are never changed or deleted. Pending additions on this branch are preserved across runs.
-- The original scope, length, and valid-characters prose is retained, including Markdown/HTML and upstream inaccuracies. Documented provider/entity notation can also include data-plane shorthand; it is not a validated ARM deployment schema.
-- No Terraform output names, resource slugs, regexes, or naming definitions are inferred or generated. Neither `resourceDefinition.json` nor `resourceDefinition_out_of_docs.json` is modified.
-- A maintainer must review each addition and, separately, choose an appropriate runtime definition and compatibility tests. Future reviewed JSON definitions can be exposed through the module's `names` map; existing iteration-1 names remain unchanged.
+- These files are consumed by Terraform: corrected rules, abbreviations, variants, or keys can change generated names.
+- Review additions, promotions from manual fallback, and formerly documented types retained as manual fallback.
+- Source text and limitations are retained. Unknown validation is not a successful validation result.
+- Only these two naming data files are included; no Terraform code is generated.
+- Open review requests are not rewritten by later scheduled runs.
 - **Human review is required. This workflow never approves or automatically merges pull requests.**
 
 ### Automation notes
 
-The workflow runs its offline parser and mocked publication tests before publishing. `GITHUB_TOKEN`-created pull requests do not automatically trigger other event-based workflows; maintainers can run the manual **Naming rules tests** workflow and any additional required checks.
+The workflow runs parser/publication tests and native Terraform unit tests before publishing. `GITHUB_TOKEN`-created pull requests do not automatically trigger other event-based workflows.
 
 Repository prerequisite: **Settings > Actions > General > Workflow permissions > Allow GitHub Actions to create and approve pull requests** must be enabled by a maintainer. The workflow does not change that setting or approve pull requests.
 '@
-    $body = $body.Replace('__COUNT__', [string] $addedCount)
     $pullRequestsResult = & $run 'gh' @(
         'api', '--method', 'GET', "repos/$Repository/pulls",
         '-f', 'state=open', '-f', "head=Azure:$branch", '-f', "base=$BaseBranch", '-f', 'per_page=100'
@@ -246,7 +253,7 @@ Repository prerequisite: **Settings > Actions > General > Workflow permissions >
         }
         $pullRequestUrl = "https://github.com/$Repository/pull/$($pullRequest.number)"
     }
-    return [pscustomobject] @{ AddedCount = $addedCount; Pushed = $pushed; PullRequestUrl = $pullRequestUrl }
+    return [pscustomobject] @{ Status = 'proposed'; Changed = $true; Pushed = $true; PullRequestUrl = $pullRequestUrl }
 }
 
 Export-ModuleMember -Function Invoke-ResourceNameRulesNativeCommand, Publish-ResourceNameRulesUpdate

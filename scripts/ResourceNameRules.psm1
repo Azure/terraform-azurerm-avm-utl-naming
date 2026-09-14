@@ -40,7 +40,13 @@ function Get-ResourceNameRulesDocument {
     [CmdletBinding()]
     param(
         [ValidateRange(1, 300)]
-        [int] $TimeoutSeconds = 60
+        [int] $TimeoutSeconds = 60,
+
+        [ValidateSet(
+            'https://raw.githubusercontent.com/MicrosoftDocs/azure-docs/main/articles/azure-resource-manager/management/resource-name-rules.md',
+            'https://raw.githubusercontent.com/MicrosoftDocs/cloud-adoption-framework/main/docs/ready/azure-best-practices/resource-abbreviations.md'
+        )]
+        [string] $Uri = $script:SourceUrl
     )
 
     $handler = [System.Net.Http.HttpClientHandler]::new()
@@ -53,7 +59,7 @@ function Get-ResourceNameRulesDocument {
         $client.MaxResponseContentBufferSize = $script:MaximumDocumentBytes
         $client.DefaultRequestHeaders.UserAgent.ParseAdd('avm-naming-rules-discovery/1.0')
         $client.DefaultRequestHeaders.Accept.ParseAdd('text/plain')
-        $response = $client.GetAsync($script:SourceUrl).GetAwaiter().GetResult()
+        $response = $client.GetAsync($Uri).GetAwaiter().GetResult()
         return ConvertFrom-ResourceNameRulesResponse -Response $response
     }
     finally {
@@ -384,163 +390,7 @@ function Assert-NamingRulesJsonProperty {
     }
 }
 
-function ConvertFrom-ResourceNameRulesInventoryJson {
-    [CmdletBinding()]
-    param(
-        [Parameter(Mandatory)]
-        [AllowEmptyString()]
-        [string] $Json
-    )
-
-    $document = [System.Text.Json.JsonDocument]::Parse($Json)
-    try {
-        Assert-NamingRulesJsonProperty -Element $document.RootElement
-    }
-    finally {
-        $document.Dispose()
-    }
-    $inventory = ConvertFrom-Json -InputObject $Json -AsHashtable -Depth 32
-    if ($inventory -isnot [System.Collections.IDictionary] -or
-        ($inventory.schema_version -isnot [long] -and $inventory.schema_version -isnot [int]) -or
-        $inventory.schema_version -ne 1 -or $inventory.source_url -cne $script:SourceUrl -or
-        $inventory.resources -isnot [System.Collections.IDictionary] -or $inventory.resources.Count -eq 0) {
-        throw 'Invalid naming-rules inventory: expected schema_version 1, the official source_url, and a nonempty resources object.'
-    }
-    foreach ($key in $inventory.resources.Keys) {
-        $record = $inventory.resources[$key]
-        if ($key -cnotmatch $script:ResourceTypePattern -or $key -cne $key.ToLowerInvariant() -or
-            $record -isnot [System.Collections.IDictionary]) {
-            throw 'Invalid resource key or record in the naming-rules inventory.'
-        }
-        foreach ($field in @('resource_type', 'source_heading', 'source_entity', 'scope', 'length', 'valid_characters')) {
-            if (-not $record.Contains($field) -or $record[$field] -isnot [string] -or
-                ($field -ne 'length' -and [string]::IsNullOrWhiteSpace($record[$field]))) {
-                throw "Invalid '$field' metadata in the naming-rules inventory."
-            }
-        }
-        if ($record.resource_type -cnotmatch $script:ResourceTypePattern -or
-            $record.resource_type.ToLowerInvariant() -cne $key) {
-            throw 'Resource key and resource_type disagree in the naming-rules inventory.'
-        }
-    }
-    return $inventory
-}
-
-function Read-ResourceNameRulesInventory {
-    [CmdletBinding()]
-    param([Parameter(Mandatory)][string] $Path)
-
-    $json = [System.IO.File]::ReadAllText($Path, [System.Text.UTF8Encoding]::new($false, $true))
-    return ConvertFrom-ResourceNameRulesInventoryJson -Json $json
-}
-
-function Merge-ResourceNameRulesInventory {
-    [CmdletBinding()]
-    param(
-        [Parameter(Mandatory)]
-        [System.Collections.IDictionary] $Inventory,
-
-        [Parameter(Mandatory)]
-        [System.Collections.IDictionary] $Resources
-    )
-
-    $merged = [ordered] @{}
-    foreach ($key in $Inventory.Keys) {
-        $merged[$key] = $Inventory[$key]
-    }
-    $records = [System.Collections.Generic.Dictionary[string, object]]::new([StringComparer]::OrdinalIgnoreCase)
-    foreach ($key in $Inventory.resources.Keys) {
-        $records.Add($key, $Inventory.resources[$key])
-    }
-    foreach ($key in $Resources.Keys) {
-        if (-not $records.ContainsKey($key)) {
-            $records.Add($key, $Resources[$key])
-        }
-    }
-    $merged.resources = [ordered] @{}
-    foreach ($key in (Get-NamingRulesSortedKey -Dictionary $records)) {
-        $merged.resources[$key] = $records[$key]
-    }
-    return $merged
-}
-
-function ConvertTo-ResourceNameRulesInventoryJson {
-    [CmdletBinding()]
-    param([Parameter(Mandatory)][System.Collections.IDictionary] $Inventory)
-
-    return (($Inventory | ConvertTo-Json -Depth 32) -replace "`r`n?", "`n") + "`n"
-}
-
-function Write-ResourceNameRulesInventory {
-    [CmdletBinding()]
-    param(
-        [Parameter(Mandatory)]
-        [System.Collections.IDictionary] $Inventory,
-
-        [Parameter(Mandatory)]
-        [string] $Path
-    )
-
-    $json = ConvertTo-ResourceNameRulesInventoryJson -Inventory $Inventory
-    $null = ConvertFrom-ResourceNameRulesInventoryJson -Json $json
-    $path = [System.IO.Path]::GetFullPath($Path)
-    [void] [System.IO.Directory]::CreateDirectory([System.IO.Path]::GetDirectoryName($path))
-    $stagingPath = "$path.$([guid]::NewGuid().ToString('N')).new"
-    try {
-        [System.IO.File]::WriteAllText($stagingPath, $json, [System.Text.UTF8Encoding]::new($false))
-        [System.IO.File]::Move($stagingPath, $path, $true)
-    }
-    finally {
-        if ([System.IO.File]::Exists($stagingPath)) {
-            [System.IO.File]::Delete($stagingPath)
-        }
-    }
-}
-
-function Update-ResourceNameRulesInventory {
-    [CmdletBinding(SupportsShouldProcess)]
-    param(
-        [Parameter(Mandatory)]
-        [AllowEmptyString()]
-        [string] $Markdown,
-
-        [Parameter(Mandatory)]
-        [string] $InventoryPath,
-
-        [switch] $Initialize
-    )
-
-    $resources = ConvertFrom-ResourceNameRulesMarkdown -Markdown $Markdown
-    if ([System.IO.File]::Exists($InventoryPath)) {
-        $inventory = Read-ResourceNameRulesInventory -Path $InventoryPath
-    }
-    elseif ($Initialize) {
-        $inventory = [ordered] @{
-            schema_version = 1
-            source_url = $script:SourceUrl
-            resources = [ordered] @{}
-        }
-    }
-    else {
-        throw 'The naming-rules inventory is missing. Bootstrap deliberately with -Initialize; scheduled runs never create an empty baseline.'
-    }
-    $merged = Merge-ResourceNameRulesInventory -Inventory $inventory -Resources $resources
-    [string[]] $added = @($merged.resources.Keys | Where-Object { -not $inventory.resources.Contains($_) })
-    $changed = $false
-    if ($added.Count -gt 0 -and $PSCmdlet.ShouldProcess($InventoryPath, 'Append documented resource naming-rule records')) {
-        Write-ResourceNameRulesInventory -Inventory $merged -Path $InventoryPath
-        $changed = $true
-    }
-    return [pscustomobject] @{
-        Changed = $changed
-        AddedCount = $added.Count
-        AddedResourceTypes = $added
-        TotalCount = $merged.resources.Count
-    }
-}
-
 Export-ModuleMember -Function Get-ResourceNameRulesSourceUrl, Get-ResourceNameRulesDocument,
     ConvertFrom-ResourceNameRulesResponse, ConvertFrom-ResourceNameRulesMarkdown,
-    ConvertFrom-ResourceNameRulesInventoryJson, Read-ResourceNameRulesInventory,
-    Merge-ResourceNameRulesInventory, ConvertTo-ResourceNameRulesInventoryJson,
-    Write-ResourceNameRulesInventory, Update-ResourceNameRulesInventory
+    ConvertFrom-NamingRulesPresentation, Split-NamingRulesTableRow,
+    Get-NamingRulesSortedKey, Assert-NamingRulesJsonProperty

@@ -1,3 +1,3 @@
 # Seeded example
 
-Generates repeatable names with the original hyphenated uniqueness inputs and accesses the JSON-backed catalog through `names`.
+Generates repeatable names, enables legacy slugs, and overrides the storage-account slug. Demonstrates both the snake-case and Azure-type output maps.

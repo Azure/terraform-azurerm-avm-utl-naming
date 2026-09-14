@@ -1,4 +1,4 @@
-name: Naming compatibility
+name: Naming tests
 
 on:
   pull_request:
@@ -9,8 +9,8 @@ permissions:
   contents: read
 
 jobs:
-  compatibility:
-    name: Naming interface and state compatibility
+  naming:
+    name: Naming behavior
     runs-on: ubuntu-latest
     timeout-minutes: 20
     defaults:
@@ -28,10 +28,7 @@ jobs:
           Import-Module Avm.Authoring
           avm version
 
-      - name: Check the legacy interface and naming behavior
+      - name: Check naming behavior
         run: |
           Import-Module Avm.Authoring
           avm test unit
-
-      - name: Check a state-preserving upgrade from the legacy module
-        run: ./tests/compatibility/Test-LegacyUpgrade.ps1

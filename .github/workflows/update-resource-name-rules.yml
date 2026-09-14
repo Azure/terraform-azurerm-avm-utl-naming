@@ -1,4 +1,4 @@
-name: Discover naming rule additions
+name: Refresh naming catalogs
 
 on:
   schedule:
@@ -35,7 +35,9 @@ jobs:
           persist-credentials: false
       - name: Test parser and mocked publication
         run: .\scripts\tests\Test-ResourceNameRules.ps1
-      - name: Discover additions and create or update the review pull request
+      - name: Install AVM authoring for generated-data validation
+        run: Install-PSResource -Name Avm.Authoring -Repository PSGallery -TrustRepository
+      - name: Regenerate runtime catalogs and propose changes
         env:
           GH_TOKEN: ${{ github.token }}
           NAMING_RULES_BASE_BRANCH: ${{ github.event.repository.default_branch }}

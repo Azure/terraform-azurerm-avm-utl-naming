@@ -3,20 +3,20 @@ name: Naming rules tests
 on:
   pull_request:
     paths:
-      - "scripts/ResourceNameRules*.psm1"
+      - "scripts/ResourceName*.psm1"
       - "scripts/*-ResourceNameRules.ps1"
       - "scripts/tests/**"
-      - "data/resource-name-rules.json"
+      - "data/resource-name-rules*.json"
       - ".github/workflows/update-resource-name-rules.yml"
       - ".github/workflows/naming-rules-tests.yml"
   push:
     branches:
       - main
     paths:
-      - "scripts/ResourceNameRules*.psm1"
+      - "scripts/ResourceName*.psm1"
       - "scripts/*-ResourceNameRules.ps1"
       - "scripts/tests/**"
-      - "data/resource-name-rules.json"
+      - "data/resource-name-rules*.json"
       - ".github/workflows/update-resource-name-rules.yml"
       - ".github/workflows/naming-rules-tests.yml"
   workflow_dispatch:

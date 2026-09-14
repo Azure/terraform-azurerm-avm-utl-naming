@@ -4,246 +4,198 @@ variables {
   unique-seed = "a1b2c3d4"
 }
 
-run "json_catalog" {
+run "dynamic_catalog" {
   command = apply
 
   assert {
-    condition = length(output.names) == length(concat(
-      jsondecode(file("resourceDefinition.json")),
-      jsondecode(file("resourceDefinition_out_of_docs.json")),
-    ))
-    error_message = "Every definition from both JSON files must be available through names."
+    condition     = length(output.names) > 0 && length(output.names) == length(local.catalog)
+    error_message = "Every JSON catalog entry must appear in the Terraform-keyed output."
   }
 
   assert {
     condition = alltrue([
-      for name, definition in output.names :
-      length(definition.name) <= definition.max_length &&
-      length(definition.name_unique) <= definition.max_length &&
-      can(regexall(definition.regex, definition.name))
+      for key, definition in local.catalog :
+      output.names[key].terraform_key == key &&
+      output.names[key].slug == definition.slug &&
+      output.names[key].slug_source == definition.slug_source
     ])
-    error_message = "Catalog regexes must be valid RE2 expressions and names must respect their maximum lengths."
+    error_message = "The default mode must use the generated catalog keys and modern slugs."
+  }
+
+  assert {
+    condition = alltrue([
+      for definition in values(output.names) :
+      definition.regex == null ? true : can(regexall(definition.regex, definition.name))
+    ])
+    error_message = "Every published non-null regex must be a valid RE2 expression."
+  }
+
+  assert {
+    condition = alltrue([
+      for definition in values(output.names) :
+      definition.validation_complete ? (
+        definition.validation.valid_name != null && definition.validation.valid_name_unique != null
+        ) : (
+        definition.validation.valid_name == null &&
+        definition.validation.valid_name_unique == null &&
+        length(definition.validation_notes) > 0
+      )
+    ])
+    error_message = "Incomplete rules must explicitly report unknown validation and explain the limitation."
+  }
+}
+
+run "azure_type_groups" {
+  command = apply
+
+  assert {
+    condition = alltrue([
+      for key, definition in local.catalog :
+      output.names_by_azure_type[definition.resource_type][key] == output.names[key]
+      if definition.resource_type != null
+    ])
+    error_message = "The Azure-type view must preserve every variant without overwriting entries."
+  }
+
+  assert {
+    condition = alltrue([
+      for key, definition in local.catalog :
+      alltrue([for entries in values(output.names_by_azure_type) : !contains(keys(entries), key)])
+      if definition.resource_type == null
+    ])
+    error_message = "Non-ARM manual entries must not be assigned a fabricated Azure resource type."
+  }
+}
+
+run "legacy_slugs" {
+  command = apply
+
+  variables {
+    legacy_mode = true
+  }
+
+  assert {
+    condition = alltrue([
+      for key, definition in local.catalog :
+      output.names[key].slug == (definition.legacy_slug != null ? definition.legacy_slug : definition.slug) &&
+      output.names[key].slug_source == (definition.legacy_slug != null ? "legacy" : definition.slug_source)
+    ])
+    error_message = "Legacy mode must select each mapped legacy slug and retain current defaults for new entries."
   }
 
   assert {
     condition = (
-      output.load_test.regex == "^[a-zA-Z][a-zA-Z0-9-_]{0,62}[a-zA-Z0-9|]$" &&
-      output.machine_learning_registry.regex == "^[a-zA-Z0-9][a-zA-Z0-9_-]{2,32}$"
+      contains([for entry in values(output.names_by_azure_type["Microsoft.Web/sites"]) : entry.slug], "app") &&
+      contains([for entry in values(output.names_by_azure_type["Microsoft.Web/sites"]) : entry.slug], "func")
     )
-    error_message = "JSON regex templates must render with each definition's length limits."
+    error_message = "Web apps and function apps must retain distinct legacy variants under the same Azure type."
   }
 }
 
-run "mixed_case" {
+run "override_precedence" {
   command = apply
 
   variables {
-    prefix        = ["Co", "RE"]
-    suffix        = ["App", "Dev"]
-    unique-length = 6
-    unique-seed   = "Ab9XyZ"
+    legacy_mode = true
+    slug_overrides = {
+      storage_account = "store"
+    }
   }
 
   assert {
-    condition = jsonencode({
-      for name in keys(jsondecode(file("tests/unit/fixtures/mixed_case.json")).names) :
-      name => [output.names[name].name, output.names[name].name_unique]
-    }) == jsonencode(jsondecode(file("tests/unit/fixtures/mixed_case.json")).names)
-    error_message = "Mixed-case components and seeds must preserve legacy names for every resource."
-  }
-
-  assert {
-    condition = jsonencode({
-      for name in keys(jsondecode(file("tests/unit/fixtures/mixed_case.json")).validation) :
-      name => output.validation[name]
-    }) == jsonencode(jsondecode(file("tests/unit/fixtures/mixed_case.json")).validation)
-    error_message = "Mixed-case validation must retain the legacy results."
-  }
-}
-
-run "empty_components" {
-  command = apply
-
-  variables {
-    prefix      = ["", "a", ""]
-    suffix      = ["", "b", ""]
-    unique-seed = "t1e2s3t4"
-  }
-
-  assert {
-    condition = jsonencode({
-      for name in keys(jsondecode(file("tests/unit/fixtures/empty_components.json")).names) :
-      name => [output.names[name].name, output.names[name].name_unique]
-    }) == jsonencode(jsondecode(file("tests/unit/fixtures/empty_components.json")).names)
-    error_message = "Empty components must retain the legacy separator behavior."
-  }
-
-  assert {
-    condition = jsonencode({
-      for name in keys(jsondecode(file("tests/unit/fixtures/empty_components.json")).validation) :
-      name => output.validation[name]
-    }) == jsonencode(jsondecode(file("tests/unit/fixtures/empty_components.json")).validation)
-    error_message = "Empty-component validation must retain the legacy results."
-  }
-}
-
-run "maximum_length_truncation" {
-  command = apply
-
-  variables {
-    prefix      = [join("", [for i in range(600) : "Ab"])]
-    suffix      = ["Production"]
-    unique-seed = "seed123"
-  }
-
-  assert {
-    condition = jsonencode({
-      for name in keys(jsondecode(file("tests/unit/fixtures/truncated.json")).names) :
-      name => [output.names[name].name, output.names[name].name_unique]
-    }) == jsonencode(jsondecode(file("tests/unit/fixtures/truncated.json")).names)
-    error_message = "Truncation must preserve the legacy result, including truncated-away uniqueness."
+    condition     = output.names.storage_account.slug == "store" && output.names.storage_account.slug_source == "override"
+    error_message = "A per-entry slug override must take precedence over legacy mode."
   }
 
   assert {
     condition = alltrue([
-      for name, definition in output.names :
-      length(definition.name) == definition.max_length &&
-      length(definition.name_unique) == definition.max_length
+      for key, definition in local.catalog :
+      output.names[key].slug == (definition.legacy_slug != null ? definition.legacy_slug : definition.slug)
+      if key != "storage_account"
     ])
-    error_message = "Long components must be truncated at each resource's exact maximum length."
-  }
-
-  assert {
-    condition = jsonencode({
-      for name in keys(jsondecode(file("tests/unit/fixtures/truncated.json")).validation) :
-      name => output.validation[name]
-    }) == jsonencode(jsondecode(file("tests/unit/fixtures/truncated.json")).validation)
-    error_message = "Truncated-name validation must retain the legacy results."
+    error_message = "Overriding one key must not change other catalog entries."
   }
 }
 
-run "punctuation" {
+run "omit_slug" {
   command = apply
 
   variables {
-    prefix = ["a.b_(c)", "x"]
-    suffix = ["y_z", "q"]
+    slug_overrides = {
+      storage_account = ""
+    }
+    suffix = ["sample"]
   }
 
   assert {
-    condition = jsonencode({
-      for name in keys(jsondecode(file("tests/unit/fixtures/punctuation.json")).names) :
-      name => [output.names[name].name, output.names[name].name_unique]
-    }) == jsonencode(jsondecode(file("tests/unit/fixtures/punctuation.json")).names)
-    error_message = "Punctuation must not be silently sanitized."
-  }
-
-  assert {
-    condition = jsonencode({
-      for name in keys(jsondecode(file("tests/unit/fixtures/punctuation.json")).validation) :
-      name => output.validation[name]
-    }) == jsonencode(jsondecode(file("tests/unit/fixtures/punctuation.json")).validation)
-    error_message = "JSON backslashes and quotes must preserve the legacy regex semantics."
+    condition     = output.names.storage_account.slug == "" && output.names.storage_account.name == "sample"
+    error_message = "An explicitly empty override must omit the slug."
   }
 }
 
-run "short_seed" {
-  command = apply
+run "unknown_override_key" {
+  command = plan
 
   variables {
-    suffix        = ["Dev"]
-    unique-length = 8
-    unique-seed   = "Z"
+    slug_overrides = {
+      __not_a_catalog_resource__ = "invalid"
+    }
   }
 
-  assert {
-    condition = jsonencode({
-      for name in keys(jsondecode(file("tests/unit/fixtures/short_seed.json")).names) :
-      name => [output.names[name].name, output.names[name].name_unique]
-    }) == jsonencode(jsondecode(file("tests/unit/fixtures/short_seed.json")).names)
-    error_message = "A short seed must not be padded or replaced."
-  }
-
-  assert {
-    condition     = output.unique-seed == "Z"
-    error_message = "The seed output must retain the complete supplied value."
-  }
-
-  assert {
-    condition = jsonencode({
-      for name in keys(jsondecode(file("tests/unit/fixtures/short_seed.json")).validation) :
-      name => output.validation[name]
-    }) == jsonencode(jsondecode(file("tests/unit/fixtures/short_seed.json")).validation)
-    error_message = "Short-seed validation must retain the legacy results."
-  }
+  expect_failures = [var.slug_overrides]
 }
 
-run "zero_length" {
+run "zero_uniqueness_length" {
   command = apply
 
   variables {
-    prefix        = ["a"]
-    suffix        = ["b"]
+    suffix        = ["example"]
     unique-length = 0
-    unique-seed   = "abc123"
   }
 
   assert {
-    condition = jsonencode({
-      for name in keys(jsondecode(file("tests/unit/fixtures/zero_length.json")).names) :
-      name => [output.names[name].name, output.names[name].name_unique]
-    }) == jsonencode(jsondecode(file("tests/unit/fixtures/zero_length.json")).names)
-    error_message = "A zero-length uniqueness suffix must retain legacy trailing separators."
-  }
-
-  assert {
-    condition = jsonencode({
-      for name in keys(jsondecode(file("tests/unit/fixtures/zero_length.json")).validation) :
-      name => output.validation[name]
-    }) == jsonencode(jsondecode(file("tests/unit/fixtures/zero_length.json")).validation)
-    error_message = "Zero-length validation must retain the legacy results."
+    condition     = alltrue([for entry in values(output.names) : entry.name == entry.name_unique])
+    error_message = "A zero-length uniqueness suffix must not add a trailing separator."
   }
 }
 
-run "negative_length" {
+run "documented_name_modes" {
+  command = apply
+
+  assert {
+    condition = alltrue([
+      for key, definition in local.catalog :
+      output.names[key].name == definition.fixed_name && output.names[key].name_unique == definition.fixed_name
+      if definition.name_kind == "literal"
+    ])
+    error_message = "Documented literal names must not acquire prefixes or suffixes."
+  }
+
+  assert {
+    condition = alltrue([
+      for key, definition in local.catalog :
+      can(regex("^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", output.names[key].name)) &&
+      can(regex("^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", output.names[key].name_unique))
+      if definition.name_kind == "uuid"
+    ])
+    error_message = "GUID-only resources must receive GUID-shaped names."
+  }
+}
+
+run "maximum_length" {
   command = apply
 
   variables {
-    unique-length = -1
-    unique-seed   = "seedabcd"
+    prefix = [join("", [for i in range(1000) : "ab"])]
   }
 
   assert {
-    condition = jsonencode({
-      for name in keys(jsondecode(file("tests/unit/fixtures/negative_length.json")).names) :
-      name => [output.names[name].name, output.names[name].name_unique]
-    }) == jsonencode(jsondecode(file("tests/unit/fixtures/negative_length.json")).names)
-    error_message = "The legacy substr length of -1 must continue to select the full seed."
-  }
-
-  assert {
-    condition = jsonencode({
-      for name in keys(jsondecode(file("tests/unit/fixtures/negative_length.json")).validation) :
-      name => output.validation[name]
-    }) == jsonencode(jsondecode(file("tests/unit/fixtures/negative_length.json")).validation)
-    error_message = "Full-seed validation must retain the legacy results."
-  }
-}
-
-run "legacy_validation_boundaries" {
-  command = apply
-
-  assert {
-    condition = (
-      output.application_insights.name == "appi" &&
-      output.application_insights.min_length == 10 &&
-      output.validation.application_insights.valid_name == false &&
-      output.validation.application_insights.valid_name_unique == true &&
-      output.machine_learning_registry.name == "mlr" &&
-      output.machine_learning_registry.min_length == 3 &&
-      output.validation.machine_learning_registry.valid_name == false &&
-      output.validation.machine_learning_registry.valid_name_unique == true
-    )
-    error_message = "Legacy validation uses an exclusive minimum for name and regex-only checks for name_unique."
+    condition = alltrue([
+      for key, definition in local.catalog :
+      length(output.names[key].name) == definition.max_length &&
+      length(output.names[key].name_unique) == definition.max_length
+      if definition.name_kind == "standard" && (definition.max_length == null ? false : definition.max_length <= 2000)
+    ])
+    error_message = "Standard names must be truncated to their documented maximum when one is known."
   }
 }

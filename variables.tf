@@ -1,8 +1,26 @@
+variable "legacy_mode" {
+  type        = bool
+  default     = false
+  description = "Use the original naming module's slugs where a legacy mapping exists. Other entries use the current catalog defaults. This restores slugs, not historical naming constraints."
+  nullable    = false
+}
+
 variable "prefix" {
   type        = list(string)
   default     = []
   description = "Name components placed before the resource slug. Prefer suffixes when following Azure naming recommendations."
   nullable    = false
+}
+
+variable "slug_overrides" {
+  type        = map(string)
+  default     = null
+  description = "Slug overrides keyed by the snake-case JSON catalog key. Overrides take precedence over legacy_mode and catalog defaults. Null uses the selected defaults; an empty string omits the slug."
+
+  validation {
+    condition     = var.slug_overrides == null ? true : alltrue([for key in keys(var.slug_overrides) : contains(keys(local.catalog), key)])
+    error_message = "Every slug_overrides key must identify an entry in the naming catalog."
+  }
 }
 
 variable "suffix" {

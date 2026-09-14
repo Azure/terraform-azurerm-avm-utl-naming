@@ -1,0 +1,3143 @@
+{
+  "schema_version": 2,
+  "legacy_source": {
+    "revision": "fc289126c9c888393ff02a79e1babadd6865861c",
+    "repository": "https://github.com/Azure/terraform-azurerm-naming"
+  },
+  "legacy_mappings": {
+    "analysis_services_server": {
+      "resource_type": "Microsoft.AnalysisServices/servers",
+      "variant": null,
+      "slug": "as",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L315-L317"
+    },
+    "api_management": {
+      "resource_type": "Microsoft.ApiManagement/service",
+      "variant": null,
+      "slug": "apim",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L3882-L3884"
+    },
+    "app_configuration": {
+      "resource_type": "Microsoft.AppConfiguration/configurationStores",
+      "variant": null,
+      "slug": "appcg",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L6990-L6992"
+    },
+    "app_service": {
+      "resource_type": "Microsoft.Web/sites",
+      "variant": "web_app",
+      "slug": "app",
+      "source": "https://github.com/MicrosoftDocs/cloud-adoption-framework/blob/main/docs/ready/azure-best-practices/resource-abbreviations.md#L115-L117"
+    },
+    "app_service_environment": {
+      "resource_type": "Microsoft.Web/hostingEnvironments",
+      "variant": null,
+      "slug": "ase",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L102636-L102638"
+    },
+    "app_service_plan": {
+      "resource_type": "Microsoft.Web/serverfarms",
+      "variant": null,
+      "slug": "plan",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L102651-L102653"
+    },
+    "application_gateway": {
+      "resource_type": "Microsoft.Network/applicationGateways",
+      "variant": null,
+      "slug": "agw",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67644-L67646"
+    },
+    "application_insights": {
+      "resource_type": "Microsoft.Insights/components",
+      "variant": null,
+      "slug": "appi",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L7134-L7136"
+    },
+    "application_security_group": {
+      "resource_type": "Microsoft.Network/applicationSecurityGroups",
+      "variant": null,
+      "slug": "asg",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67827-L67829"
+    },
+    "automation_account": {
+      "resource_type": "Microsoft.Automation/automationAccounts",
+      "variant": null,
+      "slug": "aa",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L9312-L9314"
+    },
+    "automation_certificate": {
+      "resource_type": "Microsoft.Automation/automationAccounts/certificates",
+      "variant": null,
+      "slug": "aacert",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L9315-L9317"
+    },
+    "automation_credential": {
+      "resource_type": "Microsoft.Automation/automationAccounts/credentials",
+      "variant": null,
+      "slug": "aacred",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L9327-L9329"
+    },
+    "automation_runbook": {
+      "resource_type": "Microsoft.Automation/automationAccounts/runbooks",
+      "variant": null,
+      "slug": "aacred",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L9357-L9359"
+    },
+    "automation_schedule": {
+      "resource_type": "Microsoft.Automation/automationAccounts/schedules",
+      "variant": null,
+      "slug": "aasched",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L9369-L9371"
+    },
+    "automation_variable": {
+      "resource_type": "Microsoft.Automation/automationAccounts/variables",
+      "variant": null,
+      "slug": "aavar",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L9381-L9383"
+    },
+    "availability_set": {
+      "resource_type": "Microsoft.Compute/availabilitySets",
+      "variant": null,
+      "slug": "avail",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L18936-L18938"
+    },
+    "backup_policy_vm": {
+      "resource_type": "Microsoft.RecoveryServices/vaults/backupPolicies",
+      "variant": "virtual_machine",
+      "slug": "bkpol",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/backup_policy_vm.html.markdown#L207-L209"
+    },
+    "bastion_host": {
+      "resource_type": "Microsoft.Network/bastionHosts",
+      "variant": null,
+      "slug": "snap",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67830-L67832"
+    },
+    "batch_account": {
+      "resource_type": "Microsoft.Batch/batchAccounts",
+      "variant": null,
+      "slug": "ba",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L13317-L13319"
+    },
+    "batch_application": {
+      "resource_type": "Microsoft.Batch/batchAccounts/applications",
+      "variant": null,
+      "slug": "baapp",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L13320-L13322"
+    },
+    "batch_certificate": {
+      "resource_type": "Microsoft.Batch/batchAccounts/certificates",
+      "variant": null,
+      "slug": "bacert",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L13299-L13301"
+    },
+    "batch_pool": {
+      "resource_type": "Microsoft.Batch/batchAccounts/pools",
+      "variant": null,
+      "slug": "bapool",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L13326-L13328"
+    },
+    "bot_channel_directline": {
+      "resource_type": "Microsoft.BotService/botServices/channels",
+      "variant": "direct_line",
+      "slug": "botline",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/bot_channel_directline.html.markdown#L109-L111"
+    },
+    "bot_channel_email": {
+      "resource_type": "Microsoft.BotService/botServices/channels",
+      "variant": "email",
+      "slug": "botmail",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/bot_channel_email.html.markdown#L76-L78"
+    },
+    "bot_channel_ms_teams": {
+      "resource_type": "Microsoft.BotService/botServices/channels",
+      "variant": "ms_teams",
+      "slug": "botteams",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/bot_channel_ms_teams.html.markdown#L74-L76"
+    },
+    "bot_channel_slack": {
+      "resource_type": "Microsoft.BotService/botServices/channels",
+      "variant": "slack",
+      "slug": "botslack",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/bot_channel_slack.html.markdown#L81-L83"
+    },
+    "bot_channels_registration": {
+      "resource_type": "Microsoft.BotService/botServices",
+      "variant": "channels_registration",
+      "slug": "botchan",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/internal/services/bot/bot_channels_registration_resource.go#L230-L235"
+    },
+    "bot_connection": {
+      "resource_type": "Microsoft.BotService/botServices/connections",
+      "variant": null,
+      "slug": "botcon",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L13971-L13973"
+    },
+    "bot_web_app": {
+      "resource_type": "Microsoft.BotService/botServices",
+      "variant": "web_app",
+      "slug": "bot",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/internal/services/bot/bot_web_app_resource.go#L212-L217"
+    },
+    "cdn_endpoint": {
+      "resource_type": "Microsoft.Cdn/profiles/endpoints",
+      "variant": null,
+      "slug": "cdn",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L14907-L14909"
+    },
+    "cdn_frontdoor_endpoint": {
+      "resource_type": "Microsoft.Cdn/profiles/afdEndpoints",
+      "variant": null,
+      "slug": "fde",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L14898-L14900"
+    },
+    "cdn_frontdoor_origin": {
+      "resource_type": "Microsoft.Cdn/profiles/originGroups/origins",
+      "variant": null,
+      "slug": "cdno",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L14922-L14924"
+    },
+    "cdn_frontdoor_origin_group": {
+      "resource_type": "Microsoft.Cdn/profiles/originGroups",
+      "variant": null,
+      "slug": "cdnog",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L14919-L14921"
+    },
+    "cdn_frontdoor_profile": {
+      "resource_type": "Microsoft.Cdn/profiles",
+      "variant": "front_door",
+      "slug": "afd",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/cdn_frontdoor_profile.html.markdown#L105-L107"
+    },
+    "cdn_frontdoor_route": {
+      "resource_type": "Microsoft.Cdn/profiles/afdEndpoints/routes",
+      "variant": null,
+      "slug": "cdnr",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L14901-L14903"
+    },
+    "cdn_profile": {
+      "resource_type": "Microsoft.Cdn/profiles",
+      "variant": "cdn",
+      "slug": "cdnprof",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/cdn_profile.html.markdown#L74-L76"
+    },
+    "cognitive_account": {
+      "resource_type": "Microsoft.CognitiveServices/accounts",
+      "variant": null,
+      "slug": "cog",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L16659-L16661"
+    },
+    "communication_service": {
+      "resource_type": "Microsoft.Communication/communicationServices",
+      "variant": null,
+      "slug": "acs",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L16911-L16913"
+    },
+    "container_app": {
+      "resource_type": "Microsoft.App/containerApps",
+      "variant": null,
+      "slug": "ca",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L6747-L6749"
+    },
+    "container_app_environment": {
+      "resource_type": "Microsoft.App/managedEnvironments",
+      "variant": null,
+      "slug": "cae",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L6753-L6755"
+    },
+    "container_app_job": {
+      "resource_type": "Microsoft.App/jobs",
+      "variant": null,
+      "slug": "caj",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L6750-L6752"
+    },
+    "container_group": {
+      "resource_type": "Microsoft.ContainerInstance/containerGroups",
+      "variant": null,
+      "slug": "cg",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L19905-L19907"
+    },
+    "container_registry": {
+      "resource_type": "Microsoft.ContainerRegistry/registries",
+      "variant": null,
+      "slug": "acr",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L20547-L20549"
+    },
+    "container_registry_webhook": {
+      "resource_type": "Microsoft.ContainerRegistry/registries/webhooks",
+      "variant": null,
+      "slug": "crwh",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L20571-L20573"
+    },
+    "cosmosdb_account": {
+      "resource_type": "Microsoft.DocumentDB/databaseAccounts",
+      "variant": null,
+      "slug": "cosmos",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L28527-L28529"
+    },
+    "cosmosdb_cassandra": {
+      "resource_type": "Microsoft.DocumentDB/databaseAccounts",
+      "variant": "cassandra",
+      "slug": "coscas",
+      "source": "https://github.com/MicrosoftDocs/cloud-adoption-framework/blob/main/docs/ready/azure-best-practices/resource-abbreviations.md#L139-L145"
+    },
+    "cosmosdb_cassandra_cluster": {
+      "resource_type": "Microsoft.DocumentDB/cassandraClusters",
+      "variant": null,
+      "slug": "mcc",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L28530-L28532"
+    },
+    "cosmosdb_cassandra_datacenter": {
+      "resource_type": "Microsoft.DocumentDB/cassandraClusters/dataCenters",
+      "variant": null,
+      "slug": "mcdc",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L28536-L28538"
+    },
+    "cosmosdb_gremlin": {
+      "resource_type": "Microsoft.DocumentDB/databaseAccounts",
+      "variant": "gremlin",
+      "slug": "cosgrm",
+      "source": "https://github.com/MicrosoftDocs/cloud-adoption-framework/blob/main/docs/ready/azure-best-practices/resource-abbreviations.md#L139-L145"
+    },
+    "cosmosdb_mongodb": {
+      "resource_type": "Microsoft.DocumentDB/databaseAccounts",
+      "variant": "mongodb",
+      "slug": "cosmon",
+      "source": "https://github.com/MicrosoftDocs/cloud-adoption-framework/blob/main/docs/ready/azure-best-practices/resource-abbreviations.md#L139-L145"
+    },
+    "cosmosdb_nosql": {
+      "resource_type": "Microsoft.DocumentDB/databaseAccounts",
+      "variant": "nosql",
+      "slug": "cosno",
+      "source": "https://github.com/MicrosoftDocs/cloud-adoption-framework/blob/main/docs/ready/azure-best-practices/resource-abbreviations.md#L139-L145"
+    },
+    "cosmosdb_postgres": {
+      "resource_type": "Microsoft.DBforPostgreSQL/serverGroupsv2",
+      "variant": null,
+      "slug": "cospos",
+      "source": "https://github.com/MicrosoftDocs/cloud-adoption-framework/blob/main/docs/ready/azure-best-practices/resource-abbreviations.md#L139-L145"
+    },
+    "cosmosdb_tables": {
+      "resource_type": "Microsoft.DocumentDB/databaseAccounts",
+      "variant": "table",
+      "slug": "costab",
+      "source": "https://github.com/MicrosoftDocs/cloud-adoption-framework/blob/main/docs/ready/azure-best-practices/resource-abbreviations.md#L139-L145"
+    },
+    "custom_provider": {
+      "resource_type": "Microsoft.CustomProviders/resourceProviders",
+      "variant": null,
+      "slug": "prov",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L29274-L29276"
+    },
+    "dashboard": {
+      "resource_type": "Microsoft.Portal/dashboards",
+      "variant": null,
+      "slug": "dsb",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L70878-L70880"
+    },
+    "dashboard_grafana": {
+      "resource_type": "Microsoft.Dashboard/grafana",
+      "variant": null,
+      "slug": "amg",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L29373-L29375"
+    },
+    "data_factory": {
+      "resource_type": "Microsoft.DataFactory/factories",
+      "variant": null,
+      "slug": "adf",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L30687-L30689"
+    },
+    "data_factory_dataset_mysql": {
+      "resource_type": "Microsoft.DataFactory/factories/datasets",
+      "variant": "mysql_table",
+      "slug": "adfmysql",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/internal/services/datafactory/data_factory_dataset_mysql_resource.go#L214-L219"
+    },
+    "data_factory_dataset_postgresql": {
+      "resource_type": "Microsoft.DataFactory/factories/datasets",
+      "variant": "postgresql_table",
+      "slug": "adfpsql",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/internal/services/datafactory/data_factory_dataset_postgresql_resource.go#L214-L219"
+    },
+    "data_factory_dataset_sql_server_table": {
+      "resource_type": "Microsoft.DataFactory/factories/datasets",
+      "variant": "sql_server_table",
+      "slug": "adfmssql",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/internal/services/datafactory/data_factory_dataset_sql_server_table_resource.go#L214-L219"
+    },
+    "data_factory_integration_runtime_managed": {
+      "resource_type": "Microsoft.DataFactory/factories/integrationRuntimes",
+      "variant": "azure_ssis",
+      "slug": "adfir",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/v1.44.0/azurerm/internal/services/datafactory/resource_arm_data_factory_integration_runtime_managed.go#L227-L234"
+    },
+    "data_factory_linked_service_data_lake_storage_gen2": {
+      "resource_type": "Microsoft.DataFactory/factories/linkedservices",
+      "variant": "data_lake_storage_gen2",
+      "slug": "adfsvst",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/internal/services/datafactory/data_factory_linked_service_data_lake_storage_gen2_resource.go#L202-L206"
+    },
+    "data_factory_linked_service_key_vault": {
+      "resource_type": "Microsoft.DataFactory/factories/linkedservices",
+      "variant": "key_vault",
+      "slug": "adfsvkv",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/internal/services/datafactory/data_factory_linked_service_key_vault_resource.go#L144-L148"
+    },
+    "data_factory_linked_service_mysql": {
+      "resource_type": "Microsoft.DataFactory/factories/linkedservices",
+      "variant": "mysql",
+      "slug": "adfsvmysql",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/internal/services/datafactory/data_factory_linked_service_mysql_resource.go#L163-L167"
+    },
+    "data_factory_linked_service_postgresql": {
+      "resource_type": "Microsoft.DataFactory/factories/linkedservices",
+      "variant": "postgresql",
+      "slug": "adfsvpsql",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/internal/services/datafactory/data_factory_linked_service_postgresql_resource.go#L143-L147"
+    },
+    "data_factory_linked_service_sql_server": {
+      "resource_type": "Microsoft.DataFactory/factories/linkedservices",
+      "variant": "sql_server",
+      "slug": "adfsvmssql",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/internal/services/datafactory/data_factory_linked_service_sql_server_resource.go#L185-L191"
+    },
+    "data_factory_pipeline": {
+      "resource_type": "Microsoft.DataFactory/factories/pipelines",
+      "variant": null,
+      "slug": "adfpl",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L30717-L30719"
+    },
+    "data_factory_trigger_schedule": {
+      "resource_type": "Microsoft.DataFactory/factories/triggers",
+      "variant": "schedule",
+      "slug": "adftg",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/internal/services/datafactory/data_factory_trigger_schedule_resource.go#L295-L301"
+    },
+    "data_lake_analytics_account": {
+      "resource_type": "Microsoft.DataLakeAnalytics/accounts",
+      "variant": null,
+      "slug": "dla",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L30744-L30746"
+    },
+    "data_lake_analytics_firewall_rule": {
+      "resource_type": "Microsoft.DataLakeAnalytics/accounts/firewallRules",
+      "variant": null,
+      "slug": "dlfw",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L30756-L30758"
+    },
+    "data_lake_store": {
+      "resource_type": "Microsoft.DataLakeStore/accounts",
+      "variant": null,
+      "slug": "dls",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L30786-L30788"
+    },
+    "data_lake_store_firewall_rule": {
+      "resource_type": "Microsoft.DataLakeStore/accounts/firewallRules",
+      "variant": null,
+      "slug": "dlsfw",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L30789-L30791"
+    },
+    "data_protection_backup_vault": {
+      "resource_type": "Microsoft.DataProtection/backupVaults",
+      "variant": null,
+      "slug": "bvault",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L31962-L31964"
+    },
+    "database_migration_project": {
+      "resource_type": "Microsoft.DataMigration/services/projects",
+      "variant": null,
+      "slug": "migr",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L30993-L30995"
+    },
+    "database_migration_service": {
+      "resource_type": "Microsoft.DataMigration/services",
+      "variant": null,
+      "slug": "dms",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L30984-L30986"
+    },
+    "databricks_access_connector": {
+      "resource_type": "Microsoft.Databricks/accessConnectors",
+      "variant": null,
+      "slug": "dbac",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/databricks_access_connector.html.markdown#L95-L97"
+    },
+    "databricks_cluster": {
+      "resource_type": null,
+      "variant": "cluster",
+      "slug": "dbc",
+      "source": "https://github.com/databricks/terraform-provider-databricks/blob/main/clusters/clusters_api.go#L576-L578"
+    },
+    "databricks_high_concurrency_cluster": {
+      "resource_type": null,
+      "variant": "high_concurrency",
+      "slug": "dbhcc",
+      "source": "https://github.com/databricks/terraform-provider-databricks/blob/main/docs/resources/cluster.md#L129-L157"
+    },
+    "databricks_standard_cluster": {
+      "resource_type": null,
+      "variant": "standard",
+      "slug": "dbsc",
+      "source": "https://github.com/databricks/terraform-provider-databricks/blob/main/clusters/clusters_api.go#L576-L578"
+    },
+    "databricks_workspace": {
+      "resource_type": "Microsoft.Databricks/workspaces",
+      "variant": null,
+      "slug": "dbw",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L30486-L30488"
+    },
+    "dev_test_lab": {
+      "resource_type": "Microsoft.DevTestLab/labs",
+      "variant": null,
+      "slug": "lab",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L35403-L35405"
+    },
+    "dev_test_linux_virtual_machine": {
+      "resource_type": "Microsoft.DevTestLab/labs/virtualmachines",
+      "variant": "linux",
+      "slug": "labvm",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/dev_test_linux_virtual_machine.html.markdown#L160-L162"
+    },
+    "dev_test_windows_virtual_machine": {
+      "resource_type": "Microsoft.DevTestLab/labs/virtualmachines",
+      "variant": "windows",
+      "slug": "labvm",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/dev_test_windows_virtual_machine.html.markdown#L156-L158"
+    },
+    "disk_encryption_set": {
+      "resource_type": "Microsoft.Compute/diskEncryptionSets",
+      "variant": null,
+      "slug": "des",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L18924-L18926"
+    },
+    "dns_a_record": {
+      "resource_type": "Microsoft.Network/dnsZones/A",
+      "variant": null,
+      "slug": "dnsrec",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L35811-L35813"
+    },
+    "dns_aaaa_record": {
+      "resource_type": "Microsoft.Network/dnsZones/AAAA",
+      "variant": null,
+      "slug": "dnsrec",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L35814-L35816"
+    },
+    "dns_caa_record": {
+      "resource_type": "Microsoft.Network/dnsZones/CAA",
+      "variant": null,
+      "slug": "dnsrec",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L35817-L35819"
+    },
+    "dns_cname_record": {
+      "resource_type": "Microsoft.Network/dnsZones/CNAME",
+      "variant": null,
+      "slug": "dnsrec",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L35820-L35822"
+    },
+    "dns_mx_record": {
+      "resource_type": "Microsoft.Network/dnsZones/MX",
+      "variant": null,
+      "slug": "dnsrec",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L35823-L35825"
+    },
+    "dns_ns_record": {
+      "resource_type": "Microsoft.Network/dnsZones/NS",
+      "variant": null,
+      "slug": "dnsrec",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L35826-L35828"
+    },
+    "dns_private_resolver": {
+      "resource_type": "Microsoft.Network/dnsResolvers",
+      "variant": null,
+      "slug": "dnspr",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L35964-L35966"
+    },
+    "dns_ptr_record": {
+      "resource_type": "Microsoft.Network/dnsZones/PTR",
+      "variant": null,
+      "slug": "dnsrec",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L35829-L35831"
+    },
+    "dns_txt_record": {
+      "resource_type": "Microsoft.Network/dnsZones/TXT",
+      "variant": null,
+      "slug": "dnsrec",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L35838-L35840"
+    },
+    "dns_zone": {
+      "resource_type": "Microsoft.Network/dnsZones",
+      "variant": null,
+      "slug": "dns",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L35841-L35843"
+    },
+    "eventgrid_domain": {
+      "resource_type": "Microsoft.EventGrid/domains",
+      "variant": null,
+      "slug": "egd",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L37872-L37874"
+    },
+    "eventgrid_domain_topic": {
+      "resource_type": "Microsoft.EventGrid/domains/topics",
+      "variant": null,
+      "slug": "egdt",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L37875-L37877"
+    },
+    "eventgrid_event_subscription": {
+      "resource_type": "Microsoft.EventGrid/eventSubscriptions",
+      "variant": null,
+      "slug": "egs",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L37887-L37889"
+    },
+    "eventgrid_namespace": {
+      "resource_type": "Microsoft.EventGrid/namespaces",
+      "variant": null,
+      "slug": "evgns",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L37899-L37901"
+    },
+    "eventgrid_system_topic": {
+      "resource_type": "Microsoft.EventGrid/systemTopics",
+      "variant": null,
+      "slug": "egst",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L37935-L37937"
+    },
+    "eventgrid_topic": {
+      "resource_type": "Microsoft.EventGrid/topics",
+      "variant": null,
+      "slug": "egt",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L37905-L37907"
+    },
+    "eventhub": {
+      "resource_type": "Microsoft.EventHub/namespaces/eventhubs",
+      "variant": null,
+      "slug": "evh",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L38556-L38558"
+    },
+    "eventhub_authorization_rule": {
+      "resource_type": "Microsoft.EventHub/namespaces/eventhubs/authorizationRules",
+      "variant": null,
+      "slug": "ehar",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L38559-L38561"
+    },
+    "eventhub_cluster": {
+      "resource_type": "Microsoft.EventHub/clusters",
+      "variant": null,
+      "slug": "evhcl",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L38538-L38540"
+    },
+    "eventhub_consumer_group": {
+      "resource_type": "Microsoft.EventHub/namespaces/eventhubs/consumergroups",
+      "variant": null,
+      "slug": "ehcg",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L38562-L38564"
+    },
+    "eventhub_namespace": {
+      "resource_type": "Microsoft.EventHub/namespaces",
+      "variant": null,
+      "slug": "ehn",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L38541-L38543"
+    },
+    "eventhub_namespace_authorization_rule": {
+      "resource_type": "Microsoft.EventHub/namespaces/authorizationRules",
+      "variant": null,
+      "slug": "ehnar",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L38544-L38546"
+    },
+    "eventhub_namespace_disaster_recovery_config": {
+      "resource_type": "Microsoft.EventHub/namespaces/disasterRecoveryConfigs",
+      "variant": null,
+      "slug": "ehdr",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L38553-L38555"
+    },
+    "express_route_circuit": {
+      "resource_type": "Microsoft.Network/expressRouteCircuits",
+      "variant": null,
+      "slug": "erc",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67653-L67655"
+    },
+    "express_route_gateway": {
+      "resource_type": "Microsoft.Network/expressRouteGateways",
+      "variant": null,
+      "slug": "ergw",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67941-L67943"
+    },
+    "fabric_capacity": {
+      "resource_type": "Microsoft.Fabric/capacities",
+      "variant": null,
+      "slug": "fc",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L38646-L38648"
+    },
+    "firewall": {
+      "resource_type": "Microsoft.Network/azureFirewalls",
+      "variant": null,
+      "slug": "fw",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67689-L67691"
+    },
+    "firewall_application_rule_collection": {
+      "resource_type": null,
+      "variant": "application_rule_collection",
+      "slug": "fwapp",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/internal/services/firewall/firewall_application_rule_collection_resource.go#L219-L222"
+    },
+    "firewall_ip_configuration": {
+      "resource_type": null,
+      "variant": "ip_configuration",
+      "slug": "fwipconf",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/internal/services/firewall/firewall_resource.go#L250-L264"
+    },
+    "firewall_nat_rule_collection": {
+      "resource_type": null,
+      "variant": "nat_rule_collection",
+      "slug": "fwnatrc",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/internal/services/firewall/firewall_nat_rule_collection_resource.go#L217-L219"
+    },
+    "firewall_network_rule_collection": {
+      "resource_type": null,
+      "variant": "network_rule_collection",
+      "slug": "fwnetrc",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/internal/services/firewall/firewall_network_rule_collection_resource.go#L219-L222"
+    },
+    "firewall_policy": {
+      "resource_type": "Microsoft.Network/firewallPolicies",
+      "variant": null,
+      "slug": "afwp",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67692-L67694"
+    },
+    "firewall_policy_rule_collection_group": {
+      "resource_type": "Microsoft.Network/firewallPolicies/ruleCollectionGroups",
+      "variant": null,
+      "slug": "fwprcg",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67701-L67703"
+    },
+    "frontdoor": {
+      "resource_type": "Microsoft.Network/frontDoors",
+      "variant": null,
+      "slug": "fd",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L38907-L38909"
+    },
+    "frontdoor_firewall_policy": {
+      "resource_type": "Microsoft.Network/FrontDoorWebApplicationFirewallPolicies",
+      "variant": null,
+      "slug": "fdfw",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L38901-L38903"
+    },
+    "function_app": {
+      "resource_type": "Microsoft.Web/sites",
+      "variant": "function_app",
+      "slug": "func",
+      "source": "https://github.com/MicrosoftDocs/cloud-adoption-framework/blob/main/docs/ready/azure-best-practices/resource-abbreviations.md#L99-L101"
+    },
+    "hdinsight_hadoop_cluster": {
+      "resource_type": "Microsoft.HDInsight/clusters",
+      "variant": "hadoop",
+      "slug": "hadoop",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/internal/services/hdinsight/hdinsight_hadoop_cluster_resource.go#L278-L281"
+    },
+    "hdinsight_hbase_cluster": {
+      "resource_type": "Microsoft.HDInsight/clusters",
+      "variant": "hbase",
+      "slug": "hbase",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/internal/services/hdinsight/hdinsight_hbase_cluster_resource.go#L219-L222"
+    },
+    "hdinsight_interactive_query_cluster": {
+      "resource_type": "Microsoft.HDInsight/clusters",
+      "variant": "interactive_query",
+      "slug": "iqr",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/internal/services/hdinsight/hdinsight_interactive_query_cluster_resource.go#L232-L235"
+    },
+    "hdinsight_kafka_cluster": {
+      "resource_type": "Microsoft.HDInsight/clusters",
+      "variant": "kafka",
+      "slug": "kafka",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/internal/services/hdinsight/hdinsight_kafka_cluster_resource.go#L267-L270"
+    },
+    "hdinsight_ml_services_cluster": {
+      "resource_type": "Microsoft.HDInsight/clusters",
+      "variant": "ml_services",
+      "slug": "mls",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/v2.99.0/internal/services/hdinsight/hdinsight_ml_services_cluster_resource.go#L204-L207"
+    },
+    "hdinsight_rserver_cluster": {
+      "resource_type": "Microsoft.HDInsight/clusters",
+      "variant": "rserver",
+      "slug": "rsv",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/v1.44.0/azurerm/internal/services/hdinsight/resource_arm_hdinsight_rserver_cluster.go#L193-L196"
+    },
+    "hdinsight_spark_cluster": {
+      "resource_type": "Microsoft.HDInsight/clusters",
+      "variant": "spark",
+      "slug": "spark",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/internal/services/hdinsight/hdinsight_spark_cluster_resource.go#L236-L239"
+    },
+    "hdinsight_storm_cluster": {
+      "resource_type": "Microsoft.HDInsight/clusters",
+      "variant": "storm",
+      "slug": "storm",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/v2.99.0/internal/services/hdinsight/hdinsight_storm_cluster_resource.go#L197-L200"
+    },
+    "image": {
+      "resource_type": "Microsoft.Compute/images",
+      "variant": null,
+      "slug": "img",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L18945-L18947"
+    },
+    "iotcentral_application": {
+      "resource_type": "Microsoft.IoTCentral/iotApps",
+      "variant": null,
+      "slug": "iotapp",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L40983-L40985"
+    },
+    "iothub": {
+      "resource_type": "Microsoft.Devices/IotHubs",
+      "variant": null,
+      "slug": "iot",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L41283-L41285"
+    },
+    "iothub_consumer_group": {
+      "resource_type": "Microsoft.Devices/IotHubs/eventHubEndpoints/ConsumerGroups",
+      "variant": null,
+      "slug": "iotcg",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L41286-L41288"
+    },
+    "iothub_dps": {
+      "resource_type": "Microsoft.Devices/provisioningServices",
+      "variant": null,
+      "slug": "dps",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L34944-L34946"
+    },
+    "iothub_dps_certificate": {
+      "resource_type": "Microsoft.Devices/provisioningServices/certificates",
+      "variant": null,
+      "slug": "dpscert",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L34941-L34943"
+    },
+    "ip_group": {
+      "resource_type": "Microsoft.Network/ipGroups",
+      "variant": null,
+      "slug": "ipg",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67845-L67847"
+    },
+    "key_vault": {
+      "resource_type": "Microsoft.KeyVault/vaults",
+      "variant": null,
+      "slug": "kv",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L42096-L42098"
+    },
+    "key_vault_certificate": {
+      "resource_type": null,
+      "variant": "certificate",
+      "slug": "kvc",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/key_vault_certificate.html.markdown#L388-L390"
+    },
+    "key_vault_key": {
+      "resource_type": "Microsoft.KeyVault/vaults/keys",
+      "variant": null,
+      "slug": "kvk",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L42108-L42110"
+    },
+    "key_vault_secret": {
+      "resource_type": "Microsoft.KeyVault/vaults/secrets",
+      "variant": null,
+      "slug": "kvs",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L42114-L42116"
+    },
+    "kubernetes_cluster": {
+      "resource_type": "Microsoft.ContainerService/managedClusters",
+      "variant": null,
+      "slug": "aks",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L23475-L23477"
+    },
+    "kusto_cluster": {
+      "resource_type": "Microsoft.Kusto/clusters",
+      "variant": null,
+      "slug": "kc",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L10500-L10502"
+    },
+    "kusto_database": {
+      "resource_type": "Microsoft.Kusto/clusters/databases",
+      "variant": null,
+      "slug": "kdb",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L10506-L10508"
+    },
+    "kusto_eventhub_data_connection": {
+      "resource_type": "Microsoft.Kusto/clusters/databases/dataConnections",
+      "variant": "event_hub",
+      "slug": "kehc",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/kusto_eventhub_data_connection.html.markdown#L131-L133"
+    },
+    "lb": {
+      "resource_type": "Microsoft.Network/loadBalancers",
+      "variant": null,
+      "slug": "lb",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67716-L67718"
+    },
+    "lb_nat_rule": {
+      "resource_type": "Microsoft.Network/loadBalancers/inboundNatRules",
+      "variant": null,
+      "slug": "lbnatrl",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67722-L67724"
+    },
+    "lb_rule": {
+      "resource_type": "Microsoft.Network/loadBalancers/loadBalancingRules",
+      "variant": null,
+      "slug": "rule",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/lb_rule.html.markdown#L96-L98"
+    },
+    "linux_virtual_machine": {
+      "resource_type": "Microsoft.Compute/virtualMachines",
+      "variant": "linux",
+      "slug": "vm",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/linux_virtual_machine.html.markdown#L439-L441"
+    },
+    "linux_virtual_machine_scale_set": {
+      "resource_type": "Microsoft.Compute/virtualMachineScaleSets",
+      "variant": "linux",
+      "slug": "vmss",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/linux_virtual_machine_scale_set.html.markdown#L639-L641"
+    },
+    "load_test": {
+      "resource_type": "Microsoft.LoadTestService/loadTests",
+      "variant": null,
+      "slug": "lt",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L42618-L42620"
+    },
+    "local_network_gateway": {
+      "resource_type": "Microsoft.Network/localNetworkGateways",
+      "variant": null,
+      "slug": "lgw",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67734-L67736"
+    },
+    "log_analytics_query_pack": {
+      "resource_type": "Microsoft.OperationalInsights/queryPacks",
+      "variant": null,
+      "slug": "pack",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L69066-L69068"
+    },
+    "log_analytics_workspace": {
+      "resource_type": "Microsoft.OperationalInsights/workspaces",
+      "variant": null,
+      "slug": "log",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L69069-L69071"
+    },
+    "logic_app_integration_account": {
+      "resource_type": "Microsoft.Logic/integrationAccounts",
+      "variant": null,
+      "slug": "ia",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L42852-L42854"
+    },
+    "logic_app_workflow": {
+      "resource_type": "Microsoft.Logic/workflows",
+      "variant": null,
+      "slug": "logic",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L42849-L42851"
+    },
+    "machine_learning_registry": {
+      "resource_type": "Microsoft.MachineLearningServices/registries",
+      "variant": null,
+      "slug": "mlr",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L46767-L46769"
+    },
+    "machine_learning_workspace": {
+      "resource_type": "Microsoft.MachineLearningServices/workspaces",
+      "variant": null,
+      "slug": "mlw",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L46770-L46772"
+    },
+    "maintenance_configuration": {
+      "resource_type": "Microsoft.Maintenance/maintenanceConfigurations",
+      "variant": null,
+      "slug": "mc",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L47145-L47147"
+    },
+    "managed_disk": {
+      "resource_type": "Microsoft.Compute/disks",
+      "variant": null,
+      "slug": "dsk",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L18927-L18929"
+    },
+    "management_group": {
+      "resource_type": "Microsoft.Management/managementGroups",
+      "variant": null,
+      "slug": "mg",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L47652-L47654"
+    },
+    "maps_account": {
+      "resource_type": "Microsoft.Maps/accounts",
+      "variant": null,
+      "slug": "map",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L47712-L47714"
+    },
+    "mariadb_database": {
+      "resource_type": "Microsoft.DBforMariaDB/servers/databases",
+      "variant": null,
+      "slug": "mariadb",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L47793-L47795"
+    },
+    "mariadb_firewall_rule": {
+      "resource_type": "Microsoft.DBforMariaDB/servers/firewallRules",
+      "variant": null,
+      "slug": "mariafw",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L47787-L47789"
+    },
+    "mariadb_server": {
+      "resource_type": "Microsoft.DBforMariaDB/servers",
+      "variant": null,
+      "slug": "maria",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L47784-L47786"
+    },
+    "mariadb_virtual_network_rule": {
+      "resource_type": "Microsoft.DBforMariaDB/servers/virtualNetworkRules",
+      "variant": null,
+      "slug": "mariavn",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L47790-L47792"
+    },
+    "monitor_action_group": {
+      "resource_type": "Microsoft.Insights/actionGroups",
+      "variant": null,
+      "slug": "mag",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L50019-L50021"
+    },
+    "monitor_alert_processing_rule_action_group": {
+      "resource_type": "Microsoft.AlertsManagement/actionRules",
+      "variant": "action_group",
+      "slug": "apr",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/monitor_alert_processing_rule_action_group.html.markdown#L273-L275"
+    },
+    "monitor_autoscale_setting": {
+      "resource_type": "Microsoft.Insights/autoscalesettings",
+      "variant": null,
+      "slug": "mas",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L50013-L50015"
+    },
+    "monitor_data_collection_endpoint": {
+      "resource_type": "Microsoft.Insights/dataCollectionEndpoints",
+      "variant": null,
+      "slug": "dce",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L50058-L50060"
+    },
+    "monitor_data_collection_rule": {
+      "resource_type": "Microsoft.Insights/dataCollectionRules",
+      "variant": null,
+      "slug": "dcr",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L50061-L50063"
+    },
+    "monitor_diagnostic_setting": {
+      "resource_type": "Microsoft.Insights/diagnosticSettings",
+      "variant": null,
+      "slug": "mds",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L49935-L49937"
+    },
+    "monitor_scheduled_query_rules_alert": {
+      "resource_type": "Microsoft.Insights/scheduledQueryRules",
+      "variant": "alert",
+      "slug": "msqa",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/monitor_scheduled_query_rules_alert.html.markdown#L172-L174"
+    },
+    "mssql_database": {
+      "resource_type": "Microsoft.Sql/servers/databases",
+      "variant": null,
+      "slug": "sqldb",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L91578-L91580"
+    },
+    "mssql_elasticpool": {
+      "resource_type": "Microsoft.Sql/servers/elasticPools",
+      "variant": null,
+      "slug": "sqlep",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/mssql_elasticpool.html.markdown#L134-L136"
+    },
+    "mssql_job_agent": {
+      "resource_type": "Microsoft.Sql/servers/jobAgents",
+      "variant": null,
+      "slug": "sqlja",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L91629-L91631"
+    },
+    "mssql_managed_instance": {
+      "resource_type": "Microsoft.Sql/managedInstances",
+      "variant": null,
+      "slug": "sqlmi",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L91704-L91706"
+    },
+    "mssql_server": {
+      "resource_type": "Microsoft.Sql/servers",
+      "variant": null,
+      "slug": "sql",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/mssql_server.html.markdown#L235-L237"
+    },
+    "mysql_database": {
+      "resource_type": "Microsoft.DBforMySQL/servers/databases",
+      "variant": null,
+      "slug": "mysqldb",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L50616-L50618"
+    },
+    "mysql_firewall_rule": {
+      "resource_type": "Microsoft.DBforMySQL/servers/firewallRules",
+      "variant": null,
+      "slug": "mysqlfw",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L50610-L50612"
+    },
+    "mysql_server": {
+      "resource_type": "Microsoft.DBforMySQL/servers",
+      "variant": null,
+      "slug": "mysql",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L50607-L50609"
+    },
+    "mysql_virtual_network_rule": {
+      "resource_type": "Microsoft.DBforMySQL/servers/virtualNetworkRules",
+      "variant": null,
+      "slug": "mysqlvn",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L50613-L50615"
+    },
+    "nat_gateway": {
+      "resource_type": "Microsoft.Network/natGateways",
+      "variant": null,
+      "slug": "ng",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67854-L67856"
+    },
+    "network_ddos_protection_plan": {
+      "resource_type": "Microsoft.Network/ddosProtectionPlans",
+      "variant": null,
+      "slug": "ddospp",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67839-L67841"
+    },
+    "network_interface": {
+      "resource_type": "Microsoft.Network/networkInterfaces",
+      "variant": null,
+      "slug": "nic",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67857-L67859"
+    },
+    "network_manager": {
+      "resource_type": "Microsoft.Network/networkManagers",
+      "variant": null,
+      "slug": "vnm",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67743-L67745"
+    },
+    "network_security_group": {
+      "resource_type": "Microsoft.Network/networkSecurityGroups",
+      "variant": null,
+      "slug": "nsg",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67863-L67865"
+    },
+    "network_security_group_rule": {
+      "resource_type": "Microsoft.Network/networkSecurityGroups/securityRules",
+      "variant": null,
+      "slug": "nsgr",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67911-L67913"
+    },
+    "network_security_rule": {
+      "resource_type": "Microsoft.Network/networkSecurityGroups/securityRules",
+      "variant": null,
+      "slug": "nsgr",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67911-L67913"
+    },
+    "network_watcher": {
+      "resource_type": "Microsoft.Network/networkWatchers",
+      "variant": null,
+      "slug": "nw",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67806-L67808"
+    },
+    "notification_hub": {
+      "resource_type": "Microsoft.NotificationHubs/namespaces/notificationHubs",
+      "variant": null,
+      "slug": "nh",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L68745-L68747"
+    },
+    "notification_hub_authorization_rule": {
+      "resource_type": "Microsoft.NotificationHubs/namespaces/notificationHubs/authorizationRules",
+      "variant": null,
+      "slug": "dnsrec",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L68748-L68750"
+    },
+    "notification_hub_namespace": {
+      "resource_type": "Microsoft.NotificationHubs/namespaces",
+      "variant": null,
+      "slug": "dnsrec",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L68751-L68753"
+    },
+    "point_to_site_vpn_gateway": {
+      "resource_type": "Microsoft.Network/p2svpnGateways",
+      "variant": null,
+      "slug": "vpngw",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67944-L67946"
+    },
+    "policy_definition": {
+      "resource_type": "Microsoft.Authorization/policyDefinitions",
+      "variant": null,
+      "slug": "pdef",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L78921-L78923"
+    },
+    "postgresql_database": {
+      "resource_type": "Microsoft.DBforPostgreSQL/servers/databases",
+      "variant": null,
+      "slug": "psqldb",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L70920-L70922"
+    },
+    "postgresql_firewall_rule": {
+      "resource_type": "Microsoft.DBforPostgreSQL/servers/firewallRules",
+      "variant": null,
+      "slug": "psqlfw",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L70914-L70916"
+    },
+    "postgresql_server": {
+      "resource_type": "Microsoft.DBforPostgreSQL/servers",
+      "variant": null,
+      "slug": "psql",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L70911-L70913"
+    },
+    "postgresql_virtual_network_rule": {
+      "resource_type": "Microsoft.DBforPostgreSQL/servers/virtualNetworkRules",
+      "variant": null,
+      "slug": "psqlvn",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L70917-L70919"
+    },
+    "powerbi_embedded": {
+      "resource_type": "Microsoft.PowerBIDedicated/capacities",
+      "variant": null,
+      "slug": "pbi",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/powerbi_embedded.html.markdown#L66-L68"
+    },
+    "private_dns_a_record": {
+      "resource_type": "Microsoft.Network/privateDnsZones/A",
+      "variant": null,
+      "slug": "pdnsrec",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L71637-L71639"
+    },
+    "private_dns_aaaa_record": {
+      "resource_type": "Microsoft.Network/privateDnsZones/AAAA",
+      "variant": null,
+      "slug": "pdnsrec",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L71640-L71642"
+    },
+    "private_dns_cname_record": {
+      "resource_type": "Microsoft.Network/privateDnsZones/CNAME",
+      "variant": null,
+      "slug": "pdnsrec",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L71643-L71645"
+    },
+    "private_dns_mx_record": {
+      "resource_type": "Microsoft.Network/privateDnsZones/MX",
+      "variant": null,
+      "slug": "pdnsrec",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L71646-L71648"
+    },
+    "private_dns_ptr_record": {
+      "resource_type": "Microsoft.Network/privateDnsZones/PTR",
+      "variant": null,
+      "slug": "pdnsrec",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L71649-L71651"
+    },
+    "private_dns_srv_record": {
+      "resource_type": "Microsoft.Network/privateDnsZones/SRV",
+      "variant": null,
+      "slug": "pdnsrec",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L71655-L71657"
+    },
+    "private_dns_txt_record": {
+      "resource_type": "Microsoft.Network/privateDnsZones/TXT",
+      "variant": null,
+      "slug": "pdnsrec",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L71658-L71660"
+    },
+    "private_dns_zone": {
+      "resource_type": "Microsoft.Network/privateDnsZones",
+      "variant": null,
+      "slug": "pdns",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L71634-L71636"
+    },
+    "private_dns_zone_group": {
+      "resource_type": "Microsoft.Network/privateEndpoints/privateDnsZoneGroups",
+      "variant": null,
+      "slug": "pdnszg",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67920-L67922"
+    },
+    "private_endpoint": {
+      "resource_type": "Microsoft.Network/privateEndpoints",
+      "variant": null,
+      "slug": "pe",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67869-L67871"
+    },
+    "private_link_service": {
+      "resource_type": "Microsoft.Network/privateLinkServices",
+      "variant": null,
+      "slug": "pls",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67848-L67850"
+    },
+    "private_service_connection": {
+      "resource_type": null,
+      "variant": "private_service_connection",
+      "slug": "psc",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/internal/services/network/private_endpoint_resource.go#L347-L358"
+    },
+    "proximity_placement_group": {
+      "resource_type": "Microsoft.Compute/proximityPlacementGroups",
+      "variant": null,
+      "slug": "ppg",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L18960-L18962"
+    },
+    "public_ip": {
+      "resource_type": "Microsoft.Network/publicIPAddresses",
+      "variant": null,
+      "slug": "pip",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67872-L67874"
+    },
+    "public_ip_prefix": {
+      "resource_type": "Microsoft.Network/publicIPPrefixes",
+      "variant": null,
+      "slug": "pippf",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67875-L67877"
+    },
+    "purview_account": {
+      "resource_type": "Microsoft.Purview/accounts",
+      "variant": null,
+      "slug": "pview",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L71994-L71996"
+    },
+    "recovery_services_vault": {
+      "resource_type": "Microsoft.RecoveryServices/vaults",
+      "variant": null,
+      "slug": "rsv",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L72852-L72854"
+    },
+    "redhat_openshift_cluster": {
+      "resource_type": "Microsoft.RedHatOpenShift/openShiftClusters",
+      "variant": null,
+      "slug": "aro",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L77700-L77702"
+    },
+    "redis_cache": {
+      "resource_type": "Microsoft.Cache/redis",
+      "variant": null,
+      "slug": "redis",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L77943-L77945"
+    },
+    "redis_firewall_rule": {
+      "resource_type": "Microsoft.Cache/redis/firewallRules",
+      "variant": null,
+      "slug": "redisfw",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L77952-L77954"
+    },
+    "relay_hybrid_connection": {
+      "resource_type": "Microsoft.Relay/namespaces/hybridConnections",
+      "variant": null,
+      "slug": "rlhc",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L78351-L78353"
+    },
+    "relay_namespace": {
+      "resource_type": "Microsoft.Relay/namespaces",
+      "variant": null,
+      "slug": "rln",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L78342-L78344"
+    },
+    "resource_group": {
+      "resource_type": "Microsoft.Resources/resourceGroups",
+      "variant": null,
+      "slug": "rg",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L79047-L79049"
+    },
+    "resource_group_template_deployment": {
+      "resource_type": "Microsoft.Resources/deployments",
+      "variant": null,
+      "slug": "ts",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/resource_group_template_deployment.html.markdown#L140-L142"
+    },
+    "role_assignment": {
+      "resource_type": "Microsoft.Authorization/roleAssignments",
+      "variant": null,
+      "slug": "ra",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L8784-L8786"
+    },
+    "role_definition": {
+      "resource_type": "Microsoft.Authorization/roleDefinitions",
+      "variant": null,
+      "slug": "rd",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L8787-L8789"
+    },
+    "route": {
+      "resource_type": "Microsoft.Network/routeTables/routes",
+      "variant": null,
+      "slug": "rt",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67923-L67925"
+    },
+    "route_filter": {
+      "resource_type": "Microsoft.Network/routeFilters",
+      "variant": null,
+      "slug": "rf",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67662-L67664"
+    },
+    "route_server": {
+      "resource_type": "Microsoft.Network/virtualHubs",
+      "variant": "route_server",
+      "slug": "rtserv",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/route_server.html.markdown#L101-L103"
+    },
+    "route_table": {
+      "resource_type": "Microsoft.Network/routeTables",
+      "variant": null,
+      "slug": "route",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67878-L67880"
+    },
+    "search_service": {
+      "resource_type": "Microsoft.Search/searchServices",
+      "variant": null,
+      "slug": "srch",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L79563-L79565"
+    },
+    "service_fabric_cluster": {
+      "resource_type": "Microsoft.ServiceFabric/clusters",
+      "variant": null,
+      "slug": "sf",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L84228-L84230"
+    },
+    "servicebus_namespace": {
+      "resource_type": "Microsoft.ServiceBus/namespaces",
+      "variant": null,
+      "slug": "sb",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L84027-L84029"
+    },
+    "servicebus_namespace_authorization_rule": {
+      "resource_type": "Microsoft.ServiceBus/namespaces/AuthorizationRules",
+      "variant": null,
+      "slug": "sbar",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L84030-L84032"
+    },
+    "servicebus_queue": {
+      "resource_type": "Microsoft.ServiceBus/namespaces/queues",
+      "variant": null,
+      "slug": "sbq",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L84045-L84047"
+    },
+    "servicebus_queue_authorization_rule": {
+      "resource_type": "Microsoft.ServiceBus/namespaces/queues/authorizationRules",
+      "variant": null,
+      "slug": "sbqar",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L84048-L84050"
+    },
+    "servicebus_subscription": {
+      "resource_type": "Microsoft.ServiceBus/namespaces/topics/subscriptions",
+      "variant": null,
+      "slug": "sbs",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L84057-L84059"
+    },
+    "servicebus_subscription_rule": {
+      "resource_type": "Microsoft.ServiceBus/namespaces/topics/subscriptions/rules",
+      "variant": null,
+      "slug": "sbsr",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L84060-L84062"
+    },
+    "servicebus_topic": {
+      "resource_type": "Microsoft.ServiceBus/namespaces/topics",
+      "variant": null,
+      "slug": "sbt",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L84051-L84053"
+    },
+    "servicebus_topic_authorization_rule": {
+      "resource_type": "Microsoft.ServiceBus/namespaces/topics/authorizationRules",
+      "variant": null,
+      "slug": "dnsrec",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L84054-L84056"
+    },
+    "shared_image": {
+      "resource_type": "Microsoft.Compute/galleries/images",
+      "variant": null,
+      "slug": "si",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L18834-L18836"
+    },
+    "shared_image_gallery": {
+      "resource_type": "Microsoft.Compute/galleries",
+      "variant": null,
+      "slug": "sig",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L18825-L18827"
+    },
+    "signalr_service": {
+      "resource_type": "Microsoft.SignalRService/signalR",
+      "variant": null,
+      "slug": "sgnlr",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L85056-L85058"
+    },
+    "snapshots": {
+      "resource_type": "Microsoft.Compute/snapshots",
+      "variant": null,
+      "slug": "snap",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L18930-L18932"
+    },
+    "sql_elasticpool": {
+      "resource_type": "Microsoft.Sql/servers/elasticPools",
+      "variant": null,
+      "slug": "sqlep",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/v2.99.0/website/docs/r/sql_elasticpool.html.markdown#L91-L93"
+    },
+    "sql_failover_group": {
+      "resource_type": "Microsoft.Sql/servers/failoverGroups",
+      "variant": null,
+      "slug": "sqlfg",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L91611-L91613"
+    },
+    "sql_firewall_rule": {
+      "resource_type": "Microsoft.Sql/servers/firewallRules",
+      "variant": null,
+      "slug": "sqlfw",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L91614-L91616"
+    },
+    "sql_server": {
+      "resource_type": "Microsoft.Sql/servers",
+      "variant": null,
+      "slug": "sql",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/v2.99.0/website/docs/r/sql_server.html.markdown#L119-L121"
+    },
+    "ssh_public_key": {
+      "resource_type": "Microsoft.Compute/sshPublicKeys",
+      "variant": null,
+      "slug": "sshkey",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L18966-L18968"
+    },
+    "static_web_app": {
+      "resource_type": "Microsoft.Web/staticSites",
+      "variant": null,
+      "slug": "stapp",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L102678-L102680"
+    },
+    "storage_account": {
+      "resource_type": "Microsoft.Storage/storageAccounts",
+      "variant": null,
+      "slug": "st",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L93813-L93815"
+    },
+    "storage_blob": {
+      "resource_type": null,
+      "variant": "blob",
+      "slug": "blob",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/storage_blob.html.markdown#L100-L102"
+    },
+    "storage_container": {
+      "resource_type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+      "variant": "blob_container",
+      "slug": "stct",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L93822-L93824"
+    },
+    "storage_data_lake_gen2_filesystem": {
+      "resource_type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+      "variant": "data_lake_gen2_filesystem",
+      "slug": "stdl",
+      "source": "https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/storage/blobs/data-lake-storage-introduction.md#L81-L85"
+    },
+    "storage_queue": {
+      "resource_type": "Microsoft.Storage/storageAccounts/queueServices/queues",
+      "variant": null,
+      "slug": "stq",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/storage_queue.html.markdown#L65-L67"
+    },
+    "storage_share": {
+      "resource_type": "Microsoft.Storage/storageAccounts/fileServices/shares",
+      "variant": null,
+      "slug": "sts",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L93840-L93842"
+    },
+    "storage_share_directory": {
+      "resource_type": null,
+      "variant": "file_share_directory",
+      "slug": "sts",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/storage_share_directory.html.markdown#L71-L73"
+    },
+    "storage_table": {
+      "resource_type": "Microsoft.Storage/storageAccounts/tableServices/tables",
+      "variant": null,
+      "slug": "stt",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/storage_table.html.markdown#L83-L85"
+    },
+    "stream_analytics_function_javascript_udf": {
+      "resource_type": "Microsoft.StreamAnalytics/streamingjobs/functions",
+      "variant": "javascript_udf",
+      "slug": "asafunc",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/internal/services/streamanalytics/stream_analytics_function_javascript_udf_resource.go#L152-L158"
+    },
+    "stream_analytics_job": {
+      "resource_type": "Microsoft.StreamAnalytics/streamingjobs",
+      "variant": null,
+      "slug": "asa",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L94539-L94541"
+    },
+    "stream_analytics_output_blob": {
+      "resource_type": "Microsoft.StreamAnalytics/streamingjobs/outputs",
+      "variant": "blob",
+      "slug": "asaoblob",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/internal/services/streamanalytics/stream_analytics_output_blob_resource.go#L170-L177"
+    },
+    "stream_analytics_output_eventhub": {
+      "resource_type": "Microsoft.StreamAnalytics/streamingjobs/outputs",
+      "variant": "event_hub",
+      "slug": "asaoeh",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/internal/services/streamanalytics/stream_analytics_output_eventhub_resource.go#L171-L178"
+    },
+    "stream_analytics_output_mssql": {
+      "resource_type": "Microsoft.StreamAnalytics/streamingjobs/outputs",
+      "variant": "sql_database",
+      "slug": "asaomssql",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/internal/services/streamanalytics/stream_analytics_output_mssql_resource.go#L166-L173"
+    },
+    "stream_analytics_output_servicebus_queue": {
+      "resource_type": "Microsoft.StreamAnalytics/streamingjobs/outputs",
+      "variant": "service_bus_queue",
+      "slug": "asaosbq",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/internal/services/streamanalytics/stream_analytics_output_servicebus_queue_resource.go#L173-L180"
+    },
+    "stream_analytics_output_servicebus_topic": {
+      "resource_type": "Microsoft.StreamAnalytics/streamingjobs/outputs",
+      "variant": "service_bus_topic",
+      "slug": "asaosbt",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/internal/services/streamanalytics/stream_analytics_output_servicebus_topic_resource.go#L168-L175"
+    },
+    "stream_analytics_reference_input_blob": {
+      "resource_type": "Microsoft.StreamAnalytics/streamingjobs/inputs",
+      "variant": "reference_blob",
+      "slug": "asarblob",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/internal/services/streamanalytics/stream_analytics_reference_input_blob_resource.go#L145-L151"
+    },
+    "stream_analytics_stream_input_blob": {
+      "resource_type": "Microsoft.StreamAnalytics/streamingjobs/inputs",
+      "variant": "stream_blob",
+      "slug": "asaiblob",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/internal/services/streamanalytics/stream_analytics_stream_input_blob_resource.go#L153-L159"
+    },
+    "stream_analytics_stream_input_eventhub": {
+      "resource_type": "Microsoft.StreamAnalytics/streamingjobs/inputs",
+      "variant": "stream_event_hub",
+      "slug": "asaieh",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/internal/services/streamanalytics/stream_analytics_stream_input_eventhub_resource.go#L161-L168"
+    },
+    "stream_analytics_stream_input_iothub": {
+      "resource_type": "Microsoft.StreamAnalytics/streamingjobs/inputs",
+      "variant": "stream_iot_hub",
+      "slug": "asaiiot",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/internal/services/streamanalytics/stream_analytics_stream_input_iothub_resource.go#L137-L144"
+    },
+    "subnet": {
+      "resource_type": "Microsoft.Network/virtualNetworks/subnets",
+      "variant": null,
+      "slug": "snet",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67926-L67928"
+    },
+    "subnet_service_endpoint_storage_policy": {
+      "resource_type": "Microsoft.Network/serviceEndpointPolicies",
+      "variant": "storage",
+      "slug": "se",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/subnet_service_endpoint_storage_policy.html.markdown#L109-L111"
+    },
+    "synapse_private_link_hub": {
+      "resource_type": "Microsoft.Synapse/privateLinkHubs",
+      "variant": null,
+      "slug": "synplh",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L95493-L95495"
+    },
+    "synapse_spark_pool": {
+      "resource_type": "Microsoft.Synapse/workspaces/bigDataPools",
+      "variant": null,
+      "slug": "synsp",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L95565-L95567"
+    },
+    "synapse_sql_pool": {
+      "resource_type": "Microsoft.Synapse/workspaces/sqlPools",
+      "variant": null,
+      "slug": "syndp",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L95496-L95498"
+    },
+    "synapse_workspace": {
+      "resource_type": "Microsoft.Synapse/workspaces",
+      "variant": null,
+      "slug": "synw",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L95553-L95555"
+    },
+    "template_deployment": {
+      "resource_type": "Microsoft.Resources/deployments",
+      "variant": null,
+      "slug": "deploy",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L79218-L79220"
+    },
+    "traffic_manager_profile": {
+      "resource_type": "Microsoft.Network/trafficmanagerprofiles",
+      "variant": null,
+      "slug": "traf",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L95922-L95924"
+    },
+    "user_assigned_identity": {
+      "resource_type": "Microsoft.ManagedIdentity/userAssignedIdentities",
+      "variant": null,
+      "slug": "uai",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L50196-L50198"
+    },
+    "virtual_desktop_application_group": {
+      "resource_type": "Microsoft.DesktopVirtualization/applicationGroups",
+      "variant": null,
+      "slug": "vdag",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L33291-L33293"
+    },
+    "virtual_desktop_host_pool": {
+      "resource_type": "Microsoft.DesktopVirtualization/hostPools",
+      "variant": null,
+      "slug": "vdpool",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L33297-L33299"
+    },
+    "virtual_desktop_scaling_plan": {
+      "resource_type": "Microsoft.DesktopVirtualization/scalingPlans",
+      "variant": null,
+      "slug": "vdscaling",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L33282-L33284"
+    },
+    "virtual_desktop_workspace": {
+      "resource_type": "Microsoft.DesktopVirtualization/workspaces",
+      "variant": null,
+      "slug": "vdws",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L33273-L33275"
+    },
+    "virtual_hub": {
+      "resource_type": "Microsoft.Network/virtualHubs",
+      "variant": "virtual_wan_hub",
+      "slug": "vhub",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/virtual_hub.html.markdown#L99-L101"
+    },
+    "virtual_machine": {
+      "resource_type": "Microsoft.Compute/virtualMachines",
+      "variant": null,
+      "slug": "vm",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L18957-L18959"
+    },
+    "virtual_machine_extension": {
+      "resource_type": "Microsoft.Compute/virtualMachines/extensions",
+      "variant": null,
+      "slug": "vmx",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L18996-L18998"
+    },
+    "virtual_machine_restore_point_collection": {
+      "resource_type": "Microsoft.Compute/restorePointCollections",
+      "variant": null,
+      "slug": "rpc",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L18963-L18965"
+    },
+    "virtual_machine_scale_set": {
+      "resource_type": "Microsoft.Compute/virtualMachineScaleSets",
+      "variant": null,
+      "slug": "vmss",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L18954-L18956"
+    },
+    "virtual_machine_scale_set_extension": {
+      "resource_type": "Microsoft.Compute/virtualMachineScaleSets/extensions",
+      "variant": null,
+      "slug": "vmssx",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L18978-L18980"
+    },
+    "virtual_network": {
+      "resource_type": "Microsoft.Network/virtualNetworks",
+      "variant": null,
+      "slug": "vnet",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67884-L67886"
+    },
+    "virtual_network_gateway": {
+      "resource_type": "Microsoft.Network/virtualNetworkGateways",
+      "variant": null,
+      "slug": "vgw",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67731-L67733"
+    },
+    "virtual_network_gateway_connection": {
+      "resource_type": "Microsoft.Network/connections",
+      "variant": null,
+      "slug": "vcn",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67728-L67730"
+    },
+    "virtual_network_peering": {
+      "resource_type": "Microsoft.Network/virtualNetworks/virtualNetworkPeerings",
+      "variant": null,
+      "slug": "vpeer",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67929-L67931"
+    },
+    "virtual_wan": {
+      "resource_type": "Microsoft.Network/virtualWans",
+      "variant": null,
+      "slug": "vwan",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67950-L67952"
+    },
+    "vpn_gateway": {
+      "resource_type": "Microsoft.Network/vpnGateways",
+      "variant": null,
+      "slug": "vpng",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67953-L67955"
+    },
+    "vpn_gateway_connection": {
+      "resource_type": "Microsoft.Network/vpnGateways/vpnConnections",
+      "variant": null,
+      "slug": "vcn",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67995-L67997"
+    },
+    "vpn_site": {
+      "resource_type": "Microsoft.Network/vpnSites",
+      "variant": null,
+      "slug": "vst",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67959-L67961"
+    },
+    "web_application_firewall_policy": {
+      "resource_type": "Microsoft.Network/ApplicationGatewayWebApplicationFirewallPolicies",
+      "variant": null,
+      "slug": "waf",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/web_application_firewall_policy.html.markdown#L311-L313"
+    },
+    "web_application_firewall_policy_rule_group": {
+      "resource_type": "Microsoft.Network/firewallPolicies/ruleGroups",
+      "variant": null,
+      "slug": "wafrg",
+      "source": "https://github.com/Azure/bicep-types-az/blob/main/generated/network/microsoft.network/2020-04-01/types.json#L13822-L13829"
+    },
+    "windows_virtual_machine": {
+      "resource_type": "Microsoft.Compute/virtualMachines",
+      "variant": "windows",
+      "slug": "vm",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/windows_virtual_machine.html.markdown#L451-L453"
+    },
+    "windows_virtual_machine_scale_set": {
+      "resource_type": "Microsoft.Compute/virtualMachineScaleSets",
+      "variant": "windows",
+      "slug": "vmss",
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/windows_virtual_machine_scale_set.html.markdown#L638-L640"
+    }
+  },
+  "resources": {
+    "cosmosdb_cassandra_cluster": {
+      "resource_type": "Microsoft.DocumentDB/cassandraClusters",
+      "variant": null,
+      "slug": "cosmosdb-cassandra-cluster",
+      "slug_source": "derived",
+      "legacy_slug": "mcc",
+      "legacy_outputs": [
+        "cosmosdb_cassandra_cluster"
+      ],
+      "min_length": 1,
+      "max_length": 44,
+      "scope": "parent",
+      "regex": "^[a-z0-9][a-zA-Z0-9-]+[a-z0-9]$",
+      "dashes": true,
+      "lowercase": false,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "cosmosdb_cassandra_cluster",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L28530-L28532",
+        "identity_notes": null
+      }
+    },
+    "cosmosdb_cassandra_datacenter": {
+      "resource_type": "Microsoft.DocumentDB/cassandraClusters/dataCenters",
+      "variant": null,
+      "slug": "cosmosdb-cassandra-datacenter",
+      "slug_source": "derived",
+      "legacy_slug": "mcdc",
+      "legacy_outputs": [
+        "cosmosdb_cassandra_datacenter"
+      ],
+      "min_length": 1,
+      "max_length": 44,
+      "scope": "parent",
+      "regex": "^[a-z0-9][a-zA-Z0-9-]+[a-z0-9]$",
+      "dashes": true,
+      "lowercase": false,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "cosmosdb_cassandra_datacenter",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L28536-L28538",
+        "identity_notes": null
+      }
+    },
+    "databricks_cluster": {
+      "resource_type": null,
+      "variant": "cluster",
+      "slug": "databricks-cluster",
+      "slug_source": "derived",
+      "legacy_slug": "dbc",
+      "legacy_outputs": [
+        "databricks_cluster"
+      ],
+      "min_length": 3,
+      "max_length": 30,
+      "scope": "parent",
+      "regex": "^[a-zA-Z0-9-_]+$",
+      "dashes": true,
+      "lowercase": false,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "databricks_cluster",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/databricks/terraform-provider-databricks/blob/main/clusters/clusters_api.go#L576-L578",
+        "identity_notes": "Databricks workspace data-plane cluster API; not Microsoft.Databricks/workspaces/clusters."
+      }
+    },
+    "databricks_high_concurrency_cluster": {
+      "resource_type": null,
+      "variant": "high_concurrency",
+      "slug": "databricks-high-concurrency-cluster",
+      "slug_source": "derived",
+      "legacy_slug": "dbhcc",
+      "legacy_outputs": [
+        "databricks_high_concurrency_cluster"
+      ],
+      "min_length": 3,
+      "max_length": 30,
+      "scope": "parent",
+      "regex": "^[a-zA-Z0-9-_]+$",
+      "dashes": true,
+      "lowercase": false,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "databricks_high_concurrency_cluster",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/databricks/terraform-provider-databricks/blob/main/docs/resources/cluster.md#L129-L157",
+        "identity_notes": "Legacy High-Concurrency cluster configuration on the same Databricks cluster API. The legacy serverless profile name does not mean modern serverless compute."
+      }
+    },
+    "databricks_standard_cluster": {
+      "resource_type": null,
+      "variant": "standard",
+      "slug": "databricks-standard-cluster",
+      "slug_source": "derived",
+      "legacy_slug": "dbsc",
+      "legacy_outputs": [
+        "databricks_standard_cluster"
+      ],
+      "min_length": 3,
+      "max_length": 30,
+      "scope": "parent",
+      "regex": "^[a-zA-Z0-9-_]+$",
+      "dashes": true,
+      "lowercase": false,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "databricks_standard_cluster",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/databricks/terraform-provider-databricks/blob/main/clusters/clusters_api.go#L576-L578",
+        "identity_notes": "Preserves the legacy standard cluster label on the Databricks cluster API; does not assert equivalence to modern Standard access mode or the STANDARD runtime-engine setting."
+      }
+    },
+    "dns_a_record": {
+      "resource_type": "Microsoft.Network/dnsZones/A",
+      "variant": null,
+      "slug": "dns-a-record",
+      "slug_source": "derived",
+      "legacy_slug": "dnsrec",
+      "legacy_outputs": [
+        "dns_a_record"
+      ],
+      "min_length": 1,
+      "max_length": 80,
+      "scope": "parent",
+      "regex": "^[a-zA-Z0-9][a-zA-Z0-9-._]+[a-zA-Z0-9_]$",
+      "dashes": true,
+      "lowercase": false,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "dns_a_record",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L35811-L35813",
+        "identity_notes": null
+      }
+    },
+    "dns_aaaa_record": {
+      "resource_type": "Microsoft.Network/dnsZones/AAAA",
+      "variant": null,
+      "slug": "dns-aaaa-record",
+      "slug_source": "derived",
+      "legacy_slug": "dnsrec",
+      "legacy_outputs": [
+        "dns_aaaa_record"
+      ],
+      "min_length": 1,
+      "max_length": 80,
+      "scope": "parent",
+      "regex": "^[a-zA-Z0-9][a-zA-Z0-9-._]+[a-zA-Z0-9_]$",
+      "dashes": true,
+      "lowercase": false,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "dns_aaaa_record",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L35814-L35816",
+        "identity_notes": null
+      }
+    },
+    "dns_caa_record": {
+      "resource_type": "Microsoft.Network/dnsZones/CAA",
+      "variant": null,
+      "slug": "dns-caa-record",
+      "slug_source": "derived",
+      "legacy_slug": "dnsrec",
+      "legacy_outputs": [
+        "dns_caa_record"
+      ],
+      "min_length": 1,
+      "max_length": 80,
+      "scope": "parent",
+      "regex": "^[a-zA-Z0-9][a-zA-Z0-9-._]+[a-zA-Z0-9_]$",
+      "dashes": true,
+      "lowercase": false,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "dns_caa_record",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L35817-L35819",
+        "identity_notes": null
+      }
+    },
+    "dns_cname_record": {
+      "resource_type": "Microsoft.Network/dnsZones/CNAME",
+      "variant": null,
+      "slug": "dns-cname-record",
+      "slug_source": "derived",
+      "legacy_slug": "dnsrec",
+      "legacy_outputs": [
+        "dns_cname_record"
+      ],
+      "min_length": 1,
+      "max_length": 80,
+      "scope": "parent",
+      "regex": "^[a-zA-Z0-9][a-zA-Z0-9-._]+[a-zA-Z0-9_]$",
+      "dashes": true,
+      "lowercase": false,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "dns_cname_record",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L35820-L35822",
+        "identity_notes": null
+      }
+    },
+    "dns_mx_record": {
+      "resource_type": "Microsoft.Network/dnsZones/MX",
+      "variant": null,
+      "slug": "dns-mx-record",
+      "slug_source": "derived",
+      "legacy_slug": "dnsrec",
+      "legacy_outputs": [
+        "dns_mx_record"
+      ],
+      "min_length": 1,
+      "max_length": 80,
+      "scope": "parent",
+      "regex": "^[a-zA-Z0-9][a-zA-Z0-9-._]+[a-zA-Z0-9_]$",
+      "dashes": true,
+      "lowercase": false,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "dns_mx_record",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L35823-L35825",
+        "identity_notes": null
+      }
+    },
+    "dns_ns_record": {
+      "resource_type": "Microsoft.Network/dnsZones/NS",
+      "variant": null,
+      "slug": "dns-ns-record",
+      "slug_source": "derived",
+      "legacy_slug": "dnsrec",
+      "legacy_outputs": [
+        "dns_ns_record"
+      ],
+      "min_length": 1,
+      "max_length": 80,
+      "scope": "parent",
+      "regex": "^[a-zA-Z0-9][a-zA-Z0-9-._]+[a-zA-Z0-9_]$",
+      "dashes": true,
+      "lowercase": false,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "dns_ns_record",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L35826-L35828",
+        "identity_notes": null
+      }
+    },
+    "dns_ptr_record": {
+      "resource_type": "Microsoft.Network/dnsZones/PTR",
+      "variant": null,
+      "slug": "dns-ptr-record",
+      "slug_source": "derived",
+      "legacy_slug": "dnsrec",
+      "legacy_outputs": [
+        "dns_ptr_record"
+      ],
+      "min_length": 1,
+      "max_length": 80,
+      "scope": "parent",
+      "regex": "^[a-zA-Z0-9][a-zA-Z0-9-._]+[a-zA-Z0-9_]$",
+      "dashes": true,
+      "lowercase": false,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "dns_ptr_record",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L35829-L35831",
+        "identity_notes": null
+      }
+    },
+    "dns_txt_record": {
+      "resource_type": "Microsoft.Network/dnsZones/TXT",
+      "variant": null,
+      "slug": "dns-txt-record",
+      "slug_source": "derived",
+      "legacy_slug": "dnsrec",
+      "legacy_outputs": [
+        "dns_txt_record"
+      ],
+      "min_length": 1,
+      "max_length": 80,
+      "scope": "parent",
+      "regex": "^[a-zA-Z0-9][a-zA-Z0-9-._]+[a-zA-Z0-9_]$",
+      "dashes": true,
+      "lowercase": false,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "dns_txt_record",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L35838-L35840",
+        "identity_notes": null
+      }
+    },
+    "express_route_gateway": {
+      "resource_type": "Microsoft.Network/expressRouteGateways",
+      "variant": null,
+      "slug": "express-route-gateway",
+      "slug_source": "derived",
+      "legacy_slug": "ergw",
+      "legacy_outputs": [
+        "express_route_gateway"
+      ],
+      "min_length": 1,
+      "max_length": 80,
+      "scope": "resourceGroup",
+      "regex": "^[a-zA-Z0-9][a-zA-Z0-9-._]+[a-zA-Z0-9_]$",
+      "dashes": true,
+      "lowercase": false,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "express_route_gateway",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67941-L67943",
+        "identity_notes": null
+      }
+    },
+    "firewall_application_rule_collection": {
+      "resource_type": null,
+      "variant": "application_rule_collection",
+      "slug": "firewall-application-rule-collection",
+      "slug_source": "derived",
+      "legacy_slug": "fwapp",
+      "legacy_outputs": [
+        "firewall_application_rule_collection"
+      ],
+      "min_length": 1,
+      "max_length": 80,
+      "scope": "parent",
+      "regex": "^[a-zA-Z0-9][a-zA-Z0-9\\-\\._]+[a-zA-Z0-9_]$",
+      "dashes": true,
+      "lowercase": false,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "firewall_application_rule_collection",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/internal/services/firewall/firewall_application_rule_collection_resource.go#L219-L222",
+        "identity_notes": "Named element of Azure Firewall properties.applicationRuleCollections, persisted by updating the parent firewall."
+      }
+    },
+    "firewall_ip_configuration": {
+      "resource_type": null,
+      "variant": "ip_configuration",
+      "slug": "firewall-ip-configuration",
+      "slug_source": "derived",
+      "legacy_slug": "fwipconf",
+      "legacy_outputs": [
+        "firewall_ip_configuration"
+      ],
+      "min_length": 1,
+      "max_length": 80,
+      "scope": "resourceGroup",
+      "regex": "^[a-zA-Z0-9][a-zA-Z0-9\\-\\._]+[a-zA-Z0-9_]$",
+      "dashes": true,
+      "lowercase": false,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "firewall_ip_configuration",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/internal/services/firewall/firewall_resource.go#L250-L264",
+        "identity_notes": "Named element of Azure Firewall properties.ipConfigurations; not a standalone ARM child type."
+      }
+    },
+    "firewall_nat_rule_collection": {
+      "resource_type": null,
+      "variant": "nat_rule_collection",
+      "slug": "firewall-nat-rule-collection",
+      "slug_source": "derived",
+      "legacy_slug": "fwnatrc",
+      "legacy_outputs": [
+        "firewall_nat_rule_collection"
+      ],
+      "min_length": 1,
+      "max_length": 80,
+      "scope": "parent",
+      "regex": "^[a-zA-Z0-9][a-zA-Z0-9\\-\\._]+[a-zA-Z0-9_]$",
+      "dashes": true,
+      "lowercase": false,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "firewall_nat_rule_collection",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/internal/services/firewall/firewall_nat_rule_collection_resource.go#L217-L219",
+        "identity_notes": "Named element of Azure Firewall properties.natRuleCollections, persisted by updating the parent firewall."
+      }
+    },
+    "firewall_network_rule_collection": {
+      "resource_type": null,
+      "variant": "network_rule_collection",
+      "slug": "firewall-network-rule-collection",
+      "slug_source": "derived",
+      "legacy_slug": "fwnetrc",
+      "legacy_outputs": [
+        "firewall_network_rule_collection"
+      ],
+      "min_length": 1,
+      "max_length": 80,
+      "scope": "parent",
+      "regex": "^[a-zA-Z0-9][a-zA-Z0-9\\-\\._]+[a-zA-Z0-9_]$",
+      "dashes": true,
+      "lowercase": false,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "firewall_network_rule_collection",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/internal/services/firewall/firewall_network_rule_collection_resource.go#L219-L222",
+        "identity_notes": "Named element of Azure Firewall properties.networkRuleCollections, persisted by updating the parent firewall."
+      }
+    },
+    "firewall_policy_rule_collection_group": {
+      "resource_type": "Microsoft.Network/firewallPolicies/ruleCollectionGroups",
+      "variant": null,
+      "slug": "firewall-policy-rule-collection-group",
+      "slug_source": "derived",
+      "legacy_slug": "fwprcg",
+      "legacy_outputs": [
+        "firewall_policy_rule_collection_group"
+      ],
+      "min_length": 1,
+      "max_length": 80,
+      "scope": "parent",
+      "regex": "^[a-zA-Z0-9][a-zA-Z0-9\\-\\._]+[a-zA-Z0-9_]$",
+      "dashes": true,
+      "lowercase": false,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "firewall_policy_rule_collection_group",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67701-L67703",
+        "identity_notes": null
+      }
+    },
+    "key_vault_certificate": {
+      "resource_type": null,
+      "variant": "certificate",
+      "slug": "key-vault-certificate",
+      "slug_source": "derived",
+      "legacy_slug": "kvc",
+      "legacy_outputs": [
+        "key_vault_certificate"
+      ],
+      "min_length": 1,
+      "max_length": 127,
+      "scope": "parent",
+      "regex": "^[a-zA-Z0-9-]+$",
+      "dashes": true,
+      "lowercase": false,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "key_vault_certificate",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/key_vault_certificate.html.markdown#L388-L390",
+        "identity_notes": "Key Vault data-plane certificate at vault.azure.net/certificates; not an ARM vaults/certificates resource."
+      }
+    },
+    "key_vault_key": {
+      "resource_type": "Microsoft.KeyVault/vaults/keys",
+      "variant": null,
+      "slug": "key-vault-key",
+      "slug_source": "derived",
+      "legacy_slug": "kvk",
+      "legacy_outputs": [
+        "key_vault_key"
+      ],
+      "min_length": 1,
+      "max_length": 127,
+      "scope": "parent",
+      "regex": "^[a-zA-Z0-9-]+$",
+      "dashes": true,
+      "lowercase": false,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "key_vault_key",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L42108-L42110",
+        "identity_notes": null
+      }
+    },
+    "lb_rule": {
+      "resource_type": "Microsoft.Network/loadBalancers/loadBalancingRules",
+      "variant": null,
+      "slug": "lb-rule",
+      "slug_source": "derived",
+      "legacy_slug": "rule",
+      "legacy_outputs": [
+        "lb_rule"
+      ],
+      "min_length": 1,
+      "max_length": 80,
+      "scope": "parent",
+      "regex": "^[a-zA-Z0-9][a-zA-Z0-9-._]+[a-zA-Z0-9_]$",
+      "dashes": true,
+      "lowercase": false,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "lb_rule",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/lb_rule.html.markdown#L96-L98",
+        "identity_notes": null
+      }
+    },
+    "machine_learning_registry": {
+      "resource_type": "Microsoft.MachineLearningServices/registries",
+      "variant": null,
+      "slug": "machine-learning-registry",
+      "slug_source": "derived",
+      "legacy_slug": "mlr",
+      "legacy_outputs": [
+        "machine_learning_registry"
+      ],
+      "min_length": 3,
+      "max_length": 33,
+      "scope": "resourceGroup",
+      "regex": "^[a-zA-Z0-9][a-zA-Z0-9_-]{${min_length - 1},${max_length - 1}}$",
+      "dashes": true,
+      "lowercase": false,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "machine_learning_registry",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L46767-L46769",
+        "identity_notes": null
+      }
+    },
+    "monitor_diagnostic_setting": {
+      "resource_type": "Microsoft.Insights/diagnosticSettings",
+      "variant": null,
+      "slug": "monitor-diagnostic-setting",
+      "slug_source": "derived",
+      "legacy_slug": "mds",
+      "legacy_outputs": [
+        "monitor_diagnostic_setting"
+      ],
+      "min_length": 1,
+      "max_length": 260,
+      "scope": "resourceGroup",
+      "regex": "^[^*<>%:&?\\+\\/]+[^*<>%:&?\\+\\/ ]$",
+      "dashes": true,
+      "lowercase": false,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "monitor_diagnostic_setting",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L49935-L49937",
+        "identity_notes": "Uses namespace spelling from the 2021-05-01-preview schema; older schemas emitted microsoft.insights."
+      }
+    },
+    "network_ddos_protection_plan": {
+      "resource_type": "Microsoft.Network/ddosProtectionPlans",
+      "variant": null,
+      "slug": "network-ddos-protection-plan",
+      "slug_source": "derived",
+      "legacy_slug": "ddospp",
+      "legacy_outputs": [
+        "network_ddos_protection_plan"
+      ],
+      "min_length": 1,
+      "max_length": 80,
+      "scope": "parent",
+      "regex": "^[a-zA-Z0-9][a-zA-Z0-9-._]+[a-zA-Z0-9_]$",
+      "dashes": true,
+      "lowercase": false,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "network_ddos_protection_plan",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67839-L67841",
+        "identity_notes": null
+      }
+    },
+    "point_to_site_vpn_gateway": {
+      "resource_type": "Microsoft.Network/p2svpnGateways",
+      "variant": null,
+      "slug": "point-to-site-vpn-gateway",
+      "slug_source": "derived",
+      "legacy_slug": "vpngw",
+      "legacy_outputs": [
+        "point_to_site_vpn_gateway"
+      ],
+      "min_length": 1,
+      "max_length": 80,
+      "scope": "resourceGroup",
+      "regex": "^[a-zA-Z0-9][a-zA-Z0-9-._]+[a-zA-Z0-9_]$",
+      "dashes": true,
+      "lowercase": false,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "point_to_site_vpn_gateway",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67944-L67946",
+        "identity_notes": null
+      }
+    },
+    "private_dns_a_record": {
+      "resource_type": "Microsoft.Network/privateDnsZones/A",
+      "variant": null,
+      "slug": "private-dns-a-record",
+      "slug_source": "derived",
+      "legacy_slug": "pdnsrec",
+      "legacy_outputs": [
+        "private_dns_a_record"
+      ],
+      "min_length": 1,
+      "max_length": 80,
+      "scope": "parent",
+      "regex": "^[a-zA-Z0-9][a-zA-Z0-9-._]+[a-zA-Z0-9_]$",
+      "dashes": true,
+      "lowercase": false,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "private_dns_a_record",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L71637-L71639",
+        "identity_notes": null
+      }
+    },
+    "private_dns_aaaa_record": {
+      "resource_type": "Microsoft.Network/privateDnsZones/AAAA",
+      "variant": null,
+      "slug": "private-dns-aaaa-record",
+      "slug_source": "derived",
+      "legacy_slug": "pdnsrec",
+      "legacy_outputs": [
+        "private_dns_aaaa_record"
+      ],
+      "min_length": 1,
+      "max_length": 80,
+      "scope": "parent",
+      "regex": "^[a-zA-Z0-9][a-zA-Z0-9-._]+[a-zA-Z0-9_]$",
+      "dashes": true,
+      "lowercase": false,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "private_dns_aaaa_record",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L71640-L71642",
+        "identity_notes": null
+      }
+    },
+    "private_dns_cname_record": {
+      "resource_type": "Microsoft.Network/privateDnsZones/CNAME",
+      "variant": null,
+      "slug": "private-dns-cname-record",
+      "slug_source": "derived",
+      "legacy_slug": "pdnsrec",
+      "legacy_outputs": [
+        "private_dns_cname_record"
+      ],
+      "min_length": 1,
+      "max_length": 80,
+      "scope": "parent",
+      "regex": "^[a-zA-Z0-9][a-zA-Z0-9-._]+[a-zA-Z0-9_]$",
+      "dashes": true,
+      "lowercase": false,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "private_dns_cname_record",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L71643-L71645",
+        "identity_notes": null
+      }
+    },
+    "private_dns_mx_record": {
+      "resource_type": "Microsoft.Network/privateDnsZones/MX",
+      "variant": null,
+      "slug": "private-dns-mx-record",
+      "slug_source": "derived",
+      "legacy_slug": "pdnsrec",
+      "legacy_outputs": [
+        "private_dns_mx_record"
+      ],
+      "min_length": 1,
+      "max_length": 80,
+      "scope": "parent",
+      "regex": "^[a-zA-Z0-9][a-zA-Z0-9-._]+[a-zA-Z0-9_]$",
+      "dashes": true,
+      "lowercase": false,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "private_dns_mx_record",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L71646-L71648",
+        "identity_notes": null
+      }
+    },
+    "private_dns_ptr_record": {
+      "resource_type": "Microsoft.Network/privateDnsZones/PTR",
+      "variant": null,
+      "slug": "private-dns-ptr-record",
+      "slug_source": "derived",
+      "legacy_slug": "pdnsrec",
+      "legacy_outputs": [
+        "private_dns_ptr_record"
+      ],
+      "min_length": 1,
+      "max_length": 80,
+      "scope": "parent",
+      "regex": "^[a-zA-Z0-9][a-zA-Z0-9-._]+[a-zA-Z0-9_]$",
+      "dashes": true,
+      "lowercase": false,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "private_dns_ptr_record",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L71649-L71651",
+        "identity_notes": null
+      }
+    },
+    "private_dns_srv_record": {
+      "resource_type": "Microsoft.Network/privateDnsZones/SRV",
+      "variant": null,
+      "slug": "private-dns-srv-record",
+      "slug_source": "derived",
+      "legacy_slug": "pdnsrec",
+      "legacy_outputs": [
+        "private_dns_srv_record"
+      ],
+      "min_length": 1,
+      "max_length": 80,
+      "scope": "parent",
+      "regex": "^[a-zA-Z0-9][a-zA-Z0-9-._]+[a-zA-Z0-9_]$",
+      "dashes": true,
+      "lowercase": false,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "private_dns_srv_record",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L71655-L71657",
+        "identity_notes": null
+      }
+    },
+    "private_dns_txt_record": {
+      "resource_type": "Microsoft.Network/privateDnsZones/TXT",
+      "variant": null,
+      "slug": "private-dns-txt-record",
+      "slug_source": "derived",
+      "legacy_slug": "pdnsrec",
+      "legacy_outputs": [
+        "private_dns_txt_record"
+      ],
+      "min_length": 1,
+      "max_length": 80,
+      "scope": "parent",
+      "regex": "^[a-zA-Z0-9][a-zA-Z0-9-._]+[a-zA-Z0-9_]$",
+      "dashes": true,
+      "lowercase": false,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "private_dns_txt_record",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L71658-L71660",
+        "identity_notes": null
+      }
+    },
+    "private_dns_zone_group": {
+      "resource_type": "Microsoft.Network/privateEndpoints/privateDnsZoneGroups",
+      "variant": null,
+      "slug": "private-dns-zone-group",
+      "slug_source": "derived",
+      "legacy_slug": "pdnszg",
+      "legacy_outputs": [
+        "private_dns_zone_group"
+      ],
+      "min_length": 1,
+      "max_length": 80,
+      "scope": "resourceGroup",
+      "regex": "^[a-zA-Z0-9][a-zA-Z0-9\\-\\._]+[a-zA-Z0-9_]$",
+      "dashes": true,
+      "lowercase": false,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "private_dns_zone_group",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L67920-L67922",
+        "identity_notes": null
+      }
+    },
+    "private_service_connection": {
+      "resource_type": null,
+      "variant": "private_service_connection",
+      "slug": "private-service-connection",
+      "slug_source": "derived",
+      "legacy_slug": "psc",
+      "legacy_outputs": [
+        "private_service_connection"
+      ],
+      "min_length": 1,
+      "max_length": 80,
+      "scope": "resourceGroup",
+      "regex": "^[a-zA-Z0-9][a-zA-Z0-9\\-\\._]+[a-zA-Z0-9_]$",
+      "dashes": true,
+      "lowercase": false,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "private_service_connection",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/internal/services/network/private_endpoint_resource.go#L347-L358",
+        "identity_notes": "Named private endpoint properties.privateLinkServiceConnections or properties.manualPrivateLinkServiceConnections element; not a standalone privateEndpointConnections ARM resource."
+      }
+    },
+    "redhat_openshift_cluster": {
+      "resource_type": "Microsoft.RedHatOpenShift/openShiftClusters",
+      "variant": null,
+      "slug": "redhat-openshift-cluster",
+      "slug_source": "derived",
+      "legacy_slug": "aro",
+      "legacy_outputs": [
+        "redhat_openshift_cluster"
+      ],
+      "min_length": 1,
+      "max_length": 63,
+      "scope": "resourceGroup",
+      "regex": "^[a-zA-Z0-9][a-zA-Z0-9-_.]+[a-zA-Z0-9]$",
+      "dashes": true,
+      "lowercase": false,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "redhat_openshift_cluster",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L77700-L77702",
+        "identity_notes": null
+      }
+    },
+    "storage_blob": {
+      "resource_type": null,
+      "variant": "blob",
+      "slug": "storage-blob",
+      "slug_source": "derived",
+      "legacy_slug": "blob",
+      "legacy_outputs": [
+        "storage_blob"
+      ],
+      "min_length": 1,
+      "max_length": 1024,
+      "scope": "parent",
+      "regex": "^[^\\s\\/$#&]+$",
+      "dashes": true,
+      "lowercase": false,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "storage_blob",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/storage_blob.html.markdown#L100-L102",
+        "identity_notes": "Blob data-plane object at blob.core.windows.net; not an ARM containers/blobs resource."
+      }
+    },
+    "storage_queue": {
+      "resource_type": "Microsoft.Storage/storageAccounts/queueServices/queues",
+      "variant": null,
+      "slug": "storage-queue",
+      "slug_source": "derived",
+      "legacy_slug": "stq",
+      "legacy_outputs": [
+        "storage_queue"
+      ],
+      "min_length": 3,
+      "max_length": 63,
+      "scope": "parent",
+      "regex": "^[a-z0-9][a-z0-9-]+[a-z0-9]$",
+      "dashes": true,
+      "lowercase": true,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "storage_queue",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/storage_queue.html.markdown#L65-L67",
+        "identity_notes": null
+      }
+    },
+    "storage_share_directory": {
+      "resource_type": null,
+      "variant": "file_share_directory",
+      "slug": "storage-share-directory",
+      "slug_source": "derived",
+      "legacy_slug": "sts",
+      "legacy_outputs": [
+        "storage_share_directory"
+      ],
+      "min_length": 3,
+      "max_length": 63,
+      "scope": "parent",
+      "regex": "^[a-z0-9][a-z0-9-]+[a-z0-9]$",
+      "dashes": true,
+      "lowercase": true,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "storage_share_directory",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/storage_share_directory.html.markdown#L71-L73",
+        "identity_notes": "Azure Files data-plane directory at file.core.windows.net; not a standalone ARM share child."
+      }
+    },
+    "storage_table": {
+      "resource_type": "Microsoft.Storage/storageAccounts/tableServices/tables",
+      "variant": null,
+      "slug": "storage-table",
+      "slug_source": "derived",
+      "legacy_slug": "stt",
+      "legacy_outputs": [
+        "storage_table"
+      ],
+      "min_length": 3,
+      "max_length": 63,
+      "scope": "parent",
+      "regex": "^[a-z0-9][a-z0-9-]+[a-z0-9]$",
+      "dashes": true,
+      "lowercase": true,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "storage_table",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/storage_table.html.markdown#L83-L85",
+        "identity_notes": null
+      }
+    },
+    "virtual_machine_extension": {
+      "resource_type": "Microsoft.Compute/virtualMachines/extensions",
+      "variant": null,
+      "slug": "virtual-machine-extension",
+      "slug_source": "derived",
+      "legacy_slug": "vmx",
+      "legacy_outputs": [
+        "virtual_machine_extension"
+      ],
+      "min_length": 1,
+      "max_length": 80,
+      "scope": "parent",
+      "regex": "^[a-zA-Z0-9][a-zA-Z0-9-._]+[a-zA-Z0-9_]$",
+      "dashes": true,
+      "lowercase": false,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "virtual_machine_extension",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L18996-L18998",
+        "identity_notes": null
+      }
+    },
+    "virtual_machine_scale_set_extension": {
+      "resource_type": "Microsoft.Compute/virtualMachineScaleSets/extensions",
+      "variant": null,
+      "slug": "virtual-machine-scale-set-extension",
+      "slug_source": "derived",
+      "legacy_slug": "vmssx",
+      "legacy_outputs": [
+        "virtual_machine_scale_set_extension"
+      ],
+      "min_length": 1,
+      "max_length": 80,
+      "scope": "parent",
+      "regex": "^[a-zA-Z0-9][a-zA-Z0-9-._]+[a-zA-Z0-9_]$",
+      "dashes": true,
+      "lowercase": false,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "legacy_name": "virtual_machine_scale_set_extension",
+        "status": "outside_selected_source_tables",
+        "identity_evidence": "https://github.com/Azure/bicep-types-az/blob/main/generated/index.json#L18978-L18980",
+        "identity_notes": null
+      }
+    }
+  }
+}

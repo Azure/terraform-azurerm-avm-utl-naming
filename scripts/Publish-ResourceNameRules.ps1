@@ -1,7 +1,7 @@
 #requires -Version 7.4
 <#
 .SYNOPSIS
-Publishes discovery-only inventory additions from the scheduled GitHub Actions job.
+Publishes runtime naming-catalog updates from the scheduled GitHub Actions job.
 .DESCRIPTION
 Uses one reserved branch and pull request, the actual repository default branch,
 ephemeral gh credential helpers, and force-with-lease. Refuses forks and dirty
@@ -22,16 +22,21 @@ if ($env:GITHUB_ACTIONS -cne 'true' -or $env:GITHUB_EVENT_NAME -notin @('schedul
 }
 
 Import-Module (Join-Path $PSScriptRoot 'ResourceNameRules.psm1') -Force
+Import-Module (Join-Path $PSScriptRoot 'ResourceNameCatalog.psm1') -Force
 Import-Module (Join-Path $PSScriptRoot 'ResourceNameRules.Automation.psm1') -Force
 $result = Publish-ResourceNameRulesUpdate `
     -Repository $env:GITHUB_REPOSITORY `
     -BaseBranch $env:NAMING_RULES_BASE_BRANCH `
     -RepositoryRoot (Split-Path $PSScriptRoot -Parent) `
-    -Markdown (Get-ResourceNameRulesDocument)
+    -Markdown (Get-ResourceNameRulesDocument) `
+    -AbbreviationsMarkdown (Get-ResourceNameRulesDocument -Uri (Get-ResourceAbbreviationsSourceUrl))
 
-if ($result.AddedCount -eq 0) {
-    Write-Information 'No new documented resource types; no push or pull request was needed.' -InformationAction Continue
+if ($result.Status -eq 'unchanged') {
+    Write-Information 'The runtime catalogs are current; no publication was needed.' -InformationAction Continue
+}
+elseif ($result.Status -eq 'pending_review') {
+    Write-Information "An existing update is awaiting review and was left unchanged: $($result.PullRequestUrl)" -InformationAction Continue
 }
 else {
-    Write-Information "Proposed $($result.AddedCount) inventory additions: $($result.PullRequestUrl)" -InformationAction Continue
+    Write-Information "Proposed runtime naming-catalog changes: $($result.PullRequestUrl)" -InformationAction Continue
 }
