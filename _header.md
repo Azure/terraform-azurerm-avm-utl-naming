@@ -1,19 +1,29 @@
-# terraform-azurerm-avm-template
+# Azure Verified Naming Utility
 
-This is a template repo for Terraform Azure Verified Modules.
+JSON-backed Azure resource names, compatible with `Azure/naming/azurerm`. Requires Terraform 1.9 or later. This utility creates no Azure resources, requires no Azure credentials, and collects no telemetry.
 
-Things to do:
+```hcl
+module "naming" {
+  source = "Azure/avm-utl-naming/azurerm"
 
-1. Set up a GitHub repo environment called `test`.
-1. Configure environment protection rule to ensure that approval is required before deploying to this environment.
-1. Create a user-assigned managed identity in your test subscription.
-1. Create a role assignment for the managed identity on your test subscription, use the minimum required role.
-1. Configure federated identity credentials on the user assigned managed identity. Use the GitHub environment.
-1. Search and update TODOs within the code and remove the TODO comments once complete.
+  suffix = ["workload", "dev"]
+}
+```
 
-> [!IMPORTANT]
-> As the overall AVM framework is not GA (generally available) yet - the CI framework and test automation is not fully functional and implemented across all supported languages yet - breaking changes are expected, and additional customer feedback is yet to be gathered and incorporated. Hence, modules **MUST NOT** be published at version `1.0.0` or higher at this time.
-> 
-> All module **MUST** be published as a pre-release version (e.g., `0.1.0`, `0.1.1`, `0.2.0`, etc.) until the AVM framework becomes GA.
-> 
-> However, it is important to note that this **DOES NOT** mean that the modules cannot be consumed and utilized. They **CAN** be leveraged in all types of environments (dev, test, prod etc.). Consumers can treat them just like any other IaC module and raise issues or feature requests against them as they learn from the usage of the module. Consumers should also read the release notes for each version, if considering updating to a more recent version of a module to see if there are any considerations or breaking changes etc.
+Use `module.naming.resource_group.name` or `module.naming.storage_account.name_unique`. The `names` output also exposes the complete catalog as a map.
+
+## Compatibility
+
+The five original inputs, including the hyphenated `unique-*` inputs, and all 300 original outputs are retained. Keep the same module block name when changing the source and run `terraform init -upgrade`. The `random_string.main` and `random_string.first_letter` state addresses are unchanged, preserving existing random seeds.
+
+Names retain the original slugs, separators, casing, truncation, and validation behavior. Maximum-length truncation can remove the uniqueness suffix. `validation` reports the legacy regex checks, not name availability or a guarantee of Azure acceptance.
+
+Definitions live in `resourceDefinition.json` and `resourceDefinition_out_of_docs.json`; no code-generation step is required. Regexes use Terraform's RE2 syntax and may reference `min_length` and `max_length` through `templatestring`. New definitions are immediately available through `names`; the existing named outputs are static compatibility aliases.
+
+## Naming rule updates
+
+The update workflow checks [Microsoft's naming rules](https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/azure-resource-manager/management/resource-name-rules.md) every Monday at 06:23 UTC and supports manual dispatch. It proposes additions to `data/resource-name-rules.json` on the stable `automation/resource-name-rules-additions` branch, without changing or removing existing entries.
+
+The inventory preserves documented entities, including data-plane shorthand; it is not a validated ARM schema. Reviewers add accepted naming definitions to the runtime JSON catalogs. Existing names, slugs, and regexes are never changed automatically.
+
+Repository settings must allow GitHub Actions to create pull requests. The workflow runs its own checks; requests created with `GITHUB_TOKEN` do not automatically trigger other workflows. No additional credentials or Azure access are required.

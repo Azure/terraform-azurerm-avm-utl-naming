@@ -1,3 +1,3 @@
 # Default example
 
-This deploys the module in its simplest form.
+Generates names with workload and environment suffixes. No Azure resources or credentials are required.

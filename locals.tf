@@ -1,34 +1,43 @@
-# TODO: insert locals here.
 locals {
-  managed_identities = {
-    system_assigned_user_assigned = (var.managed_identities.system_assigned || length(var.managed_identities.user_assigned_resource_ids) > 0) ? {
-      this = {
-        type                       = var.managed_identities.system_assigned && length(var.managed_identities.user_assigned_resource_ids) > 0 ? "SystemAssigned, UserAssigned" : length(var.managed_identities.user_assigned_resource_ids) > 0 ? "UserAssigned" : "SystemAssigned"
-        user_assigned_resource_ids = var.managed_identities.user_assigned_resource_ids
-      }
-    } : {}
-    system_assigned = var.managed_identities.system_assigned ? {
-      this = {
-        type = "SystemAssigned"
-      }
-    } : {}
-    user_assigned = length(var.managed_identities.user_assigned_resource_ids) > 0 ? {
-      this = {
-        type                       = "UserAssigned"
-        user_assigned_resource_ids = var.managed_identities.user_assigned_resource_ids
-      }
-    } : {}
+  az = {
+    for definition in local.resource_definitions : definition.name => {
+      name = substr(join(definition.dashes ? "-" : "", compact([
+        definition.dashes ? local.prefix : local.prefix_safe,
+        definition.slug,
+        definition.dashes ? local.suffix : local.suffix_safe,
+      ])), 0, definition.length.max)
+      name_unique = substr(join(definition.dashes ? "-" : "", compact([
+        definition.dashes ? local.prefix : local.prefix_safe,
+        definition.slug,
+        definition.dashes ? local.suffix_unique : local.suffix_unique_safe,
+      ])), 0, definition.length.max)
+      dashes     = definition.dashes
+      slug       = definition.slug
+      min_length = definition.length.min
+      max_length = definition.length.max
+      scope      = definition.scope
+      regex = templatestring(definition.regex, {
+        min_length = definition.length.min
+        max_length = definition.length.max
+      })
+    }
   }
-  # Private endpoint application security group associations.
-  # We merge the nested maps from private endpoints and application security group associations into a single map.
-  private_endpoint_application_security_group_associations = { for assoc in flatten([
-    for pe_k, pe_v in var.private_endpoints : [
-      for asg_k, asg_v in pe_v.application_security_group_associations : {
-        asg_key         = asg_k
-        pe_key          = pe_k
-        asg_resource_id = asg_v
-      }
-    ]
-  ]) : "${assoc.pe_key}-${assoc.asg_key}" => assoc }
-  role_definition_resource_substring = "/providers/Microsoft.Authorization/roleDefinitions"
+  prefix                 = join("-", var.prefix)
+  prefix_safe            = lower(join("", var.prefix))
+  random                 = substr(coalesce(var.unique-seed, local.random_safe_generation), 0, var.unique-length)
+  random_safe_generation = join("", [random_string.first_letter.result, random_string.main.result])
+  resource_definitions = concat(
+    jsondecode(file("${path.module}/resourceDefinition.json")),
+    jsondecode(file("${path.module}/resourceDefinition_out_of_docs.json")),
+  )
+  suffix             = join("-", var.suffix)
+  suffix_safe        = lower(join("", var.suffix))
+  suffix_unique      = join("-", concat(var.suffix, [local.random]))
+  suffix_unique_safe = lower(join("", concat(var.suffix, [local.random])))
+  validation = {
+    for name, definition in local.az : name => {
+      valid_name        = length(regexall(definition.regex, definition.name)) > 0 && length(definition.name) > definition.min_length
+      valid_name_unique = length(regexall(definition.regex, definition.name_unique)) > 0
+    }
+  }
 }
