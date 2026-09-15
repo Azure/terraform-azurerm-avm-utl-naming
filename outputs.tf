@@ -1,13 +1,52 @@
-output "private_endpoints" {
-  description = <<DESCRIPTION
-  A map of the private endpoints created.
-  DESCRIPTION
-  value       = var.private_endpoints_manage_dns_zone_group ? azurerm_private_endpoint.this_managed_dns_zone_groups : azurerm_private_endpoint.this_unmanaged_dns_zone_groups
+output "names" {
+  description = "Modern names keyed by the snake-case JSON keys; empty in legacy_mode. Unusable unique names are null with name_unique_available=false and per-entry name_unique_errors. Entries expose source, constraints, token retention, and validation; incomplete rule validation is null."
+
+  precondition {
+    condition     = local.generated_catalog.schema_version == 2 && local.manual_catalog.schema_version == 2
+    error_message = "Bundled naming catalogs must use schema version 2."
+  }
+  precondition {
+    condition     = local.customer_catalog_valid
+    error_message = "custom_override_file must contain valid JSON with schema_version 2 and a resources object. Put additions and partial overrides directly in resources, not an overrides section."
+  }
+  precondition {
+    condition     = alltrue(values(local.customer_entry_valid))
+    error_message = local.customer_entry_error
+  }
+  precondition {
+    condition     = alltrue([for key in keys(local.catalog) : can(regex("^[a-z][a-z0-9]*(?:_[a-z0-9]+)*$", key))])
+    error_message = "All catalog keys must use lower snake case."
+  }
+  precondition {
+    condition     = alltrue([for definition in values(local.catalog) : contains(["standard", "uuid", "literal"], definition.name_kind)])
+    error_message = "Catalog name_kind values must be standard, uuid, or literal."
+  }
+  precondition {
+    condition     = alltrue([for definition in values(local.catalog) : try(definition.slug != null && tostring(definition.slug) == definition.slug, false)])
+    error_message = "Each merged catalog entry must supply a string slug. New entries cannot omit it."
+  }
+  precondition {
+    condition = alltrue([
+      for definition in values(local.catalog) :
+      (definition.min_length == null ? true : definition.min_length >= 0 && floor(definition.min_length) == definition.min_length) &&
+      (definition.max_length == null ? true : definition.max_length >= 0 && floor(definition.max_length) == definition.max_length) &&
+      (definition.min_length == null || definition.max_length == null ? true : definition.min_length <= definition.max_length)
+    ])
+    error_message = "Merged naming lengths must be nonnegative integers with min_length no greater than max_length."
+  }
+  value = local.names
 }
 
-# Module owners should include the full resource via a 'resource' output
-# https://azure.github.io/Azure-Verified-Modules/specs/terraform/#id-tffr2---category-outputs---additional-terraform-outputs
-output "resource" {
-  description = "This is the full output for the resource."
-  value       = azurerm_resource_group.TODO # TODO: Replace this dummy resource azurerm_resource_group.TODO with your module resource
+output "names_by_azure_type" {
+  description = "Modern names grouped by Azure type and then JSON key; empty in legacy_mode. Every type contains a map, including single-entry types. Non-ARM manual entries are available only through names."
+
+  precondition {
+    condition     = local.customer_catalog_valid
+    error_message = "custom_override_file must contain valid JSON with schema_version 2 and a resources object. Put additions and partial overrides directly in resources, not an overrides section."
+  }
+  precondition {
+    condition     = alltrue(values(local.customer_entry_valid))
+    error_message = local.customer_entry_error
+  }
+  value = local.names_by_azure_type
 }

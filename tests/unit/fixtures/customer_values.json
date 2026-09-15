@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "resources": {
+    "storage_account": {
+      "slug": "",
+      "min_length": 0,
+      "max_length": null,
+      "regex": null,
+      "lowercase": false,
+      "legacy_outputs": ["resource_group"],
+      "source": { "organization": "Contoso" }
+    },
+    "site_web_app": {
+      "forbidden_suffixes": [],
+      "reserved_names": ["admin"]
+    },
+    "organization_label": {
+      "slug": "team"
+    }
+  }
+}
