@@ -3,27 +3,50 @@ output "names" {
 
   precondition {
     condition     = local.generated_catalog.schema_version == 2 && local.manual_catalog.schema_version == 2
-    error_message = "Both naming catalogs must use schema version 2."
+    error_message = "Bundled naming catalogs must use schema version 2."
   }
   precondition {
-    condition     = alltrue([for key in try(keys(local.manual_catalog.overrides), []) : contains(keys(local.catalog_defaults), key)])
-    error_message = "Every manual rule override must identify a current catalog entry."
+    condition     = local.customer_catalog_valid
+    error_message = "custom_override_file must contain valid JSON with schema_version 2 and a resources object. Put additions and partial overrides directly in resources, not an overrides section."
+  }
+  precondition {
+    condition     = alltrue(values(local.customer_entry_valid))
+    error_message = local.customer_entry_error
+  }
+  precondition {
+    condition     = alltrue([for key in keys(local.catalog) : can(regex("^[a-z][a-z0-9]*(?:_[a-z0-9]+)*$", key))])
+    error_message = "All catalog keys must use lower snake case."
   }
   precondition {
     condition     = alltrue([for definition in values(local.catalog) : contains(["standard", "uuid", "literal"], definition.name_kind)])
     error_message = "Catalog name_kind values must be standard, uuid, or literal."
   }
   precondition {
-    condition = length(setintersection(
-      toset([for definition in values(local.generated_catalog.resources) : lower(definition.resource_type) if definition.resource_type != null]),
-      toset([for definition in values(local.manual_catalog.resources) : lower(definition.resource_type) if definition.resource_type != null]),
-    )) == 0
-    error_message = "Manual resource definitions must not duplicate resource types covered by the generated catalog."
+    condition     = alltrue([for definition in values(local.catalog) : try(definition.slug != null && tostring(definition.slug) == definition.slug, false)])
+    error_message = "Each merged catalog entry must supply a string slug. New entries cannot omit it."
+  }
+  precondition {
+    condition = alltrue([
+      for definition in values(local.catalog) :
+      (definition.min_length == null ? true : definition.min_length >= 0 && floor(definition.min_length) == definition.min_length) &&
+      (definition.max_length == null ? true : definition.max_length >= 0 && floor(definition.max_length) == definition.max_length) &&
+      (definition.min_length == null || definition.max_length == null ? true : definition.min_length <= definition.max_length)
+    ])
+    error_message = "Merged naming lengths must be nonnegative integers with min_length no greater than max_length."
   }
   value = local.names
 }
 
 output "names_by_azure_type" {
   description = "Modern names grouped by Azure type and then JSON key; empty in legacy_mode. Every type contains a map, including single-entry types. Non-ARM manual entries are available only through names."
-  value       = local.names_by_azure_type
+
+  precondition {
+    condition     = local.customer_catalog_valid
+    error_message = "custom_override_file must contain valid JSON with schema_version 2 and a resources object. Put additions and partial overrides directly in resources, not an overrides section."
+  }
+  precondition {
+    condition     = alltrue(values(local.customer_entry_valid))
+    error_message = local.customer_entry_error
+  }
+  value = local.names_by_azure_type
 }

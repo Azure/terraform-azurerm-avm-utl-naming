@@ -199,14 +199,14 @@ function Publish-ResourceNameRulesUpdate {
     $body = @'
 ## Runtime naming-catalog refresh
 
-This change refreshes `data/resource-name-rules.json` and its manual fallback from the current documented sources.
+This change refreshes `data/resource-name-rules.json` while preserving the additions and property overrides in `data/resource-name-rules.manual.json`.
 
 Sources: [Azure naming rules](https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/azure-resource-manager/management/resource-name-rules.md) and [CAF abbreviations](https://github.com/MicrosoftDocs/cloud-adoption-framework/blob/main/docs/ready/azure-best-practices/resource-abbreviations.md).
 
 ### Review boundary
 
 - These files are consumed by Terraform: corrected rules, abbreviations, variants, or keys can change generated names.
-- Review additions, promotions from manual fallback, and formerly documented types retained as manual fallback.
+- Review additions, effective generated/manual property merges, and formerly documented entries retained beneath their manual patches.
 - Source text and limitations are retained. Unknown validation is not a successful validation result.
 - Only these two naming data files are included; no Terraform code is generated.
 - Open review requests are not rewritten by later scheduled runs.

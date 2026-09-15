@@ -307,109 +307,141 @@ function ConvertTo-NamingCatalogJson {
     return (($Catalog | ConvertTo-Json -Depth 40) -replace "`r`n?", "`n") + "`n"
 }
 
+function Get-NamingCatalogEntryDefault {
+    return [ordered]@{
+        resource_type = $null; variant = $null; slug = $null; slug_source = 'manual'
+        legacy_slug = $null; legacy_outputs = @()
+        min_length = $null; max_length = $null; scope = $null; regex = $null
+        dashes = $false; lowercase = $true; name_kind = 'standard'; fixed_name = $null
+        validation_complete = $false; validation_notes = @()
+        forbidden_prefixes = @(); forbidden_suffixes = @(); forbidden_sequences = @(); reserved_names = @()
+    }
+}
+
 function ConvertFrom-NamingCatalogJson {
     [CmdletBinding()]
-    param([Parameter(Mandatory)][string] $Json)
+    param(
+        [Parameter(Mandatory)][string] $Json,
+        [switch] $AllowPartial
+    )
 
     $document = [System.Text.Json.JsonDocument]::Parse($Json)
     try { Assert-NamingRulesJsonProperty $document.RootElement }
     finally { $document.Dispose() }
     $catalog = ConvertFrom-Json -InputObject $Json -AsHashtable -Depth 40
-    if (($catalog.schema_version -isnot [int] -and $catalog.schema_version -isnot [long]) -or
+    if ($catalog -isnot [System.Collections.IDictionary] -or
+        -not $catalog.Contains('schema_version') -or -not $catalog.Contains('resources') -or
+        ($catalog.schema_version -isnot [int] -and $catalog.schema_version -isnot [long]) -or
         $catalog.schema_version -ne 2 -or $catalog.resources -isnot [System.Collections.IDictionary]) {
         throw 'Expected a schema-v2 naming catalog with a resources object.'
     }
+    if ($catalog.Contains('overrides')) { throw 'Put additions and partial overrides in resources, not an overrides section.' }
+    $fields = @( (Get-NamingCatalogEntryDefault).Keys )
     foreach ($key in $catalog.resources.Keys) {
         if ($key -cnotmatch '^[a-z][a-z0-9]*(?:_[a-z0-9]+)*$') { throw "Invalid Terraform catalog key: $key" }
         $record = $catalog.resources[$key]
         if ($record -isnot [System.Collections.IDictionary]) { throw "Catalog entry '$key' must be an object." }
-        foreach ($field in @('resource_type', 'variant', 'slug', 'slug_source', 'legacy_slug', 'legacy_outputs',
-            'min_length', 'max_length', 'scope', 'regex', 'dashes', 'lowercase', 'name_kind', 'fixed_name',
-            'validation_complete', 'validation_notes', 'forbidden_prefixes', 'forbidden_suffixes',
-            'forbidden_sequences', 'reserved_names')) {
-            if (-not $record.Contains($field)) { throw "Catalog entry '$key' is missing '$field'." }
+        if (@($record.Keys | Where-Object { $_ -cnotin ($fields + @('source', 'override_reason', 'override_source')) }).Count -gt 0) {
+            throw "Catalog entry '$key' contains unsupported fields."
+        }
+        if (-not $AllowPartial) {
+            foreach ($field in $fields) {
+                if (-not $record.Contains($field)) { throw "Catalog entry '$key' is missing '$field'." }
+            }
         }
         foreach ($field in @('dashes', 'lowercase', 'validation_complete')) {
-            if ($record[$field] -isnot [bool]) { throw "Catalog entry '$key' has a non-boolean '$field'." }
+            if ($record.Contains($field) -and $record[$field] -isnot [bool]) { throw "Catalog entry '$key' has a non-boolean '$field'." }
         }
         foreach ($field in @('resource_type', 'variant', 'legacy_slug', 'scope', 'regex', 'fixed_name')) {
-            if ($null -ne $record[$field] -and $record[$field] -isnot [string]) {
+            if ($record.Contains($field) -and $null -ne $record[$field] -and $record[$field] -isnot [string]) {
                 throw "Catalog entry '$key' has a non-string '$field'."
             }
         }
+        foreach ($field in @('slug', 'slug_source', 'name_kind', 'override_reason', 'override_source')) {
+            if ($record.Contains($field) -and $record[$field] -isnot [string]) {
+                throw "Catalog entry '$key' requires a string for '$field'."
+            }
+        }
         foreach ($field in @('legacy_outputs', 'validation_notes', 'forbidden_prefixes', 'forbidden_suffixes', 'forbidden_sequences', 'reserved_names')) {
-            if ($record[$field] -isnot [array] -or @($record[$field] | Where-Object { $_ -isnot [string] }).Count -gt 0) {
+            if ($record.Contains($field) -and
+                ($record[$field] -isnot [array] -or @($record[$field] | Where-Object { $_ -isnot [string] }).Count -gt 0)) {
                 throw "Catalog entry '$key' requires a string array for '$field'."
             }
         }
         foreach ($field in @('min_length', 'max_length')) {
-            if ($null -ne $record[$field] -and ($record[$field] -isnot [long] -and $record[$field] -isnot [int])) {
+            if (-not $record.Contains($field) -or $null -eq $record[$field]) { continue }
+            if ($record[$field] -isnot [long] -and $record[$field] -isnot [int]) {
                 throw "Catalog entry '$key' has a non-integer '$field'."
             }
-            if ($null -ne $record[$field] -and $record[$field] -lt 0) { throw "Negative length in '$key'." }
+            if ($record[$field] -lt 0) { throw "Negative length in '$key'." }
         }
-        if ($null -ne $record.min_length -and $null -ne $record.max_length -and $record.min_length -gt $record.max_length) {
+        if ($record.Contains('min_length') -and $record.Contains('max_length') -and
+            $null -ne $record.min_length -and $null -ne $record.max_length -and $record.min_length -gt $record.max_length) {
             throw "Reversed length bounds in '$key'."
         }
-        if ($record.slug -isnot [string] -or $record.slug_source -notin @('caf', 'derived', 'manual') -or
-            $record.name_kind -notin @('standard', 'uuid', 'literal') -or
-            ($record.name_kind -eq 'literal' -and $record.fixed_name -isnot [string])) {
+        if (($record.Contains('slug_source') -and $record.slug_source -cnotin @('caf', 'derived', 'manual')) -or
+            ($record.Contains('name_kind') -and $record.name_kind -cnotin @('standard', 'uuid', 'literal'))) {
             throw "Invalid naming configuration in '$key'."
         }
-        if (-not $record.validation_complete -and $record.validation_notes.Count -eq 0) {
-            throw "Incomplete validation in '$key' requires an explanation."
+        if ($record.Contains('source') -and $null -ne $record.source -and $record.source -isnot [System.Collections.IDictionary]) {
+            throw "Catalog entry '$key' requires an object or null for 'source'."
         }
-    }
-    if ($catalog.Contains('overrides')) {
-        if ($catalog.overrides -isnot [System.Collections.IDictionary]) { throw 'Catalog overrides must be an object.' }
-        $allowed = @('min_length', 'max_length', 'scope', 'regex', 'dashes', 'lowercase', 'name_kind', 'fixed_name',
-            'slug', 'validation_complete', 'validation_notes', 'forbidden_prefixes', 'forbidden_suffixes',
-            'forbidden_sequences', 'reserved_names')
-        foreach ($key in $catalog.overrides.Keys) {
-            $override = $catalog.overrides[$key]
-            if ($override -isnot [System.Collections.IDictionary] -or
-                $override.settings -isnot [System.Collections.IDictionary] -or $override.settings.Count -eq 0 -or
-                [string]::IsNullOrWhiteSpace($override.reason) -or [string]::IsNullOrWhiteSpace($override.source)) {
-                throw "Manual override '$key' must include nonempty settings, reason, and source."
+        if (-not $AllowPartial) {
+            if ($record.slug -isnot [string] -or ($record.name_kind -eq 'literal' -and $record.fixed_name -isnot [string])) {
+                throw "Invalid naming configuration in '$key': supply a slug and, for literal names, fixed_name."
             }
-            if (@($override.settings.Keys | Where-Object { $_ -notin $allowed }).Count -gt 0) {
-                throw "Manual override '$key' attempts to change identity or unsupported fields."
+            if (-not $record.validation_complete -and $record.validation_notes.Count -eq 0) {
+                throw "Incomplete validation in '$key' requires an explanation."
             }
         }
     }
     return $catalog
 }
 
-function Get-NamingEntryIdentity {
-    param([System.Collections.IDictionary] $Record, [string] $Key)
-    if ($null -eq $Record.resource_type) { return "manual:$Key" }
-    return $Record.resource_type.ToLowerInvariant() + '|' + [string]$Record.variant
+function Merge-NamingCatalog {
+    [CmdletBinding()]
+    param([Parameter(Mandatory)][System.Collections.IDictionary[]] $Catalogs)
+
+    $result = [ordered]@{ schema_version = 2; resources = [ordered]@{} }
+    for ($index = 0; $index -lt $Catalogs.Count; $index++) {
+        $catalog = ConvertFrom-NamingCatalogJson (ConvertTo-NamingCatalogJson $Catalogs[$index]) -AllowPartial
+        foreach ($key in $catalog.resources.Keys) {
+            if (-not $result.resources.Contains($key)) { $result.resources[$key] = Get-NamingCatalogEntryDefault }
+            foreach ($field in $catalog.resources[$key].Keys) {
+                $result.resources[$key][$field] = $catalog.resources[$key][$field]
+            }
+            if ($index -gt 0 -and $catalog.resources[$key].Contains('slug')) {
+                $result.resources[$key].slug_source = 'manual'
+            }
+        }
+    }
+    foreach ($record in $result.resources.Values) {
+        if ($null -eq $record.min_length -or $null -eq $record.max_length -or $null -eq $record.regex) {
+            $record.validation_complete = $false
+            $record.validation_notes = @($record.validation_notes) + @('Validation is incomplete while min_length, max_length, or regex is null.')
+        }
+        if (-not $record.validation_complete -and $record.validation_notes.Count -eq 0) {
+            $record.validation_notes = @('Validation completeness has not been specified for this entry.')
+        }
+        $record.validation_notes = @($record.validation_notes | Select-Object -Unique)
+    }
+    $null = ConvertFrom-NamingCatalogJson (ConvertTo-NamingCatalogJson $result)
+    return $result
 }
 
-function Assert-NamingCatalogOverride {
-    param([System.Collections.IDictionary] $Generated, [System.Collections.IDictionary] $Manual)
-
-    if (-not $Manual.Contains('overrides')) { return }
-    foreach ($key in $Manual.overrides.Keys) {
-        $base = if ($Generated.resources.Contains($key)) { $Generated.resources[$key] }
-        elseif ($Manual.resources.Contains($key)) { $Manual.resources[$key] }
-        else { throw "Manual override '$key' does not identify a current naming entry." }
-        $effective = [ordered]@{}
-        foreach ($field in $base.Keys) { $effective[$field] = $base[$field] }
-        foreach ($field in $Manual.overrides[$key].settings.Keys) { $effective[$field] = $Manual.overrides[$key].settings[$field] }
-        if ($Manual.overrides[$key].settings.Contains('slug')) { $effective.slug_source = 'manual' }
-        $null = ConvertFrom-NamingCatalogJson (ConvertTo-NamingCatalogJson ([ordered]@{
-            schema_version = 2; resources = [ordered]@{ $key = $effective }
-        }))
-    }
+function Get-NamingEntryIdentity {
+    param([System.Collections.IDictionary] $Record, [string] $Key)
+    if (-not $Record.Contains('resource_type') -or $null -eq $Record.resource_type) { return "manual:$Key" }
+    $variant = if ($Record.Contains('variant')) { [string]$Record.variant } else { '' }
+    return $Record.resource_type.ToLowerInvariant() + '|' + $variant
 }
 
 function Write-NamingCatalog {
     [CmdletBinding(SupportsShouldProcess)]
-    param([System.Collections.IDictionary] $Catalog, [string] $Path)
+    param([System.Collections.IDictionary] $Catalog, [string] $Path, [switch] $AllowPartial)
 
     $json = ConvertTo-NamingCatalogJson $Catalog
-    $null = ConvertFrom-NamingCatalogJson $json
+    $null = ConvertFrom-NamingCatalogJson $json -AllowPartial:$AllowPartial
     if ([System.IO.File]::Exists($Path) -and [System.IO.File]::ReadAllText($Path) -ceq $json) { return $false }
     if ($PSCmdlet.ShouldProcess($Path, 'Write validated naming catalog')) {
         $temporary = "$Path.$([guid]::NewGuid().ToString('N')).new"
@@ -434,6 +466,7 @@ function ConvertTo-ResourceNameCatalog {
         [AllowNull()][System.Collections.IDictionary] $Previous
     )
 
+    $null = ConvertFrom-NamingCatalogJson (ConvertTo-NamingCatalogJson $Manual) -AllowPartial
     $rules = ConvertFrom-ResourceNameRulesMarkdown $RulesMarkdown
     $abbreviations = ConvertFrom-ResourceAbbreviationsMarkdown $AbbreviationsMarkdown
     $sectionNotes = Get-NamingSectionNote $RulesMarkdown
@@ -520,35 +553,8 @@ function ConvertTo-ResourceNameCatalog {
                 abbreviations_url = $script:AbbreviationsUrl
                 abbreviations = @($group.abbreviations.ToArray())
             }
-            $candidates.Add(@{ key = $key; record = $record; manual = $false })
+            $candidates.Add(@{ key = $key; record = $record })
         }
-    }
-
-    $manualRecords = [ordered]@{}
-    foreach ($key in $Manual.resources.Keys) {
-        $record = $Manual.resources[$key]
-        if ($null -ne $record.resource_type -and $groups.ContainsKey((Resolve-NamingResourceType $record.resource_type))) { continue }
-        $manualRecords[$key] = $record
-    }
-    if ($null -ne $Previous) {
-        foreach ($key in $Previous.resources.Keys) {
-            $record = $Previous.resources[$key]
-            if ($null -ne $record.resource_type -and -not $groups.ContainsKey((Resolve-NamingResourceType $record.resource_type))) {
-                if (-not $manualRecords.Contains($key)) {
-                    $copy = [ordered]@{}
-                    foreach ($field in $record.Keys) { $copy[$field] = $record[$field] }
-                    $copy.source = [ordered]@{ status = 'removed_from_selected_sources'; previous = $record.source }
-                    $copy.slug_source = 'manual'
-                    $manualRecords[$key] = $copy
-                }
-            }
-        }
-    }
-    foreach ($key in $manualRecords.Keys) {
-        $record = $manualRecords[$key]
-        $copy = [ordered]@{}
-        foreach ($field in $record.Keys) { $copy[$field] = $record[$field] }
-        $candidates.Add(@{ key = $key; record = $copy; manual = $true })
     }
 
     $assignments = [ordered]@{}
@@ -578,14 +584,6 @@ function ConvertTo-ResourceNameCatalog {
         $candidate.identity = Get-NamingEntryIdentity $candidate.record $candidate.key
         $candidate.established = $byIdentity.ContainsKey($candidate.identity)
         if ($candidate.established) { $candidate.key = $byIdentity[$candidate.identity] }
-        elseif ($candidate.manual) {
-            if ($assignments.Contains($candidate.key) -and $assignments[$candidate.key] -cne $candidate.identity) {
-                throw "Manual key '$($candidate.key)' is reserved for another identity."
-            }
-            $candidate.established = $true
-            $byIdentity[$candidate.identity] = $candidate.key
-            $assignments[$candidate.key] = $candidate.identity
-        }
     }
     $collisions = @($candidates | Group-Object { $_.key } | Where-Object Count -gt 1)
     foreach ($collision in $collisions) {
@@ -604,7 +602,6 @@ function ConvertTo-ResourceNameCatalog {
         }
     }
     $seen = [System.Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
-    $aliases = [System.Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
     $generated = [ordered]@{
         schema_version = 2
         sources = @((Get-ResourceNameRulesSourceUrl), $script:AbbreviationsUrl)
@@ -625,11 +622,43 @@ function ConvertTo-ResourceNameCatalog {
         if ($record.slug_source -eq 'derived') {
             $record.slug = if ($record.dashes) { $key.Replace('_', '-') } else { $key.Replace('_', '') }
         }
+        $generated.resources[$key] = $record
+        $byIdentity[$candidate.identity] = $key
+    }
+    $manualRecords = [ordered]@{}
+    if ($null -ne $Previous) {
+        foreach ($key in $Previous.resources.Keys) {
+            if ($generated.resources.Contains($key)) { continue }
+            $record = $Previous.resources[$key]
+            $copy = [ordered]@{}
+            foreach ($field in $record.Keys) { $copy[$field] = $record[$field] }
+            $copy.source = [ordered]@{ status = 'removed_from_selected_sources'; previous = $record.source }
+            $copy.slug_source = 'manual'
+            $manualRecords[$key] = $copy
+        }
+    }
+    foreach ($key in $Manual.resources.Keys) {
+        if (-not $manualRecords.Contains($key)) { $manualRecords[$key] = [ordered]@{} }
+        foreach ($field in $Manual.resources[$key].Keys) {
+            $manualRecords[$key][$field] = $Manual.resources[$key][$field]
+        }
+    }
+    foreach ($key in (Get-NamingRulesSortedKey $manualRecords)) {
+        $manualResult.resources[$key] = $manualRecords[$key]
+        if ($assignments.Contains($key)) { continue }
+        $identity = Get-NamingEntryIdentity $manualRecords[$key] $key
+        if ($byIdentity.ContainsKey($identity)) {
+            throw "Manual entry '$key' duplicates '$($byIdentity[$identity])'; use that key for an override or specify a distinct variant."
+        }
+        $byIdentity[$identity] = $key
+        $assignments[$key] = $identity
+    }
+    $effective = Merge-NamingCatalog -Catalogs @($generated, $manualResult)
+    $aliases = [System.Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
+    foreach ($record in $effective.resources.Values) {
         foreach ($alias in $record.legacy_outputs) {
             if (-not $aliases.Add($alias)) { throw "Legacy output '$alias' is assigned more than once." }
         }
-        if ($candidate.manual) { $manualResult.resources[$key] = $record }
-        else { $generated.resources[$key] = $record }
     }
     foreach ($alias in $mappings.Keys) {
         if (-not $aliases.Contains($alias)) { throw "Legacy mapping '$alias' is not assigned to a catalog entry." }
@@ -637,8 +666,7 @@ function ConvertTo-ResourceNameCatalog {
     $manualResult.key_assignments = [ordered]@{}
     foreach ($key in (Get-NamingRulesSortedKey $assignments)) { $manualResult.key_assignments[$key] = $assignments[$key] }
     $null = ConvertFrom-NamingCatalogJson (ConvertTo-NamingCatalogJson $generated)
-    $null = ConvertFrom-NamingCatalogJson (ConvertTo-NamingCatalogJson $manualResult)
-    Assert-NamingCatalogOverride -Generated $generated -Manual $manualResult
+    $null = ConvertFrom-NamingCatalogJson (ConvertTo-NamingCatalogJson $manualResult) -AllowPartial
     return [pscustomobject]@{ Generated = $generated; Manual = $manualResult; CollisionCount = $collisions.Count }
 }
 
@@ -651,7 +679,7 @@ function Update-ResourceNameCatalog {
         [Parameter(Mandatory)][string] $ManualPath
     )
 
-    $manual = ConvertFrom-NamingCatalogJson ([System.IO.File]::ReadAllText($ManualPath))
+    $manual = ConvertFrom-NamingCatalogJson ([System.IO.File]::ReadAllText($ManualPath)) -AllowPartial
     $previous = if ([System.IO.File]::Exists($GeneratedPath)) {
         ConvertFrom-NamingCatalogJson ([System.IO.File]::ReadAllText($GeneratedPath))
     } else { $null }
@@ -659,7 +687,7 @@ function Update-ResourceNameCatalog {
     $changed = [System.Collections.Generic.List[string]]::new()
     if ($PSCmdlet.ShouldProcess("$GeneratedPath; $ManualPath", 'Regenerate runtime naming catalogs')) {
         if (Write-NamingCatalog $result.Generated $GeneratedPath -Confirm:$false) { $changed.Add($GeneratedPath) }
-        if (Write-NamingCatalog $result.Manual $ManualPath -Confirm:$false) { $changed.Add($ManualPath) }
+        if (Write-NamingCatalog $result.Manual $ManualPath -AllowPartial -Confirm:$false) { $changed.Add($ManualPath) }
     }
     return [pscustomobject]@{
         Changed = $changed.Count -gt 0
@@ -673,5 +701,5 @@ function Update-ResourceNameCatalog {
 Export-ModuleMember -Function Get-ResourceAbbreviationsSourceUrl, ConvertTo-NamingSnakeCase,
     ConvertTo-NamingTerraformKey, Resolve-NamingResourceType, ConvertFrom-ResourceAbbreviationsMarkdown,
     Get-NamingSectionNote, ConvertTo-NamingRuntimeRule, Get-NamingAbbreviationVariant,
-    ConvertTo-NamingCatalogJson, ConvertFrom-NamingCatalogJson, Write-NamingCatalog,
+    ConvertTo-NamingCatalogJson, ConvertFrom-NamingCatalogJson, Merge-NamingCatalog, Write-NamingCatalog,
     ConvertTo-ResourceNameCatalog, Update-ResourceNameCatalog

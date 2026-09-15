@@ -101,8 +101,9 @@ run "modern_customization_is_isolated" {
   command = apply
 
   variables {
-    prefix = ["Contoso"]
-    suffix = ["Prod"]
+    custom_override_file = "./a-customer-file-that-does-not-exist.json"
+    prefix               = ["Contoso"]
+    suffix               = ["Prod"]
     slug_overrides = {
       storage_account = "changed"
     }

@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "resources": {
+    "database_account": {
+      "slug": "account"
+    },
+    "static_site": {
+      "max_length": 30
+    },
+    "storage_account_internal": {
+      "resource_type": "Microsoft.Storage/storageAccounts",
+      "variant": "internal",
+      "slug": "intst",
+      "min_length": 3,
+      "max_length": 24,
+      "scope": "global",
+      "regex": "^[a-z0-9]{${min_length},${max_length}}$",
+      "validation_complete": true
+    }
+  }
+}

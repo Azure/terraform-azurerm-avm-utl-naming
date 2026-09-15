@@ -1,28 +1,12 @@
 locals {
-  catalog = {
-    for key, definition in local.catalog_defaults : key => merge(
-      definition,
-      try(local.manual_catalog.overrides[key].settings, {}),
-      try(local.manual_catalog.overrides[key].settings.slug, null) != null ? { slug_source = "manual" } : {},
-    )
-  }
-  catalog_defaults = {
-    for entry in local.catalog_entries : entry.key => entry.definition
-  }
-  catalog_entries = concat(
-    [for key, definition in local.generated_catalog.resources : { key = key, definition = definition }],
-    [for key, definition in local.manual_catalog.resources : { key = key, definition = definition }],
-  )
-  generated_catalog = jsondecode(var.legacy_mode ? jsonencode({ schema_version = 2, resources = {} }) : file("${path.module}/data/resource-name-rules.json"))
   legacy_aliases = flatten([
-    for key, definition in local.catalog : [
+    for key, definition in local.bundled_catalog : [
       for alias in definition.legacy_outputs : { alias = alias, key = key }
     ]
   ])
   legacy_catalog_keys = {
     for entry in local.legacy_aliases : entry.alias => entry.key
   }
-  manual_catalog = jsondecode(var.legacy_mode ? jsonencode({ schema_version = 2, resources = {} }) : file("${path.module}/data/resource-name-rules.manual.json"))
   modern_aliases = {
     for alias, key in local.legacy_catalog_keys : alias => {
       name        = local.names[key].name
@@ -115,7 +99,12 @@ locals {
   }
   slug_sources = {
     for key, definition in local.catalog :
-    key => try(var.slug_overrides[key], null) != null ? "override" : definition.slug_source
+    key => (
+      try(var.slug_overrides[key], null) != null ? "override" :
+      try(local.customer_catalog.resources[key].slug, null) != null ? "customer" :
+      try(local.manual_catalog.resources[key].slug, null) != null ? "manual" :
+      definition.slug_source
+    )
   }
   template_context = {
     for key, definition in local.catalog : key => merge(var.naming_template_variables, {

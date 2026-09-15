@@ -57,9 +57,9 @@ run "manual_rule_overrides" {
 
   assert {
     condition = alltrue([
-      for key, override in local.manual_catalog.overrides :
-      output.names[key].max_length == override.settings.max_length
-      if contains(keys(override.settings), "max_length")
+      for key, override in local.manual_catalog.resources :
+      output.names[key].max_length == override.max_length
+      if contains(keys(override), "max_length")
     ])
     error_message = "Reviewed maximum-length overrides must reach the modern output."
   }

@@ -100,7 +100,7 @@ function Invoke-MockedPublication {
 
     $catalog = Get-TestCatalog
     $null = Write-NamingCatalog $catalog.Generated (Join-Path $Root 'data\resource-name-rules.json') -Confirm:$false
-    $null = Write-NamingCatalog $catalog.Manual (Join-Path $Root 'data\resource-name-rules.manual.json') -Confirm:$false
+    $null = Write-NamingCatalog $catalog.Manual (Join-Path $Root 'data\resource-name-rules.manual.json') -AllowPartial -Confirm:$false
     $state = @{
         calls = [System.Collections.Generic.List[string]]::new()
         failure = $Failure
@@ -313,38 +313,114 @@ Test-Case 'new collisions do not rename existing keys or derived slugs' {
     Assert-True ((ConvertTo-NamingCatalogJson $rebuilt.Generated) -ceq (ConvertTo-NamingCatalogJson $updated.Generated)) 'Persisted assignments did not reproduce the same keys without the previous generated file.'
 }
 
-Test-Case 'manual settings overrides remain separate and are validated' {
+Test-Case 'manual resources patch individual properties without changing generated data' {
     $manual = [ordered]@{
         schema_version = 2
-        resources = [ordered]@{}
-        legacy_mappings = $script:Manual.legacy_mappings
-        overrides = [ordered]@{
+        resources = [ordered]@{
             storage_account = @{
-                settings = @{ max_length = 20 }
-                reason = 'Reviewed naming limit.'
-                source = 'https://example.test/reviewed-rule'
+                max_length = 20
+                override_reason = 'Reviewed naming limit.'
+                override_source = 'https://example.test/reviewed-rule'
             }
         }
+        legacy_mappings = $script:Manual.legacy_mappings
     }
     $result = ConvertTo-ResourceNameCatalog -RulesMarkdown $script:Rules -AbbreviationsMarkdown $script:Abbreviations -Manual $manual
-    Assert-True ($result.Generated.resources.storage_account.max_length -eq 24 -and $result.Manual.overrides.storage_account.settings.max_length -eq 20) 'A manual patch overwrote the generated source data.'
-    $manual.overrides.storage_account.settings = @{ resource_type = 'Microsoft.Other/types' }
-    Assert-Exception { ConvertFrom-NamingCatalogJson (ConvertTo-NamingCatalogJson $manual) } 'identity|unsupported'
+    $effective = Merge-NamingCatalog -Catalogs @($result.Generated, $result.Manual)
+    Assert-True ($result.Generated.resources.storage_account.max_length -eq 24 -and $effective.resources.storage_account.max_length -eq 20) 'A manual patch changed generated data or was ignored.'
+    Assert-True ($effective.resources.storage_account.regex -ceq $result.Generated.resources.storage_account.regex -and $effective.resources.storage_account.slug -ceq 'st') 'A partial patch discarded omitted properties.'
+    Assert-True ($result.Manual.resources.storage_account.Count -eq 3) 'A partial patch was expanded into a redundant full definition.'
+    $updated = ConvertTo-ResourceNameCatalog -RulesMarkdown $script:Rules -AbbreviationsMarkdown $script:Abbreviations -Manual $result.Manual -Previous $result.Generated
+    Assert-True ((ConvertTo-NamingCatalogJson $updated.Manual) -ceq (ConvertTo-NamingCatalogJson $result.Manual)) 'Regeneration rewrote the manual patch.'
 }
 
-Test-Case 'promotions remove documented types from manual resources' {
+Test-Case 'later layers win while omitted entries and properties survive' {
+    $catalog = Get-TestCatalog
+    $manual = @{ schema_version = 2; resources = @{ storage_account = @{ slug = 'manual'; max_length = 20; forbidden_sequences = @('--') } } }
+    $customer = @{ schema_version = 2; resources = @{
+        storage_account = @{ slug = ''; min_length = 0; lowercase = $false; forbidden_sequences = @() }
+        organization_label = @{ slug = 'team'; dashes = $true }
+    } }
+    $effective = Merge-NamingCatalog -Catalogs @($catalog.Generated, $manual, $customer)
+    $storage = $effective.resources.storage_account
+    Assert-True ($storage.slug -ceq '' -and $storage.min_length -eq 0 -and -not $storage.lowercase -and $storage.forbidden_sequences.Count -eq 0) 'Explicit empty, zero, false, or array values were ignored.'
+    Assert-True ($storage.max_length -eq 20 -and $storage.regex -ceq $catalog.Generated.resources.storage_account.regex) 'Omitted properties did not survive both overlays.'
+    Assert-True ($effective.resources.Contains('foo_server') -and $effective.resources.organization_label.slug -ceq 'team') 'An unrelated entry was removed or a new key was not added.'
+    Assert-True (-not $effective.resources.organization_label.validation_complete -and $effective.resources.organization_label.validation_notes.Count -gt 0) 'Minimal entries must not claim complete validation.'
+}
+
+Test-Case 'explicit null constraints make inherited validation incomplete' {
+    $catalog = Get-TestCatalog
+    $manual = @{ schema_version = 2; resources = @{ storage_account = @{ max_length = $null; regex = $null } } }
+    $record = (Merge-NamingCatalog -Catalogs @($catalog.Generated, $manual)).resources.storage_account
+    Assert-True ($null -eq $record.max_length -and $null -eq $record.regex -and $record.min_length -eq 3) 'Null was treated as an omitted value.'
+    Assert-True (-not $record.validation_complete -and $record.validation_notes.Count -gt 0) 'Removing constraints retained a false complete-validation claim.'
+}
+
+Test-Case 'invalid partial and merged entries fail explicitly' {
+    $catalog = Get-TestCatalog
+    foreach ($entry in @(
+        @{ dashes = 'false' }, @{ slug = $null }, @{ slug = 42 }, @{ min_length = -1 },
+        @{ max_length = '20' }, @{ reserved_names = @($null) }, @{ forbidden_suffixes = $null },
+        @{ misspelled_length = 20 }, @{ name_kind = 'unsupported' }
+    )) {
+        $partial = @{ schema_version = 2; resources = @{ storage_account = $entry } }
+        Assert-Exception { ConvertFrom-NamingCatalogJson (ConvertTo-NamingCatalogJson $partial) -AllowPartial } 'Catalog|Negative|Invalid'
+    }
+    Assert-Exception {
+        Merge-NamingCatalog -Catalogs @($catalog.Generated, @{ schema_version = 2; resources = @{ storage_account = @{ max_length = 1 } } })
+    } 'Reversed'
+    Assert-Exception {
+        Merge-NamingCatalog -Catalogs @($catalog.Generated, @{ schema_version = 2; resources = @{ new_entry = @{ max_length = 20 } } })
+    } 'slug'
+    Assert-Exception { ConvertFrom-NamingCatalogJson '{"schema_version":2,"resources":{},"overrides":{}}' -AllowPartial } 'resources, not an overrides'
+}
+
+Test-Case 'documented entries retain explicit manual definitions and slugs' {
     $initial = Get-TestCatalog
-    $manual = [ordered]@{ schema_version = 2; legacy_mappings = $script:Manual.legacy_mappings; resources = [ordered]@{ storage_account = $initial.Generated.resources.storage_account } }
+    $record = $initial.Generated.resources.storage_account | ConvertTo-Json -Depth 20 | ConvertFrom-Json -AsHashtable
+    $record.slug = 'curated'
+    $manual = [ordered]@{ schema_version = 2; legacy_mappings = $script:Manual.legacy_mappings; resources = [ordered]@{ storage_account = $record } }
     $result = ConvertTo-ResourceNameCatalog -RulesMarkdown $script:Rules -AbbreviationsMarkdown $script:Abbreviations -Manual $manual
-    Assert-True ($result.Manual.resources.Count -eq 0 -and $result.Generated.resources.Contains('storage_account')) 'A documented type remained manually defined.'
+    Assert-True ($result.Manual.resources.storage_account.slug -ceq 'curated' -and $result.Generated.resources.storage_account.slug -ceq 'st') 'Documented coverage deleted or rewrote the manual definition.'
 }
 
-Test-Case 'types removed from selected sources become explicit manual fallback' {
+Test-Case 'manual additions can share an Azure type using distinct variants' {
     $initial = Get-TestCatalog
+    $initial.Manual.resources.site_internal = @{ resource_type = 'Microsoft.Web/sites'; variant = 'internal'; slug = 'internal' }
+    $result = ConvertTo-ResourceNameCatalog -RulesMarkdown $script:Rules -AbbreviationsMarkdown $script:Abbreviations -Manual $initial.Manual -Previous $initial.Generated
+    $effective = Merge-NamingCatalog -Catalogs @($result.Generated, $result.Manual)
+    Assert-True ($effective.resources.site_internal.slug -ceq 'internal' -and $effective.resources.site_web_app.slug -ceq 'app') 'A manual same-type variant displaced a documented entry.'
+    Assert-True ($result.Manual.resources.site_internal.Count -eq 3) 'A minimal manual addition was unnecessarily expanded.'
+}
+
+Test-Case 'retired generated entries hydrate beneath existing partial manual patches' {
+    $initial = Get-TestCatalog
+    $initial.Manual.resources.foo_server = @{ slug = 'keep'; max_length = 18 }
     $changed = ($script:Rules -replace "`r`n?", "`n").Replace("## Microsoft.Foo`n| Entity | Scope | Length | Valid Characters |`n| --- | --- | --- | --- |`n| servers | parent | 1-20 | Alphanumerics |`n", '')
-    $result = ConvertTo-ResourceNameCatalog -RulesMarkdown $changed -AbbreviationsMarkdown $script:Abbreviations -Manual $script:Manual -Previous $initial.Generated
+    $result = ConvertTo-ResourceNameCatalog -RulesMarkdown $changed -AbbreviationsMarkdown $script:Abbreviations -Manual $initial.Manual -Previous $initial.Generated
     Assert-True ($result.Manual.resources.Contains('foo_server')) 'A formerly documented type was dropped.'
     Assert-True ($result.Manual.resources.foo_server.source.status -eq 'removed_from_selected_sources') 'Fallback provenance was not recorded.'
+    Assert-True ($result.Manual.resources.foo_server.slug -ceq 'keep' -and $result.Manual.resources.foo_server.max_length -eq 18 -and $result.Manual.resources.foo_server.regex -ceq $initial.Generated.resources.foo_server.regex) 'Retirement replaced a manual patch or lost its inherited properties.'
+    $restored = ConvertTo-ResourceNameCatalog -RulesMarkdown $script:Rules -AbbreviationsMarkdown $script:Abbreviations -Manual $result.Manual -Previous $result.Generated
+    Assert-True ($restored.Generated.resources.Contains('foo_server') -and $restored.Manual.resources.foo_server.slug -ceq 'keep') 'A returning documented entry changed its public key or removed a manual setting.'
+}
+
+Test-Case 'bundled undocumented abbreviations fall back to the original slugs' {
+    $root = Split-Path (Split-Path $PSScriptRoot -Parent) -Parent
+    $generated = ConvertFrom-NamingCatalogJson (Get-Content -LiteralPath (Join-Path $root 'data\resource-name-rules.json') -Raw)
+    $manual = ConvertFrom-NamingCatalogJson (Get-Content -LiteralPath (Join-Path $root 'data\resource-name-rules.manual.json') -Raw) -AllowPartial
+    $effective = Merge-NamingCatalog -Catalogs @($generated, $manual)
+    foreach ($key in $effective.resources.Keys) {
+        $record = $effective.resources[$key]
+        if ($null -eq $record.legacy_slug) { continue }
+        if ($generated.resources.Contains($key) -and $generated.resources[$key].slug_source -eq 'caf') {
+            Assert-True ($record.slug -ceq $generated.resources[$key].slug) "A documented abbreviation was replaced for '$key'."
+        }
+        else {
+            Assert-True ($manual.resources.Contains($key) -and $record.slug -ceq $record.legacy_slug) "The manual layer does not supply the original fallback slug for '$key'."
+        }
+    }
 }
 
 $testRoot = Join-Path ([System.IO.Path]::GetTempPath()) "avm-naming-catalog-tests-$([guid]::NewGuid().ToString('N'))"
@@ -355,7 +431,7 @@ try {
         $generatedPath = Join-Path $testRoot 'data\resource-name-rules.json'
         $manualPath = Join-Path $testRoot 'data\resource-name-rules.manual.json'
         $null = Write-NamingCatalog $catalog.Generated $generatedPath -Confirm:$false
-        $null = Write-NamingCatalog $catalog.Manual $manualPath -Confirm:$false
+        $null = Write-NamingCatalog $catalog.Manual $manualPath -AllowPartial -Confirm:$false
         $before = (Get-FileHash -LiteralPath $generatedPath).Hash
         $update = Update-ResourceNameCatalog -RulesMarkdown $script:Rules -AbbreviationsMarkdown $script:Abbreviations -GeneratedPath $generatedPath -ManualPath $manualPath -Confirm:$false
         Assert-True (-not $update.Changed -and (Get-FileHash -LiteralPath $generatedPath).Hash -eq $before) 'A no-op refresh rewrote data.'

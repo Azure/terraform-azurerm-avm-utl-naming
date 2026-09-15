@@ -17,25 +17,42 @@ Use `module.naming.names.storage_account.name_unique` or `module.naming.names_by
 ## Modern catalogs and manual corrections
 
 - `data/resource-name-rules.json` is generated from Microsoft's [naming rules](https://learn.microsoft.com/azure/azure-resource-manager/management/resource-name-rules) and [CAF abbreviations](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/resource-abbreviations).
-- `data/resource-name-rules.manual.json` contains fallback resources, reviewed rule overrides, compatibility mappings, and persisted public-key assignments.
+- `data/resource-name-rules.manual.json` contains additions and property overrides in the same `resources` map, plus compatibility mappings and persisted public-key assignments. Original slugs fill gaps where the selected sources have no unambiguous CAF abbreviation; documented CAF recommendations remain the default.
 
 Both resource maps use snake-case keys, with distinct entries for variants such as web apps and function apps. Key generation happens in PowerShell. Existing keys are retained when new types collide; only new entries are qualified. `names_by_azure_type` groups entries into maps using the same keys. Non-ARM manual entries appear only in `names`.
 
-Use the manual file's `overrides` section to correct documented entries without editing generated data:
+Catalogs merge in order: **generated, then bundled manual, then customer file**. Each layer can add keys or override individual properties of an existing key. For example, this manual or customer file changes only the static-site maximum:
 
 ```json
 {
-  "static_site": {
-    "settings": { "max_length": 40 },
-    "reason": "Reviewed maximum while the selected source tables omit the bound.",
-    "source": "https://github.com/Azure/terraform-azurerm-naming"
+  "schema_version": 2,
+  "resources": {
+    "static_site": {
+      "max_length": 30
+    }
   }
 }
 ```
 
-Overrides can patch lengths, regexes, scope, separators, casing, naming mode, slugs, and validation settings. Each patch requires a reason and source. Unknown keys, identity changes, invalid settings, and reversed bounds are rejected. Generated source text remains unchanged.
+Omitted properties and unrelated keys survive the merge. Supplied properties replace their previous values, including `false`, `0`, `""`, and nullable constraints set to `null`. Arrays and nested metadata objects replace as whole properties; this is not an arbitrary recursive JSON merge. Bundled corrections retain provenance in `override_reason` and `override_source`. Generated source data is unchanged.
 
-Missing constraints remain null unless reviewed overrides supply them. Incomplete modern validation returns null flags with `validation_notes`; these are candidate names, not verified Azure names. Name availability is not checked.
+### Customer override file
+
+```hcl
+module "naming" {
+  source = "Azure/avm-utl-naming/azure"
+
+  custom_override_file = "${path.module}/naming-overrides.json"
+}
+```
+
+See [the customer-file example](examples/customer\_overrides) for a partial slug override, an overridden manual limit, and a new storage-account variant. The file is caller-owned, not another bundled catalog. It must exist before Terraform starts; relative paths resolve from the Terraform working directory.
+
+New keys require a string `slug` (empty omits it). Optional fields default to unknown constraints, lowercase separator-free names, and incomplete validation. Set `resource_type` and a distinct `variant` to expose a variant in the Azure-type view. Lengths, regexes, scope, `dashes`, `lowercase`, `name_kind`/`fixed_name`, and validation settings use the same properties as the bundled catalogs. String-array properties are `validation_notes`, `forbidden_prefixes`, `forbidden_suffixes`, `forbidden_sequences`, and `reserved_names`; clear an array with `[]`, not `null`.
+
+Invalid keys, property names/types, naming modes, regexes, and reversed bounds are rejected. `slug_overrides` takes precedence over every file. Customer `legacy_outputs` metadata cannot reassign deprecated aliases; their membership comes from the bundled catalogs.
+
+Missing constraints remain null unless an override supplies them. Clearing a bound or regex also makes validation incomplete, even if `validation_complete = true` was inherited. Incomplete modern validation returns null flags with `validation_notes`; these are candidate names, not verified Azure names. Name availability is not checked.
 
 ## Naming templates
 
@@ -93,7 +110,7 @@ output "resource_group_name" {
 
 Run `terraform init -upgrade` and inspect the plan. Keep any existing seed and uniqueness-length configuration unchanged. Both original random-resource addresses are retained.
 
-Legacy mode uses the frozen [original renderer](https://github.com/Azure/terraform-azurerm-naming/tree/fc289126c9c888393ff02a79e1babadd6865861c) in `locals.legacy.tf`, not the current JSON rules. It retains original separators, casing, per-alias limits, regexes, scope tokens, and boolean validation, including historical quirks. Continue using the deprecated named outputs in `outputs.legacy.tf`; the modern dynamic maps are empty in this mode. Modern templates, custom tokens, slug overrides, and manual rule patches do not change legacy results.
+Legacy mode uses the frozen [original renderer](https://github.com/Azure/terraform-azurerm-naming/tree/fc289126c9c888393ff02a79e1babadd6865861c) in `locals.legacy.tf`, not the current JSON rules. It retains original separators, casing, per-alias limits, regexes, scope tokens, and boolean validation, including historical quirks. Continue using the deprecated named outputs in `outputs.legacy.tf`; the modern dynamic maps are empty in this mode. Modern templates, custom tokens, slug overrides, bundled rule patches, and customer files do not change legacy results.
 
 See [the override-free legacy example](examples/legacy). `legacy_mode` defaults to false. Modern mode can produce different names, so switching modes is a deliberate migration. The legacy code is temporary; pin a module version if you need it after its removal.
 
@@ -111,7 +128,7 @@ The old inputs remain in `variables.deprecated.tf`. A non-null replacement takes
 
 The Monday 06:23 UTC/manual workflow regenerates modern runtime data and proposes changes for review. It never updates the frozen legacy renderer or automatically merges changes. An open update is left untouched until merged or closed.
 
-Newly documented types move out of fallback resources; removed types are retained for review. Manual rule overrides and public-key assignments persist across regeneration.
+Manual additions, property overrides, and public-key assignments persist across regeneration, including when an entry becomes documented. Removed generated entries are retained beneath any existing manual patch so omitted properties are not lost.
 
 Repository settings must permit GitHub Actions to create pull requests. Requests created with `GITHUB_TOKEN` do not automatically trigger other workflows; validation runs before publication.
 
@@ -140,9 +157,17 @@ No required inputs.
 
 The following input variables are optional (have default values):
 
+### <a name="input_custom_override_file"></a> [custom\_override\_file](#input\_custom\_override\_file)
+
+Description: Path to a customer JSON naming catalog, merged after the generated and bundled manual catalogs. Its schema\_version must be 2 and resources must map snake-case keys to complete or partial entries. Only supplied properties replace earlier values; omitted properties and unrelated keys are retained. Arrays and nested metadata objects replace as whole properties. A new entry requires a string slug; unknown constraints remain null. Relative paths resolve from the Terraform working directory; use path.module for a caller-local file. Ignored in legacy\_mode.
+
+Type: `string`
+
+Default: `null`
+
 ### <a name="input_legacy_mode"></a> [legacy\_mode](#input\_legacy\_mode)
 
-Description: Use the frozen original renderer for the deprecated named outputs, including original separators, casing, bounds, regexes, scope values, and validation booleans. Modern dynamic outputs are empty in this mode; modern templates and slug overrides are ignored.
+Description: Use the frozen original renderer for the deprecated named outputs, including original separators, casing, bounds, regexes, scope values, and validation booleans. Modern dynamic outputs are empty in this mode; modern catalogs, customer override files, templates, and slug overrides are ignored.
 
 Type: `bool`
 
@@ -181,7 +206,7 @@ Default: `[]`
 
 ### <a name="input_slug_overrides"></a> [slug\_overrides](#input\_slug\_overrides)
 
-Description: Modern slug overrides keyed by the snake-case JSON catalog key. Null uses catalog defaults; an empty string omits the slug. Ignored in legacy\_mode so the frozen renderer remains unchanged.
+Description: Modern slug overrides keyed by the snake-case JSON catalog key, taking precedence over all bundled and customer files. Null uses the merged catalog slug; an empty string omits the slug. Ignored in legacy\_mode so the frozen renderer remains unchanged.
 
 Type: `map(string)`
 

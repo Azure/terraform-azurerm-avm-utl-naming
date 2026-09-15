@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "resources": {
+    "Bad-Key": { "slug": "bad" },
+    "not_an_object": 12,
+    "missing_slug": {},
+    "null_slug": { "slug": null },
+    "number_slug": { "slug": 12 },
+    "unknown_property": { "slug": "bad", "max_lenght": 20 },
+    "string_boolean": { "slug": "bad", "dashes": "false" },
+    "null_boolean": { "slug": "bad", "lowercase": null },
+    "negative_length": { "slug": "bad", "max_length": -1 },
+    "fractional_length": { "slug": "bad", "max_length": 12.5 },
+    "string_length": { "slug": "bad", "max_length": "20" },
+    "reversed_bounds": { "slug": "bad", "min_length": 10, "max_length": 1 },
+    "invalid_regex": { "slug": "bad", "regex": "[" },
+    "null_array": { "slug": "bad", "forbidden_suffixes": null },
+    "non_string_array": { "slug": "bad", "reserved_names": [false] },
+    "unsupported_kind": { "slug": "bad", "name_kind": "unknown" },
+    "missing_literal": { "slug": "bad", "name_kind": "literal" }
+  }
+}

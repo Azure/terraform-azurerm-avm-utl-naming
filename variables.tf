@@ -1,7 +1,18 @@
+variable "custom_override_file" {
+  type        = string
+  default     = null
+  description = "Path to a customer JSON naming catalog, merged after the generated and bundled manual catalogs. Its schema_version must be 2 and resources must map snake-case keys to complete or partial entries. Only supplied properties replace earlier values; omitted properties and unrelated keys are retained. Arrays and nested metadata objects replace as whole properties. A new entry requires a string slug; unknown constraints remain null. Relative paths resolve from the Terraform working directory; use path.module for a caller-local file. Ignored in legacy_mode."
+
+  validation {
+    condition     = var.legacy_mode || var.custom_override_file == null ? true : can(file(var.custom_override_file))
+    error_message = "custom_override_file must identify a readable local UTF-8 file."
+  }
+}
+
 variable "legacy_mode" {
   type        = bool
   default     = false
-  description = "Use the frozen original renderer for the deprecated named outputs, including original separators, casing, bounds, regexes, scope values, and validation booleans. Modern dynamic outputs are empty in this mode; modern templates and slug overrides are ignored."
+  description = "Use the frozen original renderer for the deprecated named outputs, including original separators, casing, bounds, regexes, scope values, and validation booleans. Modern dynamic outputs are empty in this mode; modern catalogs, customer override files, templates, and slug overrides are ignored."
   nullable    = false
 }
 
@@ -40,7 +51,7 @@ variable "prefix" {
 variable "slug_overrides" {
   type        = map(string)
   default     = null
-  description = "Modern slug overrides keyed by the snake-case JSON catalog key. Null uses catalog defaults; an empty string omits the slug. Ignored in legacy_mode so the frozen renderer remains unchanged."
+  description = "Modern slug overrides keyed by the snake-case JSON catalog key, taking precedence over all bundled and customer files. Null uses the merged catalog slug; an empty string omits the slug. Ignored in legacy_mode so the frozen renderer remains unchanged."
 
   validation {
     condition     = var.legacy_mode || var.slug_overrides == null ? true : alltrue([for key in keys(var.slug_overrides) : contains(keys(local.catalog), key)])
