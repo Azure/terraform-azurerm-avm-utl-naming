@@ -70,7 +70,7 @@ function Publish-ResourceNameRulesUpdate {
     $catalogPaths = @('data/resource-name-rules.json', 'data/resource-name-rules.manual.json')
     $generatedPath = Join-Path $RepositoryRoot 'data' 'resource-name-rules.json'
     $manualPath = Join-Path $RepositoryRoot 'data' 'resource-name-rules.manual.json'
-    if ($Repository -cne 'Azure/terraform-azurerm-avm-utl-naming') {
+    if ($Repository -cne 'Azure/terraform-azure-avm-utl-naming') {
         throw 'Publication is restricted to the upstream naming module repository, never forks.'
     }
     if ([string]::IsNullOrWhiteSpace($BaseBranch) -or $BaseBranch -ceq $branch) {

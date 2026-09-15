@@ -1,8 +1,7 @@
 module "naming" {
   source = "../.."
 
-  legacy_mode = true
-  prefix      = ["example"]
+  prefix = ["example"]
   slug_overrides = {
     storage_account = "store"
   }

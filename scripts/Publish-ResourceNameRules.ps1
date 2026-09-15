@@ -14,7 +14,7 @@ param()
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 if ($env:GITHUB_ACTIONS -cne 'true' -or $env:GITHUB_EVENT_NAME -notin @('schedule', 'workflow_dispatch') -or
-    $env:GITHUB_REPOSITORY -cne 'Azure/terraform-azurerm-avm-utl-naming' -or
+    $env:GITHUB_REPOSITORY -cne 'Azure/terraform-azure-avm-utl-naming' -or
     [string]::IsNullOrWhiteSpace($env:NAMING_RULES_BASE_BRANCH) -or
     $env:GITHUB_REF -cne "refs/heads/$($env:NAMING_RULES_BASE_BRANCH)" -or
     [string]::IsNullOrWhiteSpace($env:GH_TOKEN)) {

@@ -122,7 +122,7 @@ function Invoke-MockedPublication {
         $exitCode = 0
         switch ($operation) {
             'git.status' {}
-            'git.remote' { $stdout = 'https://github.com/Azure/terraform-azurerm-avm-utl-naming.git' }
+            'git.remote' { $stdout = 'https://github.com/Azure/terraform-azure-avm-utl-naming.git' }
             'git.check-ref-format' {}
             'git.fetch' {}
             'git.ls-remote' { $exitCode = 2 }
@@ -138,9 +138,9 @@ function Invoke-MockedPublication {
             }
             'gh.api' {
                 if ($Arguments -contains 'GET') { $stdout = '[]' }
-                else { $stdout = '{"fork":false,"full_name":"Azure/terraform-azurerm-avm-utl-naming","default_branch":"main"}' }
+                else { $stdout = '{"fork":false,"full_name":"Azure/terraform-azure-avm-utl-naming","default_branch":"main"}' }
             }
-            'gh.pr' { $stdout = 'https://github.com/Azure/terraform-azurerm-avm-utl-naming/pull/123' }
+            'gh.pr' { $stdout = 'https://github.com/Azure/terraform-azure-avm-utl-naming/pull/123' }
             default { throw "Unmocked operation: $operation" }
         }
         return [pscustomobject]@{ ExitCode = $exitCode; StdOut = $stdout; StdErr = '' }
@@ -149,7 +149,7 @@ function Invoke-MockedPublication {
         if ($state.failure -eq 'validation') { throw 'Simulated validation failure.' }
         $state.validated = $true
     }.GetNewClosure()
-    $result = Publish-ResourceNameRulesUpdate -Repository 'Azure/terraform-azurerm-avm-utl-naming' -BaseBranch main -RepositoryRoot $Root -Markdown $Document -AbbreviationsMarkdown $script:Abbreviations -CommandRunner $runner -ValidationRunner $validation
+    $result = Publish-ResourceNameRulesUpdate -Repository 'Azure/terraform-azure-avm-utl-naming' -BaseBranch main -RepositoryRoot $Root -Markdown $Document -AbbreviationsMarkdown $script:Abbreviations -CommandRunner $runner -ValidationRunner $validation
     return [pscustomobject]@{ Result = $result; State = $state }
 }
 
@@ -187,6 +187,24 @@ Test-Case 'simple bounds and character constraints are translated' {
     Assert-True ($record.min_length -eq 3 -and $record.max_length -eq 24) 'Numeric bounds changed.'
     Assert-True ($record.validation_complete -and $record.lowercase -and -not $record.dashes) 'A simple rule was not correctly translated.'
     Assert-True ('abc123' -cmatch $record.regex -and 'ABC' -cnotmatch $record.regex) 'The generated character class is incorrect.'
+}
+
+Test-Case 'mixed-case alphanumerics retain distinct uppercase and lowercase ranges' {
+    $record = ConvertTo-NamingRuntimeRule -Rule @{
+        resource_type = 'Microsoft.Test/names'; scope = 'parent'; length = '1-30'
+        valid_characters = 'Alphanumerics and hyphens. Start and end with alphanumeric.'
+    }
+    Assert-True ('Contoso-Test' -cmatch $record.regex -and 'contoso-test' -cmatch $record.regex) 'Uppercase letters were lost during character-class compression.'
+    Assert-True (-not $record.lowercase -and $record.dashes) 'Mixed-case separator policy changed.'
+}
+
+Test-Case 'comma-separated lowercase rules retain documented hyphens' {
+    $record = ConvertTo-NamingRuntimeRule -Rule @{
+        resource_type = 'Microsoft.Test/names'; scope = 'parent'; length = '3-40'
+        valid_characters = "Lowercase letters, numbers, and hyphens. Can't start or end with hyphen."
+    }
+    Assert-True ($record.dashes -and $record.lowercase) 'Documented hyphens were silently disabled.'
+    Assert-True ($record.forbidden_prefixes -contains '-' -and $record.forbidden_suffixes -contains '-') 'Hyphen boundary restrictions were lost.'
 }
 
 Test-Case 'unknown rules remain explicit rather than permissive success' {
@@ -230,6 +248,46 @@ Test-Case 'repeated generation produces identical bytes' {
     Assert-True ($first -ceq $second) 'Generation was not deterministic.'
 }
 
+Test-Case 'new collisions do not rename existing keys or derived slugs' {
+    $firstExtra = @'
+## Microsoft.First
+| Entity | Scope | Length | Valid Characters |
+| --- | --- | --- | --- |
+| widgets | parent | 1-40 | Alphanumerics |
+'@
+    $secondExtra = @'
+## Microsoft.Second
+| Entity | Scope | Length | Valid Characters |
+| --- | --- | --- | --- |
+| widgets | parent | 1-40 | Alphanumerics |
+'@
+    $initial = ConvertTo-ResourceNameCatalog -RulesMarkdown (Get-RulesDocument $firstExtra) -AbbreviationsMarkdown $script:Abbreviations -Manual $script:Manual
+    $updated = ConvertTo-ResourceNameCatalog -RulesMarkdown (Get-RulesDocument ($firstExtra + "`n" + $secondExtra)) -AbbreviationsMarkdown $script:Abbreviations -Manual $initial.Manual -Previous $initial.Generated
+    Assert-True ($updated.Generated.resources.Contains('widget') -and $updated.Generated.resources.Contains('second_widget')) 'The established key was renamed instead of qualifying the new collision.'
+    Assert-True ($updated.Generated.resources.widget.slug -ceq $initial.Generated.resources.widget.slug) 'The established derived slug changed.'
+    $rebuilt = ConvertTo-ResourceNameCatalog -RulesMarkdown (Get-RulesDocument ($firstExtra + "`n" + $secondExtra)) -AbbreviationsMarkdown $script:Abbreviations -Manual $updated.Manual
+    Assert-True ((ConvertTo-NamingCatalogJson $rebuilt.Generated) -ceq (ConvertTo-NamingCatalogJson $updated.Generated)) 'Persisted assignments did not reproduce the same keys without the previous generated file.'
+}
+
+Test-Case 'manual settings overrides remain separate and are validated' {
+    $manual = [ordered]@{
+        schema_version = 2
+        resources = [ordered]@{}
+        legacy_mappings = $script:Manual.legacy_mappings
+        overrides = [ordered]@{
+            storage_account = @{
+                settings = @{ max_length = 20 }
+                reason = 'Reviewed naming limit.'
+                source = 'https://example.test/reviewed-rule'
+            }
+        }
+    }
+    $result = ConvertTo-ResourceNameCatalog -RulesMarkdown $script:Rules -AbbreviationsMarkdown $script:Abbreviations -Manual $manual
+    Assert-True ($result.Generated.resources.storage_account.max_length -eq 24 -and $result.Manual.overrides.storage_account.settings.max_length -eq 20) 'A manual patch overwrote the generated source data.'
+    $manual.overrides.storage_account.settings = @{ resource_type = 'Microsoft.Other/types' }
+    Assert-Exception { ConvertFrom-NamingCatalogJson (ConvertTo-NamingCatalogJson $manual) } 'identity|unsupported'
+}
+
 Test-Case 'promotions remove documented types from manual resources' {
     $initial = Get-TestCatalog
     $manual = [ordered]@{ schema_version = 2; legacy_mappings = $script:Manual.legacy_mappings; resources = [ordered]@{ storage_account = $initial.Generated.resources.storage_account } }
@@ -269,14 +327,14 @@ try {
             $state.calls.Add($command)
             $stdout = switch -Regex ($command) {
                 '^git status ' { ''; break }
-                '^git remote get-url origin$' { 'https://github.com/Azure/terraform-azurerm-avm-utl-naming.git'; break }
-                '^gh api repos/Azure/terraform-azurerm-avm-utl-naming$' { '{"fork":false,"full_name":"Azure/terraform-azurerm-avm-utl-naming","default_branch":"main"}'; break }
-                '^gh api --method GET ' { '[{"number":123,"head":{"ref":"automation/resource-name-rules-additions","repo":{"full_name":"Azure/terraform-azurerm-avm-utl-naming"}},"base":{"ref":"main","repo":{"full_name":"Azure/terraform-azurerm-avm-utl-naming"}}}]'; break }
+                '^git remote get-url origin$' { 'https://github.com/Azure/terraform-azure-avm-utl-naming.git'; break }
+                '^gh api repos/Azure/terraform-azure-avm-utl-naming$' { '{"fork":false,"full_name":"Azure/terraform-azure-avm-utl-naming","default_branch":"main"}'; break }
+                '^gh api --method GET ' { '[{"number":123,"head":{"ref":"automation/resource-name-rules-additions","repo":{"full_name":"Azure/terraform-azure-avm-utl-naming"}},"base":{"ref":"main","repo":{"full_name":"Azure/terraform-azure-avm-utl-naming"}}}]'; break }
                 default { throw "Unexpected mutation or command: $command" }
             }
             return [pscustomobject]@{ ExitCode = 0; StdOut = $stdout; StdErr = '' }
         }.GetNewClosure()
-        $result = Publish-ResourceNameRulesUpdate -Repository 'Azure/terraform-azurerm-avm-utl-naming' -BaseBranch main -RepositoryRoot $testRoot -Markdown $script:Rules -AbbreviationsMarkdown $script:Abbreviations -CommandRunner $runner
+        $result = Publish-ResourceNameRulesUpdate -Repository 'Azure/terraform-azure-avm-utl-naming' -BaseBranch main -RepositoryRoot $testRoot -Markdown $script:Rules -AbbreviationsMarkdown $script:Abbreviations -CommandRunner $runner
         Assert-True ($result.Status -eq 'pending_review' -and -not $result.Pushed) 'An open review was overwritten.'
         Assert-True ($state.calls.Count -eq 4) 'Unexpected publication calls occurred.'
     }

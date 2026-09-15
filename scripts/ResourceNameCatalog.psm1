@@ -133,7 +133,7 @@ function ConvertTo-NamingCharacterClass {
         if ($character -in @('\', '-', '[', ']', '^')) { '\' + $character }
         else { [string] $character }
     }
-    return (($escaped -join '') -replace 'abcdefghijklmnopqrstuvwxyz', 'a-z' -replace 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'A-Z' -replace '0123456789', '0-9')
+    return (($escaped -join '') -creplace 'abcdefghijklmnopqrstuvwxyz', 'a-z' -creplace 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'A-Z' -creplace '0123456789', '0-9')
 }
 
 function ConvertTo-NamingRuntimeRule {
@@ -193,7 +193,7 @@ function ConvertTo-NamingRuntimeRule {
         if ($text -match '(?i)Can''t end with period') { $result.forbidden_suffixes = @('.') }
         $limitations.Add('Unicode character categories are represented, but the linked platform-specific character semantics are not claimed to be fully equivalent.')
     }
-    elseif ($text -match '^(?i)(Alphanumerics?|Lowercase letters and numbers|Uppercase letters and numbers)') {
+    elseif ($text -match '^(?i)(Alphanumerics?|(?:Lowercase|Uppercase) letters,?\s+(?:and\s+)?numbers)') {
         $lower = 'abcdefghijklmnopqrstuvwxyz'
         $upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
         $digits = '0123456789'
@@ -202,7 +202,7 @@ function ConvertTo-NamingRuntimeRule {
         $firstClause = ($text -split '\.\s+|(?i)\s+(?=Start|End|Can''t|Cannot|Must|See|Use)', 2)[0].TrimEnd('.')
         $allowed = $letters + $digits
         $remainder = $text.Substring([Math]::Min($firstClause.Length, $text.Length)).Trim()
-        $unknownClause = $firstClause -replace '^(?i)(Alphanumerics?|Lowercase letters and numbers|Uppercase letters and numbers)', ''
+        $unknownClause = $firstClause -replace '^(?i)(Alphanumerics?|(?:Lowercase|Uppercase) letters,?\s+(?:and\s+)?numbers)', ''
         foreach ($item in @(@('hyphens?', '-'), @('underscores?', '_'), @('periods?', '.'), @('parentheses', '()'))) {
             if ($unknownClause -match ('(?i)\b' + $item[0] + '\b')) {
                 $allowed += $item[1]
@@ -239,6 +239,11 @@ function ConvertTo-NamingRuntimeRule {
             if ($remainder -match $restriction[0]) {
                 $remainder = $remainder.Replace($Matches[0], '')
                 $result[$restriction[1]] = @($result[$restriction[1]]) + @($restriction[2])
+            }
+            if ($remainder -match '(?i)(?:Can''t|Cannot) start or end with (?:a )?hyphen\.?') {
+                $remainder = $remainder.Replace($Matches[0], '')
+                $result.forbidden_prefixes = @($result.forbidden_prefixes) + @('-')
+                $result.forbidden_suffixes = @($result.forbidden_suffixes) + @('-')
             }
         }
         if (($remainder -replace '[\s.]', '') -ne '') { $limitations.Add('Additional character-rule prose is retained but not completely interpreted.') }
@@ -337,7 +342,48 @@ function ConvertFrom-NamingCatalogJson {
             throw "Incomplete validation in '$key' requires an explanation."
         }
     }
+    if ($catalog.Contains('overrides')) {
+        if ($catalog.overrides -isnot [System.Collections.IDictionary]) { throw 'Catalog overrides must be an object.' }
+        $allowed = @('min_length', 'max_length', 'scope', 'regex', 'dashes', 'lowercase', 'name_kind', 'fixed_name',
+            'slug', 'validation_complete', 'validation_notes', 'forbidden_prefixes', 'forbidden_suffixes',
+            'forbidden_sequences', 'reserved_names')
+        foreach ($key in $catalog.overrides.Keys) {
+            $override = $catalog.overrides[$key]
+            if ($override -isnot [System.Collections.IDictionary] -or
+                $override.settings -isnot [System.Collections.IDictionary] -or $override.settings.Count -eq 0 -or
+                [string]::IsNullOrWhiteSpace($override.reason) -or [string]::IsNullOrWhiteSpace($override.source)) {
+                throw "Manual override '$key' must include nonempty settings, reason, and source."
+            }
+            if (@($override.settings.Keys | Where-Object { $_ -notin $allowed }).Count -gt 0) {
+                throw "Manual override '$key' attempts to change identity or unsupported fields."
+            }
+        }
+    }
     return $catalog
+}
+
+function Get-NamingEntryIdentity {
+    param([System.Collections.IDictionary] $Record, [string] $Key)
+    if ($null -eq $Record.resource_type) { return "manual:$Key" }
+    return $Record.resource_type.ToLowerInvariant() + '|' + [string]$Record.variant
+}
+
+function Assert-NamingCatalogOverride {
+    param([System.Collections.IDictionary] $Generated, [System.Collections.IDictionary] $Manual)
+
+    if (-not $Manual.Contains('overrides')) { return }
+    foreach ($key in $Manual.overrides.Keys) {
+        $base = if ($Generated.resources.Contains($key)) { $Generated.resources[$key] }
+        elseif ($Manual.resources.Contains($key)) { $Manual.resources[$key] }
+        else { throw "Manual override '$key' does not identify a current naming entry." }
+        $effective = [ordered]@{}
+        foreach ($field in $base.Keys) { $effective[$field] = $base[$field] }
+        foreach ($field in $Manual.overrides[$key].settings.Keys) { $effective[$field] = $Manual.overrides[$key].settings[$field] }
+        if ($Manual.overrides[$key].settings.Contains('slug')) { $effective.slug_source = 'manual' }
+        $null = ConvertFrom-NamingCatalogJson (ConvertTo-NamingCatalogJson ([ordered]@{
+            schema_version = 2; resources = [ordered]@{ $key = $effective }
+        }))
+    }
 }
 
 function Write-NamingCatalog {
@@ -483,12 +529,55 @@ function ConvertTo-ResourceNameCatalog {
         $candidates.Add(@{ key = $key; record = $copy; manual = $true })
     }
 
+    $assignments = [ordered]@{}
+    if ($Manual.Contains('key_assignments')) {
+        foreach ($key in $Manual.key_assignments.Keys) { $assignments[$key] = $Manual.key_assignments[$key] }
+    }
+    $byIdentity = [System.Collections.Generic.Dictionary[string, string]]::new([StringComparer]::Ordinal)
+    foreach ($key in $assignments.Keys) {
+        if ($key -cnotmatch '^[a-z][a-z0-9]*(?:_[a-z0-9]+)*$' -or $assignments[$key] -isnot [string] -or
+            $byIdentity.ContainsKey($assignments[$key])) {
+            throw 'Invalid or conflicting persisted key assignment.'
+        }
+        $byIdentity[$assignments[$key]] = $key
+    }
+    if ($null -ne $Previous) {
+        foreach ($key in $Previous.resources.Keys) {
+            $identity = Get-NamingEntryIdentity $Previous.resources[$key] $key
+            if ($byIdentity.ContainsKey($identity) -and $byIdentity[$identity] -cne $key) {
+                throw "The previous catalog disagrees with the persisted key for '$identity'."
+            }
+            if ($assignments.Contains($key) -and $assignments[$key] -cne $identity) { throw "Key '$key' changed identity." }
+            $byIdentity[$identity] = $key
+            $assignments[$key] = $identity
+        }
+    }
+    foreach ($candidate in $candidates) {
+        $candidate.identity = Get-NamingEntryIdentity $candidate.record $candidate.key
+        $candidate.established = $byIdentity.ContainsKey($candidate.identity)
+        if ($candidate.established) { $candidate.key = $byIdentity[$candidate.identity] }
+        elseif ($candidate.manual) {
+            if ($assignments.Contains($candidate.key) -and $assignments[$candidate.key] -cne $candidate.identity) {
+                throw "Manual key '$($candidate.key)' is reserved for another identity."
+            }
+            $candidate.established = $true
+            $byIdentity[$candidate.identity] = $candidate.key
+            $assignments[$candidate.key] = $candidate.identity
+        }
+    }
     $collisions = @($candidates | Group-Object { $_.key } | Where-Object Count -gt 1)
     foreach ($collision in $collisions) {
         foreach ($candidate in $collision.Group) {
+            if ($candidate.established) { continue }
             if ($null -eq $candidate.record.resource_type) { throw "Cannot provider-qualify a non-ARM key collision: $($collision.Name)" }
             $provider = ($candidate.record.resource_type -split '/')[0] -replace '^[^.]+\.', ''
             $provider = $provider -creplace '^DBfor', 'DBFor'
+            $candidate.key = (ConvertTo-NamingSnakeCase $provider) + '_' + $candidate.key
+        }
+    }
+    foreach ($candidate in $candidates) {
+        if (-not $candidate.established -and $assignments.Contains($candidate.key)) {
+            $provider = ($candidate.record.resource_type -split '/')[0] -replace '^[^.]+\.', ''
             $candidate.key = (ConvertTo-NamingSnakeCase $provider) + '_' + $candidate.key
         }
     }
@@ -506,6 +595,10 @@ function ConvertTo-ResourceNameCatalog {
     foreach ($candidate in ($candidates | Sort-Object { $_.key } -CaseSensitive)) {
         $key = $candidate.key
         if (-not $seen.Add($key)) { throw "Terraform key collision remains after provider qualification: $key" }
+        if ($assignments.Contains($key) -and $assignments[$key] -cne $candidate.identity) {
+            throw "Naming key '$key' is reserved for another resource; review the new collision explicitly."
+        }
+        $assignments[$key] = $candidate.identity
         $record = $candidate.record
         if ($record.slug_source -eq 'derived') {
             $record.slug = if ($record.dashes) { $key.Replace('_', '-') } else { $key.Replace('_', '') }
@@ -519,8 +612,11 @@ function ConvertTo-ResourceNameCatalog {
     foreach ($alias in $mappings.Keys) {
         if (-not $aliases.Contains($alias)) { throw "Legacy mapping '$alias' is not assigned to a catalog entry." }
     }
+    $manualResult.key_assignments = [ordered]@{}
+    foreach ($key in (Get-NamingRulesSortedKey $assignments)) { $manualResult.key_assignments[$key] = $assignments[$key] }
     $null = ConvertFrom-NamingCatalogJson (ConvertTo-NamingCatalogJson $generated)
     $null = ConvertFrom-NamingCatalogJson (ConvertTo-NamingCatalogJson $manualResult)
+    Assert-NamingCatalogOverride -Generated $generated -Manual $manualResult
     return [pscustomobject]@{ Generated = $generated; Manual = $manualResult; CollisionCount = $collisions.Count }
 }
 

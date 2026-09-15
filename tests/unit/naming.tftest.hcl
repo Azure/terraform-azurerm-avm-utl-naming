@@ -67,28 +67,15 @@ run "azure_type_groups" {
   }
 }
 
-run "legacy_slugs" {
+run "web_variants" {
   command = apply
-
-  variables {
-    legacy_mode = true
-  }
-
-  assert {
-    condition = alltrue([
-      for key, definition in local.catalog :
-      output.names[key].slug == (definition.legacy_slug != null ? definition.legacy_slug : definition.slug) &&
-      output.names[key].slug_source == (definition.legacy_slug != null ? "legacy" : definition.slug_source)
-    ])
-    error_message = "Legacy mode must select each mapped legacy slug and retain current defaults for new entries."
-  }
 
   assert {
     condition = (
       contains([for entry in values(output.names_by_azure_type["Microsoft.Web/sites"]) : entry.slug], "app") &&
       contains([for entry in values(output.names_by_azure_type["Microsoft.Web/sites"]) : entry.slug], "func")
     )
-    error_message = "Web apps and function apps must retain distinct legacy variants under the same Azure type."
+    error_message = "Web apps and function apps must remain distinct variants under the same Azure type."
   }
 }
 
@@ -96,7 +83,6 @@ run "override_precedence" {
   command = apply
 
   variables {
-    legacy_mode = true
     slug_overrides = {
       storage_account = "store"
     }
@@ -104,13 +90,13 @@ run "override_precedence" {
 
   assert {
     condition     = output.names.storage_account.slug == "store" && output.names.storage_account.slug_source == "override"
-    error_message = "A per-entry slug override must take precedence over legacy mode."
+    error_message = "A per-entry slug override must take precedence over the modern catalog."
   }
 
   assert {
     condition = alltrue([
       for key, definition in local.catalog :
-      output.names[key].slug == (definition.legacy_slug != null ? definition.legacy_slug : definition.slug)
+      output.names[key].slug == definition.slug
       if key != "storage_account"
     ])
     error_message = "Overriding one key must not change other catalog entries."
@@ -192,10 +178,11 @@ run "maximum_length" {
   assert {
     condition = alltrue([
       for key, definition in local.catalog :
-      length(output.names[key].name) == definition.max_length &&
-      length(output.names[key].name_unique) == definition.max_length
+      length(output.names[key].name) <= definition.max_length &&
+      length(output.names[key].name_unique) <= definition.max_length &&
+      output.names[key].unique_suffix_retained
       if definition.name_kind == "standard" && (definition.max_length == null ? false : definition.max_length <= 2000)
     ])
-    error_message = "Standard names must be truncated to their documented maximum when one is known."
+    error_message = "Standard names must stay within their maximum without discarding the uniqueness token."
   }
 }
