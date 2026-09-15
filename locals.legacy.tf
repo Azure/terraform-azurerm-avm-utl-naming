@@ -1,7 +1,6 @@
 # Frozen Azure/naming renderer at fc289126c9c888393ff02a79e1babadd6865861c.
 # Shared root random resources preserve existing Terraform state addresses.
 locals {
-  // adding a first letter to guarantee that you always start with a letter
   legacy_random_safe_generation = join("", [random_string.first_letter.result, random_string.main.result])
   legacy_random                 = substr(coalesce(local.unique_seed_input, local.legacy_random_safe_generation), 0, local.unique_length)
   legacy_prefix                 = join("-", var.prefix)
@@ -10,8 +9,6 @@ locals {
   legacy_suffix_unique          = join("-", concat(var.suffix, [local.legacy_random]))
   legacy_suffix_safe            = lower(join("", var.suffix))
   legacy_suffix_unique_safe     = lower(join("", concat(var.suffix, [local.legacy_random])))
-  // Names based on the recommendations of
-  // https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/naming-and-tagging
   legacy_az = {
     analysis_services_server = {
       name        = substr(join("", compact([local.legacy_prefix_safe, "as", local.legacy_suffix_safe])), 0, 63)
