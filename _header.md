@@ -52,7 +52,22 @@ naming_templates = {
 
 Built-in tokens are `prefix` and `suffix` lists, `slug`, `separator`, `unique`, `unique_seed`, `terraform_key`, `resource_type`, `variant`, `min_length`, and `max_length`. The unique template also receives `name`, with space reserved for the template's overhead. Custom string tokens cannot replace built-in tokens.
 
-The default unique template preserves the uniqueness token when truncating. Custom unique templates must retain `unique` and fit the effective maximum; otherwise planning fails rather than silently dropping uniqueness. Entries expose `unique_suffix_retained`. Documented literal names remain fixed, and GUID-only names use deterministic UUID rendering.
+The default unique template preserves the uniqueness token when truncating. Custom unique templates must interpolate the complete `unique` token directly or through a case conversion such as `upper(unique)`. Token-aware probe rendering distinguishes interpolation from a coincidental match in a prefix. Arbitrary hashing, slicing, or conditional transformations are not claimed to preserve the complete token.
+
+Feasibility is per entry: an oversized or unverifiable unique name returns `name_unique = null`, `name_unique_available = false`, and explanatory `name_unique_errors`. Other entries remain usable. `fits_max_length` describes the unique-name candidate and is null when no maximum is known. Check the selected entry before using it:
+
+```hcl
+output "storage_account_name" {
+  value = module.naming.names.storage_account.name_unique
+
+  precondition {
+    condition     = module.naming.names.storage_account.name_unique_available
+    error_message = join(" ", module.naming.names.storage_account.name_unique_errors)
+  }
+}
+```
+
+Entries also expose `unique_suffix_retained`. Literal names remain fixed; GUID-only names use deterministic UUID rendering. For Windows consumers whose `computer_name` defaults to the resource name, use `names.virtual_machine_windows` (15-character cap) instead of the generic 64-character ARM-name entry.
 
 `slug_overrides` is a nullable map keyed by the JSON key. An empty override omits the slug.
 

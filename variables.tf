@@ -26,7 +26,7 @@ variable "naming_templates" {
     name_unique = optional(string, "$${join(separator, compact([name, unique]))}")
   })
   default     = {}
-  description = "Modern templates rendered with templatestring. Escape interpolation as $${token} in HCL. The name_unique template receives name with room reserved for its overhead and must retain unique when its length is nonzero. Available tokens are name (unique template only), prefix/suffix lists, slug, separator, unique, unique_seed, terraform_key, resource_type, variant, min_length, max_length, and naming_template_variables. Ignored in legacy_mode."
+  description = "Modern templates rendered with templatestring. Escape interpolation as $${token} in HCL. The name_unique template receives a bounded name and must interpolate the full unique token directly or through a whole-token case conversion. Unverifiable or oversized unique names are null with per-entry diagnostics, not catalog-wide failures. Available tokens are name (unique template only), prefix/suffix lists, slug, separator, unique, unique_seed, terraform_key, resource_type, variant, min_length, max_length, and naming_template_variables. Ignored in legacy_mode."
   nullable    = false
 }
 

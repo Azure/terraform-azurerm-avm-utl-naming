@@ -65,8 +65,12 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -237,8 +241,12 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -445,8 +453,12 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -617,8 +629,12 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -789,8 +805,12 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -961,8 +981,12 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -1133,8 +1157,12 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -1341,8 +1369,12 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -1513,8 +1545,12 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -1685,8 +1721,12 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -1857,8 +1897,12 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -2029,8 +2073,12 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -2242,8 +2290,12 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -2450,8 +2502,12 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -2622,8 +2678,12 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -3037,7 +3097,18 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -3087,8 +3158,22 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -3180,8 +3265,16 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -3273,8 +3366,36 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -3323,8 +3444,16 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -3637,8 +3766,22 @@
         "Additional character-rule prose is retained but not completely interpreted.",
         "Provider-section notes are retained for review and are not universally interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -3816,7 +3959,20 @@
       "validation_notes": [
         "Provider-section notes are retained for review and are not universally interpreted."
       ],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-",
+        "_"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -3942,7 +4098,20 @@
       "validation_notes": [
         "Provider-section notes are retained for review and are not universally interpreted."
       ],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-",
+        "_"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -4026,8 +4195,16 @@
         "Additional character-rule prose is retained but not completely interpreted.",
         "Provider-section notes are retained for review and are not universally interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -4078,8 +4255,16 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -4126,7 +4311,19 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -4290,8 +4487,14 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_"
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -4330,8 +4533,16 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -4576,7 +4787,18 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -4688,8 +4910,14 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_"
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -4726,7 +4954,11 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -4772,7 +5004,11 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -4810,7 +5046,11 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -4848,7 +5088,11 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -4886,7 +5130,11 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -4924,7 +5172,11 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -4962,7 +5214,11 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -5010,7 +5266,11 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -5213,8 +5473,14 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_"
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -5420,7 +5686,19 @@
         "Additional character-rule prose is retained but not completely interpreted."
       ],
       "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_suffixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -5515,7 +5793,19 @@
         "Additional character-rule prose is retained but not completely interpreted."
       ],
       "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_suffixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -5610,7 +5900,19 @@
         "Additional character-rule prose is retained but not completely interpreted."
       ],
       "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_suffixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -5705,7 +6007,19 @@
         "Additional character-rule prose is retained but not completely interpreted."
       ],
       "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_suffixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -5795,8 +6109,14 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_"
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -5874,7 +6194,19 @@
         "Additional character-rule prose is retained but not completely interpreted."
       ],
       "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_suffixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -5969,7 +6301,19 @@
         "Additional character-rule prose is retained but not completely interpreted."
       ],
       "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_suffixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -6064,7 +6408,19 @@
         "Additional character-rule prose is retained but not completely interpreted."
       ],
       "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_suffixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -6159,7 +6515,19 @@
         "Additional character-rule prose is retained but not completely interpreted."
       ],
       "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_suffixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -6251,8 +6619,12 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -6456,7 +6828,7 @@
       "min_length": 1,
       "max_length": 63,
       "scope": "global",
-      "regex": "^(?:[a-zA-Z0-9\\-]|[a-zA-Z0-9\\-][a-zA-Z0-9\\-]*[a-zA-Z0-9\\-])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
@@ -6720,8 +7092,7 @@
       "legacy_slug": "vm",
       "legacy_outputs": [
         "linux_virtual_machine",
-        "virtual_machine",
-        "windows_virtual_machine"
+        "virtual_machine"
       ],
       "min_length": null,
       "max_length": 64,
@@ -6926,8 +7297,16 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -7012,8 +7391,22 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -7053,7 +7446,7 @@
       "min_length": 1,
       "max_length": 63,
       "scope": "resource group",
-      "regex": "^(?:[a-z0-9\\-]|[a-z0-9\\-][a-z0-9\\-]*[a-z0-9\\-])$",
+      "regex": "^(?:[a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9])$",
       "dashes": true,
       "lowercase": true,
       "name_kind": "standard",
@@ -7114,8 +7507,14 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_"
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -7487,7 +7886,11 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -7537,7 +7940,19 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -7623,7 +8038,19 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -7709,7 +8136,19 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -7795,7 +8234,19 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -7881,7 +8332,19 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -7967,7 +8430,19 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -8124,7 +8599,7 @@
     "db_for_maria_db_server": {
       "resource_type": "Microsoft.DBforMariaDB/servers",
       "variant": null,
-      "slug": "dbformariadbserver",
+      "slug": "db-for-maria-db-server",
       "slug_source": "derived",
       "legacy_slug": "maria",
       "legacy_outputs": [
@@ -8133,17 +8608,19 @@
       "min_length": 3,
       "max_length": 63,
       "scope": "global",
-      "regex": null,
-      "dashes": false,
+      "regex": "^(?:[a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9])$",
+      "dashes": true,
       "lowercase": true,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "The character-rule prose is not represented by a complete RE2 rule."
+      "validation_complete": true,
+      "validation_notes": [],
+      "forbidden_prefixes": [
+        "-"
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -8287,17 +8764,19 @@
       "min_length": 3,
       "max_length": 63,
       "scope": "global",
-      "regex": null,
-      "dashes": false,
+      "regex": "^(?:[a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9])$",
+      "dashes": true,
       "lowercase": true,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "The character-rule prose is not represented by a complete RE2 rule."
+      "validation_complete": true,
+      "validation_notes": [],
+      "forbidden_prefixes": [
+        "-"
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -8442,7 +8921,7 @@
     "db_for_postgre_sql_server": {
       "resource_type": "Microsoft.DBforPostgreSQL/servers",
       "variant": null,
-      "slug": "dbforpostgresqlserver",
+      "slug": "db-for-postgre-sql-server",
       "slug_source": "derived",
       "legacy_slug": "psql",
       "legacy_outputs": [
@@ -8451,17 +8930,21 @@
       "min_length": 3,
       "max_length": 63,
       "scope": "global",
-      "regex": null,
-      "dashes": false,
+      "regex": "^(?:[a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9])$",
+      "dashes": true,
       "lowercase": true,
       "name_kind": "standard",
       "fixed_name": null,
       "validation_complete": false,
       "validation_notes": [
-        "The character-rule prose is not represented by a complete RE2 rule."
+        "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -8731,8 +9214,36 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -9123,8 +9634,14 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_"
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -9171,8 +9688,14 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_"
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -9217,8 +9740,14 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_"
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -9263,8 +9792,14 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_"
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -9456,8 +9991,14 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_"
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -9530,8 +10071,34 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-",
+        "_"
+      ],
+      "forbidden_suffixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-",
+        "_"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -9568,8 +10135,32 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -9645,7 +10236,11 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -9888,8 +10483,32 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -9928,8 +10547,32 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -9979,7 +10622,21 @@
         "Additional character-rule prose is retained but not completely interpreted."
       ],
       "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_suffixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -10016,8 +10673,22 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -10104,8 +10775,16 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -10236,8 +10915,12 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -10478,8 +11161,12 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -10516,8 +11203,12 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -10939,7 +11630,7 @@
       "min_length": 3,
       "max_length": 63,
       "scope": "global",
-      "regex": "^(?:[a-z0-9\\-]|[a-z0-9\\-][a-z0-9\\-]*[a-z0-9\\-])$",
+      "regex": "^(?:[a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9])$",
       "dashes": true,
       "lowercase": true,
       "name_kind": "standard",
@@ -10994,8 +11685,16 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -11044,8 +11743,16 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -11174,8 +11881,12 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -11222,7 +11933,18 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -11272,8 +11994,14 @@
       "validation_notes": [
         "Provider-section notes are retained for review and are not universally interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -11322,8 +12050,14 @@
       "validation_notes": [
         "Provider-section notes are retained for review and are not universally interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -11406,8 +12140,16 @@
       "validation_notes": [
         "Provider-section notes are retained for review and are not universally interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -11574,8 +12316,36 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -11730,7 +12500,18 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -11766,8 +12547,14 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -11802,7 +12589,19 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "_"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -11838,7 +12637,19 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "_"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -11874,7 +12685,19 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "_"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -11910,7 +12733,19 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "_"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -11946,7 +12781,19 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "_"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -11982,7 +12829,19 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "_"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -12018,7 +12877,19 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "_"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -12054,7 +12925,19 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "_"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -12090,7 +12973,19 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "_"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -12126,7 +13021,19 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "_"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -12162,7 +13069,19 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "_"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -12203,8 +13122,16 @@
         "Additional character-rule prose is retained but not completely interpreted.",
         "Provider-section notes are retained for review and are not universally interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -12282,7 +13209,19 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -12805,7 +13744,19 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -12836,7 +13787,7 @@
       "min_length": 3,
       "max_length": 50,
       "scope": "global",
-      "regex": "^(?:[a-zA-Z0-9\\-]|[a-zA-Z0-9\\-][a-zA-Z0-9\\-]*[a-zA-Z0-9\\-])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9\\-][a-zA-Z0-9\\-]*[a-zA-Z0-9])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
@@ -13048,8 +13999,32 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
       "forbidden_sequences": [
         "--"
       ],
@@ -13096,8 +14071,14 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_"
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -13132,8 +14113,14 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_"
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -13170,8 +14157,14 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_"
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -13208,7 +14201,18 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -13254,8 +14258,14 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_"
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -13290,8 +14300,14 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_"
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -13400,8 +14416,26 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -13439,8 +14473,12 @@
         "The documented length is missing, composite, or conditional; no universal bounds are asserted.",
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -13480,8 +14518,12 @@
         "The documented length is missing, composite, or conditional; no universal bounds are asserted.",
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -13521,8 +14563,12 @@
         "The documented length is missing, composite, or conditional; no universal bounds are asserted.",
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -13559,8 +14605,26 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -13588,7 +14652,7 @@
       "min_length": 3,
       "max_length": 32,
       "scope": "Resource group",
-      "regex": "^(?:[a-zA-Z0-9\\-]|[a-zA-Z0-9\\-][a-zA-Z0-9\\-]*[a-zA-Z0-9\\-])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
@@ -13639,8 +14703,16 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -13698,8 +14770,16 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -13746,8 +14826,16 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -13803,8 +14891,16 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -13912,8 +15008,16 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -14385,7 +15489,7 @@
       "min_length": 1,
       "max_length": 63,
       "scope": "global",
-      "regex": "^(?:[a-z0-9\\-]|[a-z0-9\\-][a-z0-9\\-]*[a-z0-9\\-])$",
+      "regex": "^(?:[a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9])$",
       "dashes": true,
       "lowercase": true,
       "name_kind": "standard",
@@ -14437,7 +15541,7 @@
       "min_length": 1,
       "max_length": 90,
       "scope": "tenant",
-      "regex": "^(?:[a-zA-Z]|[a-zA-Z][a-zA-Z0-9\\-_.()]*[a-zA-Z0-9\\-_.()])$",
+      "regex": "^(?:[a-zA-Z]|[a-zA-Z][a-zA-Z0-9\\-_.()]*[a-zA-Z0-9\\-_()])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
@@ -14446,7 +15550,23 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-",
+        "_",
+        ".",
+        "(",
+        ")"
+      ],
       "forbidden_suffixes": [
         "."
       ],
@@ -14494,8 +15614,22 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -14534,7 +15668,11 @@
       "validation_notes": [
         "The documented length is missing, composite, or conditional; no universal bounds are asserted."
       ],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -14616,7 +15754,9 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -14652,7 +15792,9 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -14688,7 +15830,9 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -14762,7 +15906,9 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -14801,8 +15947,14 @@
         "The allowed-character clause contains unsupported qualifiers.",
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -14839,7 +15991,9 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -14875,7 +16029,9 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -14911,7 +16067,9 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -14947,7 +16105,9 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -14988,7 +16148,21 @@
         "Additional character-rule prose is retained but not completely interpreted."
       ],
       "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_suffixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -15038,7 +16212,21 @@
         "Additional character-rule prose is retained but not completely interpreted."
       ],
       "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_suffixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -15078,7 +16266,21 @@
         "Additional character-rule prose is retained but not completely interpreted."
       ],
       "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_suffixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -15117,8 +16319,16 @@
       "validation_notes": [
         "The allowed-character clause contains unsupported qualifiers."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -15153,8 +16363,16 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -15322,8 +16540,16 @@
       "validation_notes": [
         "The allowed-character clause contains unsupported qualifiers."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -15412,8 +16638,16 @@
       "validation_notes": [
         "The allowed-character clause contains unsupported qualifiers."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -15590,8 +16824,16 @@
       "validation_notes": [
         "The allowed-character clause contains unsupported qualifiers."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -15626,8 +16868,16 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -15705,7 +16955,10 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -15741,7 +16994,11 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -15777,7 +17034,10 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -15815,7 +17075,9 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -15851,7 +17113,10 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -15889,7 +17154,9 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -15925,7 +17192,10 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -15961,7 +17231,10 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -15999,7 +17272,10 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -16035,7 +17311,10 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -16071,8 +17350,14 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_"
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -16147,8 +17432,16 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -16240,8 +17533,16 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -16291,8 +17592,16 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -16382,8 +17691,16 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -16430,8 +17747,22 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -16514,8 +17845,12 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -16552,8 +17887,12 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -16598,7 +17937,10 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -16634,7 +17976,10 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -16673,8 +18018,14 @@
         "The allowed-character clause contains unsupported qualifiers.",
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -16913,16 +18264,27 @@
       "min_length": 3,
       "max_length": 63,
       "scope": "region",
-      "regex": null,
+      "regex": "^(?:[a-z]|[a-z][a-z0-9]*[a-z0-9])$",
       "dashes": false,
       "lowercase": true,
       "name_kind": "standard",
       "fixed_name": null,
       "validation_complete": false,
       "validation_notes": [
-        "The character-rule prose is not represented by a complete RE2 rule."
+        "The allowed-character clause contains unsupported qualifiers."
       ],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -17006,8 +18368,16 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -17095,8 +18465,16 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -17135,8 +18513,16 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -17274,8 +18660,16 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -17322,8 +18716,16 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -17403,8 +18805,12 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -17441,8 +18847,12 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -17498,8 +18908,12 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -17546,8 +18960,12 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -17603,8 +19021,12 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -17641,8 +19063,12 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -17718,7 +19144,9 @@
       "validation_complete": true,
       "validation_notes": [],
       "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -17860,8 +19288,16 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -17910,8 +19346,16 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -17992,7 +19436,7 @@
       "min_length": 2,
       "max_length": 54,
       "scope": "region",
-      "regex": "^(?:[a-zA-Z0-9\\-]|[a-zA-Z0-9\\-][a-zA-Z0-9\\-]*[a-zA-Z0-9\\-])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
@@ -18075,7 +19519,7 @@
       "min_length": 3,
       "max_length": 63,
       "scope": "storage account",
-      "regex": "^(?:[a-z0-9\\-]|[a-z0-9\\-][a-z0-9\\-]*[a-z0-9\\-])$",
+      "regex": "^(?:[a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9])$",
       "dashes": true,
       "lowercase": true,
       "name_kind": "standard",
@@ -18126,8 +19570,14 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_"
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -18164,7 +19614,19 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -18214,8 +19676,12 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -18329,8 +19795,14 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_"
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -18365,8 +19837,14 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_"
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -18707,8 +20185,32 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -18743,8 +20245,16 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -19039,8 +20549,16 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -19087,8 +20605,16 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -19127,8 +20653,16 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -19177,8 +20711,16 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -19544,7 +21086,7 @@
       "min_length": 1,
       "max_length": 63,
       "scope": "global",
-      "regex": "^(?:[a-z0-9\\-]|[a-z0-9\\-][a-z0-9\\-]*[a-z0-9\\-])$",
+      "regex": "^(?:[a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9])$",
       "dashes": true,
       "lowercase": true,
       "name_kind": "standard",
@@ -19811,8 +21353,22 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -19849,8 +21405,22 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -19887,8 +21457,22 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -19925,8 +21509,22 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -19963,8 +21561,22 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -20001,8 +21613,22 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -20037,8 +21663,12 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -20075,8 +21705,22 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -20113,8 +21757,22 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -20151,8 +21809,22 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -20189,8 +21861,22 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -20227,8 +21913,22 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -20265,8 +21965,22 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -20305,8 +22019,32 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -20391,8 +22129,22 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -20429,8 +22181,22 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -20467,8 +22233,22 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -20507,8 +22287,16 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -20557,7 +22345,19 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -20646,8 +22446,22 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -20684,8 +22498,22 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -20722,8 +22550,22 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -20760,8 +22602,22 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -20798,8 +22654,22 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -20836,8 +22706,22 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -20874,8 +22758,22 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -20912,8 +22810,22 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -20950,8 +22862,22 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -20988,8 +22914,22 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -21026,8 +22966,22 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -21064,8 +23018,22 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -21102,7 +23070,11 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -21140,8 +23112,22 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -21178,8 +23164,22 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -21216,8 +23216,22 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -21254,8 +23268,22 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -21292,8 +23320,22 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -21371,8 +23413,32 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -21417,7 +23483,10 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -21453,7 +23522,10 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -21484,7 +23556,7 @@
       "min_length": 2,
       "max_length": 60,
       "scope": "Global or per domain; see note below.",
-      "regex": "^(?:[a-zA-Z0-9\\-]|[a-zA-Z0-9\\-][a-zA-Z0-9\\-]*[a-zA-Z0-9\\-])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
@@ -21560,7 +23632,11 @@
         "Additional character-rule prose is retained but not completely interpreted.",
         "Provider-section notes are retained for review and are not universally interpreted."
       ],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -21638,7 +23714,7 @@
       "min_length": 2,
       "max_length": 60,
       "scope": "Global or per domain; see note below.",
-      "regex": "^(?:[a-zA-Z0-9\\-]|[a-zA-Z0-9\\-][a-zA-Z0-9\\-]*[a-zA-Z0-9\\-])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
@@ -21716,8 +23792,16 @@
         "Additional character-rule prose is retained but not completely interpreted.",
         "Provider-section notes are retained for review and are not universally interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -21835,7 +23919,7 @@
       "min_length": 1,
       "max_length": 63,
       "scope": "global",
-      "regex": "^(?:[a-z0-9\\-]|[a-z0-9\\-][a-z0-9\\-]*[a-z0-9\\-])$",
+      "regex": "^(?:[a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9])$",
       "dashes": true,
       "lowercase": true,
       "name_kind": "standard",
@@ -22207,7 +24291,19 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [
         "--"
@@ -22249,7 +24345,19 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [
         "--"
@@ -22291,7 +24399,19 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [
         "--"
@@ -22362,7 +24482,7 @@
       "min_length": 3,
       "max_length": 63,
       "scope": "storage account",
-      "regex": "^(?:[a-z0-9\\-]|[a-z0-9\\-][a-z0-9\\-]*[a-z0-9\\-])$",
+      "regex": "^(?:[a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9])$",
       "dashes": true,
       "lowercase": true,
       "name_kind": "standard",
@@ -22514,8 +24634,14 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_"
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -22543,7 +24669,7 @@
       "min_length": 1,
       "max_length": 260,
       "scope": "resource group",
-      "regex": "^(?:[a-zA-Z0-9\\-_.]|[a-zA-Z0-9\\-_.][a-zA-Z0-9\\-_.]*[a-zA-Z0-9\\-_.])$",
+      "regex": "^(?:[a-zA-Z0-9\\-_]|[a-zA-Z0-9\\-_.][a-zA-Z0-9\\-_.]*[a-zA-Z0-9\\-_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
@@ -22594,7 +24720,7 @@
       "min_length": 1,
       "max_length": 260,
       "scope": "storage sync service",
-      "regex": "^(?:[a-zA-Z0-9\\-_.]|[a-zA-Z0-9\\-_.][a-zA-Z0-9\\-_.]*[a-zA-Z0-9\\-_.])$",
+      "regex": "^(?:[a-zA-Z0-9\\-_]|[a-zA-Z0-9\\-_.][a-zA-Z0-9\\-_.]*[a-zA-Z0-9\\-_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
@@ -23240,17 +25366,29 @@
       "min_length": 1,
       "max_length": 50,
       "scope": "global",
-      "regex": null,
-      "dashes": false,
+      "regex": "^(?:[a-z]|[a-z0-9\\-][a-z0-9\\-]*[a-z])$",
+      "dashes": true,
       "lowercase": true,
       "name_kind": "standard",
       "fixed_name": null,
       "validation_complete": false,
       "validation_notes": [
-        "The character-rule prose is not represented by a complete RE2 rule."
+        "Additional character-rule prose is retained but not completely interpreted."
       ],
       "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_suffixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -23338,7 +25476,18 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -23538,8 +25687,12 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -23584,8 +25737,14 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_"
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -23624,7 +25783,20 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-",
+        "_"
+      ],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -23663,14 +25835,26 @@
       "min_length": 3,
       "max_length": 150,
       "scope": "vault",
-      "regex": "^(?:[a-zA-Z]|[a-zA-Z][a-zA-Z0-9\\-]*[a-zA-Z0-9\\-])$",
+      "regex": "^(?:[a-zA-Z]|[a-zA-Z][a-zA-Z0-9\\-]*[a-zA-Z0-9])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
       "forbidden_suffixes": [
         "-"
       ],
@@ -23703,14 +25887,26 @@
       "min_length": 3,
       "max_length": 150,
       "scope": "vault",
-      "regex": "^(?:[a-zA-Z]|[a-zA-Z][a-zA-Z0-9\\-]*[a-zA-Z0-9\\-])$",
+      "regex": "^(?:[a-zA-Z]|[a-zA-Z][a-zA-Z0-9\\-]*[a-zA-Z0-9])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "-"
+      ],
       "forbidden_suffixes": [
         "-"
       ],
@@ -24131,6 +26327,61 @@
         ]
       }
     },
+    "virtual_machine_windows": {
+      "resource_type": "Microsoft.Compute/virtualMachines",
+      "variant": "windows",
+      "slug": "virtualmachinewindows",
+      "slug_source": "derived",
+      "legacy_slug": "vm",
+      "legacy_outputs": [
+        "windows_virtual_machine"
+      ],
+      "min_length": null,
+      "max_length": 64,
+      "scope": "resource group",
+      "regex": null,
+      "dashes": false,
+      "lowercase": true,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "The documented length is missing, composite, or conditional; no universal bounds are asserted.",
+        "The character-rule prose is not represented by a complete RE2 rule.",
+        "Provider-section notes are retained for review and are not universally interpreted.",
+        "The table describes host names; the section note permits resource names up to 64 characters. Host-name rules are not asserted as ARM resource-name rules."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "naming_rules_url": "https://raw.githubusercontent.com/MicrosoftDocs/azure-docs/main/articles/azure-resource-manager/management/resource-name-rules.md",
+        "naming_rule": {
+          "resource_type": "Microsoft.Compute/virtualMachines",
+          "source_heading": "Microsoft.Compute",
+          "source_entity": "virtualMachines",
+          "scope": "resource group",
+          "length": "1-15 (Windows)<br>1-64 (Linux)<br><br>See note below.",
+          "valid_characters": "Can't use spaces, control characters, or these characters:<br> `~ ! @ # $ % ^ & * ( ) = + _ [ ] { } \\ | ; : . ' \" , < > / ?`<br><br>Windows virtual machines can't include periods or end with hyphens.<br><br>Linux virtual machines can't end with periods or hyphens."
+        },
+        "section_notes": [
+          "Azure virtual machines have two distinct names: resource name and host name. When you create a virtual machine in the portal, the same value is used for both names. The restrictions in the preceding table are for the host name. The actual resource name can have up to 64 characters."
+        ],
+        "abbreviations_url": "https://raw.githubusercontent.com/MicrosoftDocs/cloud-adoption-framework/main/docs/ready/azure-best-practices/resource-abbreviations.md",
+        "abbreviations": [
+          {
+            "resource_type": "Microsoft.Compute/virtualMachines",
+            "label": "Virtual machine",
+            "qualifier": null,
+            "qualifier_value": null,
+            "resource_provider_namespace_text": "`Microsoft.Compute/virtualMachines`",
+            "abbreviation": "vm",
+            "abbreviation_text": "`vm`"
+          }
+        ]
+      }
+    },
     "virtual_network": {
       "resource_type": "Microsoft.Network/virtualNetworks",
       "variant": null,
@@ -24152,8 +26403,16 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -24202,8 +26461,16 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -24259,8 +26526,16 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -24318,8 +26593,16 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -24368,8 +26651,16 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -24418,8 +26709,16 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -24464,8 +26763,14 @@
       "fixed_name": null,
       "validation_complete": true,
       "validation_notes": [],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_"
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -24504,8 +26809,16 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -24554,8 +26867,16 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -24604,8 +26925,16 @@
       "validation_notes": [
         "Additional character-rule prose is retained but not completely interpreted."
       ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
+      ],
+      "forbidden_suffixes": [
+        "-",
+        "_",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -24820,7 +27149,7 @@
       "min_length": 3,
       "max_length": 63,
       "scope": "region",
-      "regex": "^(?:[a-zA-Z0-9\\-]|[a-zA-Z0-9\\-][a-zA-Z0-9\\-]*[a-zA-Z0-9\\-])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9\\-])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",

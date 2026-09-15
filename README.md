@@ -54,7 +54,22 @@ naming_templates = {
 
 Built-in tokens are `prefix` and `suffix` lists, `slug`, `separator`, `unique`, `unique_seed`, `terraform_key`, `resource_type`, `variant`, `min_length`, and `max_length`. The unique template also receives `name`, with space reserved for the template's overhead. Custom string tokens cannot replace built-in tokens.
 
-The default unique template preserves the uniqueness token when truncating. Custom unique templates must retain `unique` and fit the effective maximum; otherwise planning fails rather than silently dropping uniqueness. Entries expose `unique_suffix_retained`. Documented literal names remain fixed, and GUID-only names use deterministic UUID rendering.
+The default unique template preserves the uniqueness token when truncating. Custom unique templates must interpolate the complete `unique` token directly or through a case conversion such as `upper(unique)`. Token-aware probe rendering distinguishes interpolation from a coincidental match in a prefix. Arbitrary hashing, slicing, or conditional transformations are not claimed to preserve the complete token.
+
+Feasibility is per entry: an oversized or unverifiable unique name returns `name_unique = null`, `name_unique_available = false`, and explanatory `name_unique_errors`. Other entries remain usable. `fits_max_length` describes the unique-name candidate and is null when no maximum is known. Check the selected entry before using it:
+
+```hcl
+output "storage_account_name" {
+  value = module.naming.names.storage_account.name_unique
+
+  precondition {
+    condition     = module.naming.names.storage_account.name_unique_available
+    error_message = join(" ", module.naming.names.storage_account.name_unique_errors)
+  }
+}
+```
+
+Entries also expose `unique_suffix_retained`. Literal names remain fixed; GUID-only names use deterministic UUID rendering. For Windows consumers whose `computer_name` defaults to the resource name, use `names.virtual_machine_windows` (15-character cap) instead of the generic 64-character ARM-name entry.
 
 `slug_overrides` is a nullable map keyed by the JSON key. An empty override omits the slug.
 
@@ -143,7 +158,7 @@ Default: `{}`
 
 ### <a name="input_naming_templates"></a> [naming\_templates](#input\_naming\_templates)
 
-Description: Modern templates rendered with templatestring. Escape interpolation as ${token} in HCL. The name\_unique template receives name with room reserved for its overhead and must retain unique when its length is nonzero. Available tokens are name (unique template only), prefix/suffix lists, slug, separator, unique, unique\_seed, terraform\_key, resource\_type, variant, min\_length, max\_length, and naming\_template\_variables. Ignored in legacy\_mode.
+Description: Modern templates rendered with templatestring. Escape interpolation as ${token} in HCL. The name\_unique template receives a bounded name and must interpolate the full unique token directly or through a whole-token case conversion. Unverifiable or oversized unique names are null with per-entry diagnostics, not catalog-wide failures. Available tokens are name (unique template only), prefix/suffix lists, slug, separator, unique, unique\_seed, terraform\_key, resource\_type, variant, min\_length, max\_length, and naming\_template\_variables. Ignored in legacy\_mode.
 
 Type:
 
@@ -954,7 +969,7 @@ Description: DEPRECATED: Use the dynamic names output instead. Mysql Virtual Net
 
 ### <a name="output_names"></a> [names](#output\_names)
 
-Description: Modern generated names keyed by the snake-case JSON keys. Empty in legacy\_mode. Entries expose source, constraints, seed retention, and validation; incomplete modern validation is null.
+Description: Modern names keyed by the snake-case JSON keys; empty in legacy\_mode. Unusable unique names are null with name\_unique\_available=false and per-entry name\_unique\_errors. Entries expose source, constraints, token retention, and validation; incomplete rule validation is null.
 
 ### <a name="output_names_by_azure_type"></a> [names\_by\_azure\_type](#output\_names\_by\_azure\_type)
 

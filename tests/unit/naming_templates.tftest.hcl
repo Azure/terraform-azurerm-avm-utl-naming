@@ -78,7 +78,7 @@ run "reserved_token_override" {
 }
 
 run "missing_uniqueness_token" {
-  command = plan
+  command = apply
 
   variables {
     naming_templates = {
@@ -86,11 +86,19 @@ run "missing_uniqueness_token" {
     }
   }
 
-  expect_failures = [output.names, output.names_by_azure_type]
+  assert {
+    condition = (
+      output.names.storage_account.name_unique == null &&
+      !output.names.storage_account.name_unique_available &&
+      !output.names.storage_account.unique_suffix_retained &&
+      length(output.names.storage_account.name_unique_errors) > 0
+    )
+    error_message = "An omitted uniqueness token must make the affected entry explicitly unusable."
+  }
 }
 
 run "oversized_unique_template" {
-  command = plan
+  command = apply
 
   variables {
     naming_template_variables = {
@@ -101,5 +109,119 @@ run "oversized_unique_template" {
     }
   }
 
-  expect_failures = [output.names, output.names_by_azure_type]
+  assert {
+    condition = (
+      output.names.storage_account.name_unique == null &&
+      !output.names.storage_account.fits_max_length &&
+      length(output.names.storage_account.name_unique_errors) > 0
+    )
+    error_message = "An oversized unique name must be reported on its entry, not fail the entire catalog."
+  }
+}
+
+run "coincidental_prefix_is_not_uniqueness" {
+  command = apply
+
+  variables {
+    prefix        = ["prod"]
+    unique_seed   = "p"
+    unique_length = 1
+    naming_templates = {
+      name_unique = "$${name}"
+    }
+  }
+
+  assert {
+    condition = (
+      !output.names.storage_account.unique_suffix_retained &&
+      !output.names.resource_group.unique_suffix_retained &&
+      output.names.storage_account.name_unique == null &&
+      output.names.resource_group.name_unique == null
+    )
+    error_message = "A seed appearing in the prefix must not disguise a missing unique interpolation."
+  }
+}
+
+run "uppercase_unique_interpolation" {
+  command = apply
+
+  variables {
+    prefix      = ["contoso"]
+    unique_seed = "abcd"
+    naming_templates = {
+      name_unique = "$${name}$${upper(unique)}"
+    }
+  }
+
+  assert {
+    condition = (
+      output.names.resource_group.unique_suffix_retained &&
+      output.names.resource_group.name_unique_available &&
+      endswith(output.names.resource_group.name_unique, "ABCD") &&
+      output.names.storage_account.unique_suffix_retained &&
+      endswith(output.names.storage_account.name_unique, "abcd")
+    )
+    error_message = "Whole-token case transformations must retain uniqueness."
+  }
+}
+
+run "entry_capacity_is_independent" {
+  command = apply
+
+  variables {
+    unique_seed   = "abcdefghijklmnopqrstuvwxyz"
+    unique_length = 20
+  }
+
+  assert {
+    condition = (
+      output.names.storage_account.name_unique_available &&
+      output.names.resource_group.name_unique_available &&
+      output.names.storage_account.name_unique != null &&
+      output.names.virtual_machine_scale_set.name_unique == null &&
+      !output.names.virtual_machine_scale_set.fits_max_length
+    )
+    error_message = "A tight limit on an unused entry must not prevent generating feasible names."
+  }
+}
+
+run "truncation_respects_boundary_rules" {
+  command = apply
+
+  variables {
+    prefix = ["Contoso"]
+    suffix = ["westeurope", "prod", "001"]
+  }
+
+  assert {
+    condition = alltrue([
+      for key, definition in local.catalog :
+      alltrue([for ending in definition.forbidden_suffixes : !endswith(output.names[key].name, ending)])
+      if definition.name_kind == "standard"
+    ])
+    error_message = "Truncation must not leave a suffix prohibited by the entry's boundary rules."
+  }
+}
+
+run "windows_computer_name_variant" {
+  command = apply
+
+  variables {
+    prefix = ["contosoenterprisegroup", "platform"]
+    suffix = ["production"]
+  }
+
+  assert {
+    condition = (
+      output.names.virtual_machine_windows.resource_type == "Microsoft.Compute/virtualMachines" &&
+      output.names.virtual_machine_windows.variant == "windows" &&
+      output.names.virtual_machine_windows.max_length == 15 &&
+      length(output.names.virtual_machine_windows.name) <= 15 &&
+      length(output.names.virtual_machine_windows.name_unique) <= 15 &&
+      output.names.compute_virtual_machine.max_length == 64 &&
+      output.names.compute_virtual_machine.dashes &&
+      startswith(output.names.compute_virtual_machine.name, "contosoenterprisegroup-platform-")
+    )
+    error_message = "The Windows-specific variant must preserve the computer-name cap without restricting generic ARM names."
+  }
 }

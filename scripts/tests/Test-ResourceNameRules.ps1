@@ -174,6 +174,20 @@ Test-Case 'same-type variants are distinct JSON entries' {
     Assert-True ($web.legacy_outputs -contains 'app_service' -and $function.legacy_outputs -contains 'function_app') 'Legacy aliases were lost.'
 }
 
+Test-Case 'explicit variants are not collapsed by a shared abbreviation' {
+    $manual = $script:Manual | ConvertTo-Json -Depth 20 | ConvertFrom-Json -AsHashtable
+    $manual.legacy_mappings.storage_special = @{
+        resource_type = 'Microsoft.Storage/storageAccounts'
+        variant = 'special'
+        slug = 'st'
+        separate_variant = $true
+    }
+    $catalog = ConvertTo-ResourceNameCatalog -RulesMarkdown $script:Rules -AbbreviationsMarkdown $script:Abbreviations -Manual $manual
+    Assert-True ($catalog.Generated.resources.Contains('storage_account_special')) 'The explicit variant was folded into the generic entry.'
+    Assert-True ($catalog.Generated.resources.storage_account_special.legacy_outputs -contains 'storage_special') 'The variant lost its compatibility mapping.'
+    Assert-True ($catalog.Generated.resources.storage_account.legacy_outputs -notcontains 'storage_special') 'The generic entry captured the explicit variant.'
+}
+
 Test-Case 'current and legacy slugs remain independent' {
     $catalog = Get-TestCatalog
     $storage = $catalog.Generated.resources.storage_account
@@ -205,6 +219,36 @@ Test-Case 'comma-separated lowercase rules retain documented hyphens' {
     }
     Assert-True ($record.dashes -and $record.lowercase) 'Documented hyphens were silently disabled.'
     Assert-True ($record.forbidden_prefixes -contains '-' -and $record.forbidden_suffixes -contains '-') 'Hyphen boundary restrictions were lost.'
+}
+
+Test-Case 'character lists are independent of word ordering' {
+    $rules = @(
+        "Lowercase letters, numbers, and hyphens. Can't start or end with hyphen.",
+        "Lowercase letters, hyphens, and numbers. Can't start or end with hyphen."
+    )
+    $records = @($rules | ForEach-Object {
+        ConvertTo-NamingRuntimeRule -Rule @{
+            resource_type = 'Microsoft.Test/names'; scope = 'parent'; length = '3-40'; valid_characters = $_
+        }
+    })
+    Assert-True ($records[0].regex -ceq $records[1].regex -and $records[1].dashes -and $records[1].validation_complete) 'Equivalent character lists produced different rules.'
+    Assert-True ('abc-123' -cmatch $records[1].regex -and '-abc' -cnotmatch $records[1].regex -and 'abc-' -cnotmatch $records[1].regex) 'Published regex omitted the documented hyphen boundaries.'
+}
+
+Test-Case 'letter-only rules do not implicitly allow digits' {
+    $record = ConvertTo-NamingRuntimeRule -Rule @{
+        resource_type = 'Microsoft.Test/names'; scope = 'parent'; length = '1-40'
+        valid_characters = 'Lowercase letters and hyphens.'
+    }
+    Assert-True ('abc-def' -cmatch $record.regex -and 'abc123' -cnotmatch $record.regex) 'Digits were added to a letter-only rule.'
+}
+
+Test-Case 'start and end classes are reflected in explicit boundary metadata' {
+    $record = ConvertTo-NamingRuntimeRule -Rule @{
+        resource_type = 'Microsoft.Test/names'; scope = 'parent'; length = '1-40'
+        valid_characters = 'Alphanumerics and hyphens. Start and end with alphanumeric.'
+    }
+    Assert-True ($record.forbidden_prefixes -contains '-' -and $record.forbidden_suffixes -contains '-') 'Regex boundaries and truncation metadata disagree.'
 }
 
 Test-Case 'unknown rules remain explicit rather than permissive success' {

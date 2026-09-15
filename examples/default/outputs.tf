@@ -5,5 +5,10 @@ output "resource_group_name" {
 
 output "storage_account_name" {
   description = "Storage account name with a state-persisted uniqueness suffix."
-  value       = module.naming.names.storage_account.name_unique
+
+  precondition {
+    condition     = module.naming.names.storage_account.name_unique_available
+    error_message = join(" ", module.naming.names.storage_account.name_unique_errors)
+  }
+  value = module.naming.names.storage_account.name_unique
 }

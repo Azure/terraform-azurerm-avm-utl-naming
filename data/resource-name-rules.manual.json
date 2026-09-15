@@ -1785,7 +1785,8 @@
       "resource_type": "Microsoft.Compute/virtualMachines",
       "variant": "windows",
       "slug": "vm",
-      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/windows_virtual_machine.html.markdown#L451-L453"
+      "source": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/windows_virtual_machine.html.markdown#L451-L453",
+      "separate_variant": true
     },
     "windows_virtual_machine_scale_set": {
       "resource_type": "Microsoft.Compute/virtualMachineScaleSets",
@@ -3234,10 +3235,11 @@
     },
     "lab_virtualmachine_windows": {
       "settings": {
-        "max_length": 15
+        "max_length": 15,
+        "slug": "labvm"
       },
-      "reason": "Conservative maximum retained from the original naming entries while the selected documentation does not establish a universal maximum: dev_test_windows_virtual_machine",
-      "source": "https://github.com/Azure/terraform-azurerm-naming/blob/fc289126c9c888393ff02a79e1babadd6865861c/main.tf"
+      "reason": "Reviewed concise slug: the automatically derived description exceeds the effective name-length limit. Conservative maximum retained from the original naming entries while the selected documentation does not establish a universal maximum: dev_test_windows_virtual_machine",
+      "source": "https://learn.microsoft.com/azure/azure-resource-manager/management/resource-name-rules"
     },
     "maintenance_configuration": {
       "settings": {
@@ -3392,6 +3394,74 @@
       },
       "reason": "Conservative maximum retained from the original naming entries while the selected documentation does not establish a universal maximum: linux_virtual_machine_scale_set, virtual_machine_scale_set, windows_virtual_machine_scale_set",
       "source": "https://github.com/Azure/terraform-azurerm-naming/blob/fc289126c9c888393ff02a79e1babadd6865861c/main.tf"
+    },
+    "account_data_lake_store_account": {
+      "settings": {
+        "slug": "dlslink"
+      },
+      "reason": "Reviewed concise slug: the automatically derived description exceeds the effective name-length limit. ",
+      "source": "https://learn.microsoft.com/azure/azure-resource-manager/management/resource-name-rules"
+    },
+    "cluster_database_data_connection_event_hub": {
+      "settings": {
+        "slug": "kehc"
+      },
+      "reason": "Reviewed concise slug: the automatically derived description exceeds the effective name-length limit. ",
+      "source": "https://learn.microsoft.com/azure/azure-resource-manager/management/resource-name-rules"
+    },
+    "integration_account_batch_configuration": {
+      "settings": {
+        "slug": "batch"
+      },
+      "reason": "Reviewed concise slug: the automatically derived description exceeds the effective name-length limit. ",
+      "source": "https://learn.microsoft.com/azure/azure-resource-manager/management/resource-name-rules"
+    },
+    "mediaservice_streaming_endpoint": {
+      "settings": {
+        "slug": "stream"
+      },
+      "reason": "Reviewed concise slug: the automatically derived description exceeds the effective name-length limit. ",
+      "source": "https://learn.microsoft.com/azure/azure-resource-manager/management/resource-name-rules"
+    },
+    "packet_core_control_plane_packet_core_data_plane_attached_data_network": {
+      "settings": {
+        "slug": "data-network"
+      },
+      "reason": "Reviewed concise slug: the automatically derived description exceeds the effective name-length limit. ",
+      "source": "https://learn.microsoft.com/azure/azure-resource-manager/management/resource-name-rules"
+    },
+    "storage_account_blob_service_container_data_lake_gen2_filesystem": {
+      "settings": {
+        "slug": "stdl"
+      },
+      "reason": "Reviewed concise slug: the automatically derived description exceeds the effective name-length limit. ",
+      "source": "https://learn.microsoft.com/azure/azure-resource-manager/management/resource-name-rules"
+    },
+    "databricks_high_concurrency_cluster": {
+      "settings": {
+        "slug": "dbhcc"
+      },
+      "reason": "Reviewed concise slug: the automatically derived description exceeds the effective name-length limit. ",
+      "source": "https://learn.microsoft.com/azure/azure-resource-manager/management/resource-name-rules"
+    },
+    "virtual_machine_windows": {
+      "settings": {
+        "max_length": 15,
+        "min_length": 1,
+        "slug": "vm",
+        "dashes": true,
+        "lowercase": false
+      },
+      "reason": "Explicit Windows computer-name variant: consumers that default computer_name to name require a maximum of 15 characters. The generic ARM resource-name entry keeps its separate limit.",
+      "source": "https://learn.microsoft.com/azure/azure-resource-manager/management/resource-name-rules#microsoftcompute"
+    },
+    "compute_virtual_machine": {
+      "settings": {
+        "dashes": true,
+        "lowercase": false
+      },
+      "reason": "Azure VM resource names permit hyphens and mixed case. Preserve those documented generation options independently of the separate Windows computer-name length limit.",
+      "source": "https://learn.microsoft.com/azure/azure-resource-manager/management/resource-name-rules#microsoftcompute"
     }
   },
   "key_assignments": {
@@ -3949,6 +4019,7 @@
     "virtual_machine_extension": "microsoft.compute/virtualmachines/extensions|",
     "virtual_machine_scale_set": "microsoft.compute/virtualmachinescalesets|",
     "virtual_machine_scale_set_extension": "microsoft.compute/virtualmachinescalesets/extensions|",
+    "virtual_machine_windows": "microsoft.compute/virtualmachines|windows",
     "virtual_network": "microsoft.network/virtualnetworks|",
     "virtual_network_gateway": "microsoft.network/virtualnetworkgateways|",
     "virtual_network_gateway_express_route_gateway": "microsoft.network/virtualnetworkgateways|express_route_gateway",

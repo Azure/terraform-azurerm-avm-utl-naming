@@ -193,16 +193,18 @@ function ConvertTo-NamingRuntimeRule {
         if ($text -match '(?i)Can''t end with period') { $result.forbidden_suffixes = @('.') }
         $limitations.Add('Unicode character categories are represented, but the linked platform-specific character semantics are not claimed to be fully equivalent.')
     }
-    elseif ($text -match '^(?i)(Alphanumerics?|(?:Lowercase|Uppercase) letters,?\s+(?:and\s+)?numbers)') {
+    elseif ($text -match '^(?i)(Alphanumerics?|(?:Lowercase|Uppercase) letters)\b') {
         $lower = 'abcdefghijklmnopqrstuvwxyz'
         $upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
         $digits = '0123456789'
         $letters = if ($text -match '^Lowercase') { $lower } elseif ($text -match '^Uppercase') { $upper } else { $lower + $upper }
         $result.lowercase = $text -match '^Lowercase'
         $firstClause = ($text -split '\.\s+|(?i)\s+(?=Start|End|Can''t|Cannot|Must|See|Use)', 2)[0].TrimEnd('.')
-        $allowed = $letters + $digits
+        $hasNumbers = $firstClause -match '(?i)\bAlphanumerics?\b|\bnumbers\b|\bdigits\b'
+        $allowed = $letters + $(if ($hasNumbers) { $digits } else { '' })
         $remainder = $text.Substring([Math]::Min($firstClause.Length, $text.Length)).Trim()
-        $unknownClause = $firstClause -replace '^(?i)(Alphanumerics?|(?:Lowercase|Uppercase) letters,?\s+(?:and\s+)?numbers)', ''
+        $unknownClause = $firstClause -replace '^(?i)(Alphanumerics?|(?:Lowercase|Uppercase) letters)\b', ''
+        $unknownClause = $unknownClause -replace '(?i)\b(numbers|digits)\b', ''
         foreach ($item in @(@('hyphens?', '-'), @('underscores?', '_'), @('periods?', '.'), @('parentheses', '()'))) {
             if ($unknownClause -match ('(?i)\b' + $item[0] + '\b')) {
                 $allowed += $item[1]
@@ -240,12 +242,28 @@ function ConvertTo-NamingRuntimeRule {
                 $remainder = $remainder.Replace($Matches[0], '')
                 $result[$restriction[1]] = @($result[$restriction[1]]) + @($restriction[2])
             }
-            if ($remainder -match '(?i)(?:Can''t|Cannot) start or end with (?:a )?hyphen\.?') {
-                $remainder = $remainder.Replace($Matches[0], '')
-                $result.forbidden_prefixes = @($result.forbidden_prefixes) + @('-')
-                $result.forbidden_suffixes = @($result.forbidden_suffixes) + @('-')
-            }
         }
+        if ($remainder -match '(?i)(?:Can''t|Cannot) start or end with (?:a )?hyphen\.?') {
+            $remainder = $remainder.Replace($Matches[0], '')
+            $result.forbidden_prefixes = @($result.forbidden_prefixes) + @('-')
+            $result.forbidden_suffixes = @($result.forbidden_suffixes) + @('-')
+        }
+        foreach ($prefix in $result.forbidden_prefixes) {
+            if ($prefix.Length -eq 1) { $first = $first.Replace($prefix, '') }
+        }
+        foreach ($suffix in $result.forbidden_suffixes) {
+            if ($suffix.Length -eq 1) { $last = $last.Replace($suffix, '') }
+        }
+        $result.forbidden_prefixes = @(
+            @($result.forbidden_prefixes) +
+            @($allowed.ToCharArray() | Where-Object { -not $first.Contains([string]$_) } | ForEach-Object { [string]$_ }) |
+            Select-Object -Unique
+        )
+        $result.forbidden_suffixes = @(
+            @($result.forbidden_suffixes) +
+            @($allowed.ToCharArray() | Where-Object { -not $last.Contains([string]$_) } | ForEach-Object { [string]$_ }) |
+            Select-Object -Unique
+        )
         if (($remainder -replace '[\s.]', '') -ne '') { $limitations.Add('Additional character-rule prose is retained but not completely interpreted.') }
         $single = -join @($first.ToCharArray() | Where-Object { $last.Contains([string] $_) })
         $middleClass = ConvertTo-NamingCharacterClass $allowed
@@ -469,7 +487,11 @@ function ConvertTo-ResourceNameCatalog {
                 (Resolve-NamingResourceType $mapping.resource_type) -ine $type) { continue }
             $slugMatches = @($variants.Keys | Where-Object { $null -ne $variants[$_].abbreviation -and $variants[$_].abbreviation -ceq $mapping.slug })
             $requested = if ($null -eq $mapping.variant -or $mapping.variant -eq '') { '__base' } else { ConvertTo-NamingSnakeCase $mapping.variant }
-            $id = if ($variants.Contains($requested)) { $requested } elseif ($slugMatches.Count -eq 1) { $slugMatches[0] } else { $requested }
+            if ($mapping.Contains('separate_variant') -and $mapping.separate_variant -isnot [bool]) {
+                throw "Legacy mapping '$alias' requires a boolean separate_variant setting."
+            }
+            $separateVariant = $mapping.Contains('separate_variant') -and $mapping.separate_variant
+            $id = if ($variants.Contains($requested) -or $separateVariant) { $requested } elseif ($slugMatches.Count -eq 1) { $slugMatches[0] } else { $requested }
             if ($variants.Contains($id) -and $null -ne $variants[$id].legacy_slug -and $variants[$id].legacy_slug -cne $mapping.slug) {
                 $id = ConvertTo-NamingSnakeCase $alias
             }
