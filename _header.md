@@ -54,7 +54,9 @@ Missing constraints remain null unless an override supplies them. Clearing a bou
 
 ## Naming templates
 
-Modern mode defaults to the familiar prefix, slug, suffix, and uniqueness pattern, using the entry's separator and casing rules. Override the convention with escaped `$${token}` expressions:
+Modern mode defaults to the familiar prefix, slug, suffix, and uniqueness pattern, using the entry's separator and casing rules. Override the convention with escaped `$${token}` expressions.
+
+In HCL string inputs, the extra `$` in `$${token}` passes literal `${token}` to this module's `templatestring` call instead of resolving it in the caller. Without escaping, module tokens such as `slug` can cause invalid-reference validation errors before the module evaluates the template.
 
 ```hcl
 naming_template_variables = {

@@ -56,7 +56,9 @@ Missing constraints remain null unless an override supplies them. Clearing a bou
 
 ## Naming templates
 
-Modern mode defaults to the familiar prefix, slug, suffix, and uniqueness pattern, using the entry's separator and casing rules. Override the convention with escaped `$${token}` expressions:
+Modern mode defaults to the familiar prefix, slug, suffix, and uniqueness pattern, using the entry's separator and casing rules. Override the convention with escaped `$${token}` expressions.
+
+In HCL string inputs, the extra `$` in `$${token}` passes literal `${token}` to this module's `templatestring` call instead of resolving it in the caller. Without escaping, module tokens such as `slug` can cause invalid-reference validation errors before the module evaluates the template.
 
 ```hcl
 naming_template_variables = {
@@ -183,7 +185,7 @@ Default: `{}`
 
 ### <a name="input_naming_templates"></a> [naming\_templates](#input\_naming\_templates)
 
-Description: Modern templates rendered with templatestring. Escape interpolation as ${token} in HCL. The name\_unique template receives a bounded name and must interpolate the full unique token directly or through a whole-token case conversion. Unverifiable or oversized unique names are null with per-entry diagnostics, not catalog-wide failures. Available tokens are name (unique template only), prefix/suffix lists, slug, separator, unique, unique\_seed, terraform\_key, resource\_type, variant, min\_length, max\_length, and naming\_template\_variables. Ignored in legacy\_mode.
+Description: Modern templates rendered with templatestring. In HCL string inputs, use $${token} to pass literal ${token} to the module and avoid caller-side interpolation and validation errors for module tokens. The name\_unique template receives a bounded name and must interpolate the full unique token directly or through a whole-token case conversion. Unverifiable or oversized unique names are null with per-entry diagnostics, not catalog-wide failures. Available tokens are name (unique template only), prefix/suffix lists, slug, separator, unique, unique\_seed, terraform\_key, resource\_type, variant, min\_length, max\_length, and naming\_template\_variables. Ignored in legacy\_mode.
 
 Type:
 
