@@ -38,6 +38,16 @@ The legacy named outputs remain in `outputs.deprecated.tf` but are deprecated. U
 
 Fixed literal names and GUID-only names follow their documented naming mode. Slug overrides do not change a mandated literal name. Maximum-length truncation can remove part or all of a uniqueness suffix.
 
+### Deprecated input names
+
+| Deprecated input | Replacement |
+| --- | --- |
+| `unique-include-numbers` | `unique_include_numbers` |
+| `unique-length` | `unique_length` |
+| `unique-seed` | `unique_seed` |
+
+The old inputs remain in `variables.deprecated.tf`. A non-null replacement takes precedence; omitting it or setting it to null uses the deprecated input. Effective defaults remain `true`, `4`, and a state-persisted random seed. Explicit `false`, `0`, and an empty `unique_seed` are honored; an empty seed selects the random seed even when the deprecated seed is nonempty.
+
 ## Updates
 
 The update workflow runs every Monday at 06:23 UTC and supports manual dispatch. It regenerates runtime naming data and proposes changes for review; it never automatically merges them. An open review request is left untouched until it is merged or closed. The generated catalog must not be hand-edited.
@@ -105,7 +115,7 @@ Default: `[]`
 
 ### <a name="input_unique-include-numbers"></a> [unique-include-numbers](#input\_unique-include-numbers)
 
-Description: Whether the generated uniqueness seed can contain numbers. A supplied unique-seed is used unchanged.
+Description: DEPRECATED: Use unique\_include\_numbers instead. Controls whether the generated seed can contain numbers when unique\_include\_numbers is null.
 
 Type: `bool`
 
@@ -113,7 +123,7 @@ Default: `true`
 
 ### <a name="input_unique-length"></a> [unique-length](#input\_unique-length)
 
-Description: Maximum number of seed characters appended to unique names, before the resource's maximum-length truncation.
+Description: DEPRECATED: Use unique\_length instead. Controls the uniqueness suffix length when unique\_length is null.
 
 Type: `number`
 
@@ -121,11 +131,35 @@ Default: `4`
 
 ### <a name="input_unique-seed"></a> [unique-seed](#input\_unique-seed)
 
-Description: Custom uniqueness seed. An empty or null value uses a state-persisted random seed beginning with a lowercase letter.
+Description: DEPRECATED: Use unique\_seed instead. Supplies the uniqueness seed when unique\_seed is null; an empty or null value selects the state-persisted random seed.
 
 Type: `string`
 
 Default: `""`
+
+### <a name="input_unique_include_numbers"></a> [unique\_include\_numbers](#input\_unique\_include\_numbers)
+
+Description: Whether the generated uniqueness seed can contain numbers. A non-null value takes precedence over unique-include-numbers. The effective default is true. A supplied unique\_seed is used unchanged.
+
+Type: `bool`
+
+Default: `null`
+
+### <a name="input_unique_length"></a> [unique\_length](#input\_unique\_length)
+
+Description: Maximum number of seed characters appended to unique names before maximum-length truncation. A non-null value takes precedence over unique-length. The effective default is 4.
+
+Type: `number`
+
+Default: `null`
+
+### <a name="input_unique_seed"></a> [unique\_seed](#input\_unique\_seed)
+
+Description: Custom uniqueness seed. A non-null value takes precedence over unique-seed, including an empty string, which selects the state-persisted random seed. If neither input supplies a nonempty seed, a random seed beginning with a lowercase letter is used.
+
+Type: `string`
+
+Default: `null`
 
 ## Outputs
 
@@ -1241,7 +1275,7 @@ Description: DEPRECATED: Use the dynamic names output instead. Traffic Manager P
 
 ### <a name="output_unique-seed"></a> [unique-seed](#output\_unique-seed)
 
-Description: DEPRECATED: Read unique\_seed from an entry in names instead. The complete seed is identical across entries and is not truncated by unique-length.
+Description: DEPRECATED: Read unique\_seed from an entry in names instead. The complete seed is identical across entries and is not truncated by unique\_length.
 
 ### <a name="output_user_assigned_identity"></a> [user\_assigned\_identity](#output\_user\_assigned\_identity)
 

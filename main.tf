@@ -7,7 +7,7 @@ resource "random_string" "first_letter" {
 
 resource "random_string" "main" {
   length  = 60
-  numeric = var.unique-include-numbers
+  numeric = local.unique_include_numbers
   special = false
   upper   = false
 }

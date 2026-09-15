@@ -36,6 +36,16 @@ The legacy named outputs remain in `outputs.deprecated.tf` but are deprecated. U
 
 Fixed literal names and GUID-only names follow their documented naming mode. Slug overrides do not change a mandated literal name. Maximum-length truncation can remove part or all of a uniqueness suffix.
 
+### Deprecated input names
+
+| Deprecated input | Replacement |
+| --- | --- |
+| `unique-include-numbers` | `unique_include_numbers` |
+| `unique-length` | `unique_length` |
+| `unique-seed` | `unique_seed` |
+
+The old inputs remain in `variables.deprecated.tf`. A non-null replacement takes precedence; omitting it or setting it to null uses the deprecated input. Effective defaults remain `true`, `4`, and a state-persisted random seed. Explicit `false`, `0`, and an empty `unique_seed` are honored; an empty seed selects the random seed even when the deprecated seed is nonempty.
+
 ## Updates
 
 The update workflow runs every Monday at 06:23 UTC and supports manual dispatch. It regenerates runtime naming data and proposes changes for review; it never automatically merges them. An open review request is left untouched until it is merged or closed. The generated catalog must not be hand-edited.

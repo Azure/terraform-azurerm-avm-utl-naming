@@ -30,23 +30,20 @@ variable "suffix" {
   nullable    = false
 }
 
-# tflint-ignore: terraform_naming_convention # Legacy public input retained for drop-in compatibility.
-variable "unique-include-numbers" {
+variable "unique_include_numbers" {
   type        = bool
-  default     = true
-  description = "Whether the generated uniqueness seed can contain numbers. A supplied unique-seed is used unchanged."
+  default     = null
+  description = "Whether the generated uniqueness seed can contain numbers. A non-null value takes precedence over unique-include-numbers. The effective default is true. A supplied unique_seed is used unchanged."
 }
 
-# tflint-ignore: terraform_naming_convention # Legacy public input retained for drop-in compatibility.
-variable "unique-length" {
+variable "unique_length" {
   type        = number
-  default     = 4
-  description = "Maximum number of seed characters appended to unique names, before the resource's maximum-length truncation."
+  default     = null
+  description = "Maximum number of seed characters appended to unique names before maximum-length truncation. A non-null value takes precedence over unique-length. The effective default is 4."
 }
 
-# tflint-ignore: terraform_naming_convention # Legacy public input retained for drop-in compatibility.
-variable "unique-seed" {
+variable "unique_seed" {
   type        = string
-  default     = ""
-  description = "Custom uniqueness seed. An empty or null value uses a state-persisted random seed beginning with a lowercase letter."
+  default     = null
+  description = "Custom uniqueness seed. A non-null value takes precedence over unique-seed, including an empty string, which selects the state-persisted random seed. If neither input supplies a nonempty seed, a random seed beginning with a lowercase letter is used."
 }

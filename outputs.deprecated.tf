@@ -1375,8 +1375,8 @@ output "traffic_manager_profile" {
 
 # tflint-ignore: terraform_naming_convention # Legacy public output retained for drop-in compatibility.
 output "unique-seed" {
-  description = "DEPRECATED: Read unique_seed from an entry in names instead. The complete seed is identical across entries and is not truncated by unique-length."
-  value       = coalesce(var.unique-seed, local.random_safe_generation)
+  description = "DEPRECATED: Read unique_seed from an entry in names instead. The complete seed is identical across entries and is not truncated by unique_length."
+  value       = local.unique_seed
 }
 
 output "user_assigned_identity" {

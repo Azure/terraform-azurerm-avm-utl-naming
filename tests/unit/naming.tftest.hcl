@@ -1,7 +1,7 @@
 mock_provider "random" {}
 
 variables {
-  unique-seed = "a1b2c3d4"
+  unique_seed = "a1b2c3d4"
 }
 
 run "dynamic_catalog" {
@@ -150,7 +150,7 @@ run "zero_uniqueness_length" {
 
   variables {
     suffix        = ["example"]
-    unique-length = 0
+    unique_length = 0
   }
 
   assert {

@@ -46,7 +46,7 @@ run "null_seed" {
   command = apply
 
   variables {
-    unique-seed = null
+    unique_seed = null
   }
 
   assert {
@@ -59,8 +59,8 @@ run "seed_longer_than_requested_suffix" {
   command = apply
 
   variables {
-    unique-length = 2
-    unique-seed   = "Z9abcdefgh"
+    unique_length = 2
+    unique_seed   = "Z9abcdefgh"
   }
 
   assert {
@@ -77,8 +77,8 @@ run "numbers_disabled" {
   command = apply
 
   variables {
-    unique-include-numbers = false
-    unique-seed            = "X9abcd"
+    unique_include_numbers = false
+    unique_seed            = "X9abcd"
   }
 
   assert {
@@ -93,7 +93,7 @@ run "unicode_components" {
   variables {
     prefix      = ["\u00c9quipe"]
     suffix      = ["\u6771\u4eac", "\u00e9"]
-    unique-seed = "a1b2c3d4"
+    unique_seed = "a1b2c3d4"
   }
 
   assert {

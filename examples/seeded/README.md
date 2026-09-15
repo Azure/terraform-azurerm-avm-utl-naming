@@ -14,8 +14,8 @@ module "naming" {
     storage_account = "store"
   }
   suffix        = ["dev"]
-  unique-length = 6
-  unique-seed   = "a1b2c3d4"
+  unique_length = 6
+  unique_seed   = "a1b2c3d4"
 }
 ```
 

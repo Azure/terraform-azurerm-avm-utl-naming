@@ -77,7 +77,7 @@ locals {
       for key in keys : key => local.names[key]
     }
   }
-  random                 = substr(local.unique_seed, 0, var.unique-length)
+  random                 = substr(local.unique_seed, 0, local.unique_length)
   random_safe_generation = join("", [random_string.first_letter.result, random_string.main.result])
   regexes = {
     for key, definition in local.catalog :
@@ -113,7 +113,10 @@ locals {
       definition.slug_source
     )
   }
-  unique_seed = coalesce(var.unique-seed, local.random_safe_generation)
+  unique_include_numbers = var.unique_include_numbers != null ? var.unique_include_numbers : var.unique-include-numbers
+  unique_length          = var.unique_length != null ? var.unique_length : var.unique-length
+  unique_seed            = coalesce(local.unique_seed_input, local.random_safe_generation)
+  unique_seed_input      = var.unique_seed != null ? var.unique_seed : var.unique-seed
   validation = {
     for alias, key in local.legacy_catalog_keys : alias => local.names[key].validation
   }
