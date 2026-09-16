@@ -1,4 +1,5 @@
 {
+  "$schema": "../schemas/naming-overrides.schema.json",
   "schema_version": 2,
   "legacy_source": {
     "revision": "fc289126c9c888393ff02a79e1babadd6865861c",
@@ -1841,10 +1842,10 @@
       "override_source": "https://github.com/Azure/terraform-azurerm-naming/blob/fc289126c9c888393ff02a79e1babadd6865861c/main.tf"
     },
     "automation_account_runbook": {
-      "slug": "aacred",
+      "slug": "aarb",
       "slug_source": "manual",
-      "override_reason": "Use the original slug where the selected sources have no unambiguous CAF abbreviation.",
-      "override_source": "https://github.com/Azure/terraform-azurerm-naming/blob/fc289126c9c888393ff02a79e1babadd6865861c/main.tf"
+      "override_reason": "Reviewed modern runbook abbreviation distinct from automation credentials.",
+      "override_source": "https://github.com/Azure/terraform-azurerm-naming/issues/162"
     },
     "automation_account_schedule": {
       "slug": "aasched",
@@ -2026,6 +2027,36 @@
       "override_reason": "Conservative maximum retained from the original naming entries while the selected documentation does not establish a universal maximum: monitor_data_collection_rule",
       "override_source": "https://github.com/Azure/terraform-azurerm-naming/blob/fc289126c9c888393ff02a79e1babadd6865861c/main.tf"
     },
+    "data_collection_rule_association": {
+      "resource_type": "Microsoft.Insights/dataCollectionRuleAssociations",
+      "variant": null,
+      "slug": "dcra",
+      "slug_source": "manual",
+      "legacy_slug": null,
+      "legacy_outputs": [],
+      "min_length": null,
+      "max_length": null,
+      "scope": "target resource",
+      "regex": null,
+      "dashes": false,
+      "lowercase": true,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "The association API documents case-insensitive names but no length bounds or character pattern; generation uses conservative lowercase, separator-free components."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "status": "reviewed_manual_addition",
+        "naming_rules_url": "https://learn.microsoft.com/en-us/rest/api/monitor/data-collection-rule-associations/create?view=rest-monitor-2024-03-11"
+      },
+      "override_reason": "The dcra abbreviation is a module convention, not a CAF recommendation.",
+      "override_source": "https://github.com/Azure/terraform-azurerm-naming/issues/202"
+    },
     "data_lake_analytics_account": {
       "slug": "dla",
       "slug_source": "manual",
@@ -2047,8 +2078,58 @@
     "database_account": {
       "slug": "cosmos",
       "slug_source": "manual",
-      "override_reason": "Use the original slug where the selected sources have no unambiguous CAF abbreviation.",
-      "override_source": "https://github.com/Azure/terraform-azurerm-naming/blob/fc289126c9c888393ff02a79e1babadd6865861c/main.tf"
+      "max_length": 44,
+      "regex": "^(?:[a-z0-9]|[a-z0-9][a-z0-9-]*[a-z0-9])$",
+      "forbidden_suffixes": [
+        "-"
+      ],
+      "override_reason": "Apply alphanumeric account-name boundaries while retaining the generic slug and the naming guide's 44-character maximum rather than the REST reference's conflicting 50.",
+      "override_source": "https://learn.microsoft.com/en-us/rest/api/cosmos-db-resource-provider/database-accounts/check-name-exists?view=rest-cosmos-db-resource-provider-2026-03-15"
+    },
+    "database_account_cosmos_db_for_apache_cassandra_account": {
+      "max_length": 44,
+      "regex": "^(?:[a-z0-9]|[a-z0-9][a-z0-9-]*[a-z0-9])$",
+      "forbidden_suffixes": [
+        "-"
+      ],
+      "override_reason": "Apply alphanumeric account-name boundaries while retaining the naming guide's 44-character maximum rather than the REST reference's conflicting 50.",
+      "override_source": "https://learn.microsoft.com/en-us/rest/api/cosmos-db-resource-provider/database-accounts/check-name-exists?view=rest-cosmos-db-resource-provider-2026-03-15"
+    },
+    "database_account_cosmos_db_for_apache_gremlin_account": {
+      "max_length": 44,
+      "regex": "^(?:[a-z0-9]|[a-z0-9][a-z0-9-]*[a-z0-9])$",
+      "forbidden_suffixes": [
+        "-"
+      ],
+      "override_reason": "Apply alphanumeric account-name boundaries while retaining the naming guide's 44-character maximum rather than the REST reference's conflicting 50.",
+      "override_source": "https://learn.microsoft.com/en-us/rest/api/cosmos-db-resource-provider/database-accounts/check-name-exists?view=rest-cosmos-db-resource-provider-2026-03-15"
+    },
+    "database_account_cosmos_db_for_mongo_db_account": {
+      "max_length": 44,
+      "regex": "^(?:[a-z0-9]|[a-z0-9][a-z0-9-]*[a-z0-9])$",
+      "forbidden_suffixes": [
+        "-"
+      ],
+      "override_reason": "Apply alphanumeric account-name boundaries while retaining the naming guide's 44-character maximum rather than the REST reference's conflicting 50.",
+      "override_source": "https://learn.microsoft.com/en-us/rest/api/cosmos-db-resource-provider/database-accounts/check-name-exists?view=rest-cosmos-db-resource-provider-2026-03-15"
+    },
+    "database_account_cosmos_db_for_no_sql_account": {
+      "max_length": 44,
+      "regex": "^(?:[a-z0-9]|[a-z0-9][a-z0-9-]*[a-z0-9])$",
+      "forbidden_suffixes": [
+        "-"
+      ],
+      "override_reason": "Apply alphanumeric account-name boundaries while retaining the naming guide's 44-character maximum rather than the REST reference's conflicting 50.",
+      "override_source": "https://learn.microsoft.com/en-us/rest/api/cosmos-db-resource-provider/database-accounts/check-name-exists?view=rest-cosmos-db-resource-provider-2026-03-15"
+    },
+    "database_account_cosmos_db_for_table_account": {
+      "max_length": 44,
+      "regex": "^(?:[a-z0-9]|[a-z0-9][a-z0-9-]*[a-z0-9])$",
+      "forbidden_suffixes": [
+        "-"
+      ],
+      "override_reason": "Apply alphanumeric account-name boundaries while retaining the naming guide's 44-character maximum rather than the REST reference's conflicting 50.",
+      "override_source": "https://learn.microsoft.com/en-us/rest/api/cosmos-db-resource-provider/database-accounts/check-name-exists?view=rest-cosmos-db-resource-provider-2026-03-15"
     },
     "databricks_cluster": {
       "resource_type": null,
@@ -2241,6 +2322,36 @@
       "slug_source": "manual",
       "override_reason": "Use the original slug where the selected sources have no unambiguous CAF abbreviation.",
       "override_source": "https://github.com/Azure/terraform-azurerm-naming/blob/fc289126c9c888393ff02a79e1babadd6865861c/main.tf"
+    },
+    "disk_access": {
+      "resource_type": "Microsoft.Compute/diskAccesses",
+      "variant": null,
+      "slug": "da",
+      "slug_source": "manual",
+      "legacy_slug": null,
+      "legacy_outputs": [],
+      "min_length": null,
+      "max_length": 80,
+      "scope": "resource group",
+      "regex": "^[a-zA-Z0-9_-]+$",
+      "dashes": true,
+      "lowercase": false,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "The API documents allowed characters and a maximum of 80 characters but no explicit minimum length or boundary restrictions."
+      ],
+      "forbidden_prefixes": [],
+      "forbidden_suffixes": [],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "status": "reviewed_manual_addition",
+        "naming_rules_url": "https://learn.microsoft.com/en-us/rest/api/compute/disk-accesses/create-or-update?view=rest-compute-2026-04-01"
+      },
+      "override_reason": "The da abbreviation is a module convention, not a CAF recommendation.",
+      "override_source": "https://github.com/Azure/terraform-azurerm-naming/issues/138"
     },
     "dns_a_record": {
       "resource_type": "Microsoft.Network/dnsZones/A",
@@ -2652,7 +2763,7 @@
     "firewall_application_rule_collection": {
       "resource_type": null,
       "variant": "application_rule_collection",
-      "slug": "fwapp",
+      "slug": "fwapprc",
       "slug_source": "manual",
       "legacy_slug": "fwapp",
       "legacy_outputs": [
@@ -2680,8 +2791,8 @@
         "identity_evidence": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/internal/services/firewall/firewall_application_rule_collection_resource.go#L219-L222",
         "identity_notes": "Named element of Azure Firewall properties.applicationRuleCollections, persisted by updating the parent firewall."
       },
-      "override_reason": "Use the original slug where the selected sources have no unambiguous CAF abbreviation.",
-      "override_source": "https://github.com/Azure/terraform-azurerm-naming/blob/fc289126c9c888393ff02a79e1babadd6865861c/main.tf"
+      "override_reason": "Reviewed modern abbreviation aligned with the sibling NAT and network rule collections.",
+      "override_source": "https://github.com/Azure/terraform-azurerm-naming/issues/163"
     },
     "firewall_ip_configuration": {
       "resource_type": null,
@@ -2831,9 +2942,20 @@
       "override_source": "https://github.com/Azure/terraform-azurerm-naming/blob/fc289126c9c888393ff02a79e1babadd6865861c/main.tf"
     },
     "hosting_environment": {
-      "max_length": 40,
-      "override_reason": "Conservative maximum retained from the original naming entries while the selected documentation does not establish a universal maximum: app_service_environment",
-      "override_source": "https://github.com/Azure/terraform-azurerm-naming/blob/fc289126c9c888393ff02a79e1babadd6865861c/main.tf"
+      "max_length": 35,
+      "validation_notes": [
+        "The current ASE creation guide requires fewer than 36 characters; the API reference does not publish a minimum length or character pattern."
+      ],
+      "override_reason": "Use the verified current ASE creation limit without inventing the remaining naming constraints.",
+      "override_source": "https://learn.microsoft.com/en-us/azure/app-service/environment/creation"
+    },
+    "hosting_environment_app_service_environment": {
+      "max_length": 35,
+      "validation_notes": [
+        "The current ASE creation guide requires fewer than 36 characters; the API reference does not publish a minimum length or character pattern."
+      ],
+      "override_reason": "Use the verified current ASE creation limit without inventing the remaining naming constraints.",
+      "override_source": "https://learn.microsoft.com/en-us/azure/app-service/environment/creation"
     },
     "image": {
       "slug": "img",
@@ -3075,6 +3197,40 @@
       "override_reason": "Use the original slug where the selected sources have no unambiguous CAF abbreviation.",
       "override_source": "https://github.com/Azure/terraform-azurerm-naming/blob/fc289126c9c888393ff02a79e1babadd6865861c/main.tf"
     },
+    "monitor_workspace": {
+      "resource_type": "Microsoft.Monitor/accounts",
+      "variant": null,
+      "slug": "amw",
+      "slug_source": "manual",
+      "legacy_slug": null,
+      "legacy_outputs": [],
+      "min_length": null,
+      "max_length": null,
+      "scope": "resource group",
+      "regex": "^[a-zA-Z0-9][a-zA-Z0-9-]*[^-]$",
+      "dashes": true,
+      "lowercase": false,
+      "name_kind": "standard",
+      "fixed_name": null,
+      "validation_complete": false,
+      "validation_notes": [
+        "The REST name pattern is translated to equivalent RE2 without lookahead. The API does not publish length bounds, and its final negated character class does not establish an alphanumeric-only final character."
+      ],
+      "forbidden_prefixes": [
+        "-"
+      ],
+      "forbidden_suffixes": [
+        "-"
+      ],
+      "forbidden_sequences": [],
+      "reserved_names": [],
+      "source": {
+        "status": "reviewed_manual_addition",
+        "naming_rules_url": "https://learn.microsoft.com/en-us/rest/api/monitor/azure-monitor-workspaces/create-or-update?view=rest-monitor-2025-10-03"
+      },
+      "override_reason": "The amw abbreviation is a module convention; unverified limits from the earlier proposal are not asserted.",
+      "override_source": "https://github.com/Azure/terraform-azurerm-naming/pull/212"
+    },
     "namespace_eventhub_authorization_rule": {
       "slug": "ehar",
       "slug_source": "manual",
@@ -3094,10 +3250,10 @@
       "override_source": "https://github.com/Azure/terraform-azurerm-naming/blob/fc289126c9c888393ff02a79e1babadd6865861c/main.tf"
     },
     "namespace_notification_hub_authorization_rule": {
-      "slug": "dnsrec",
+      "slug": "nhar",
       "slug_source": "manual",
-      "override_reason": "Use the original slug where the selected sources have no unambiguous CAF abbreviation.",
-      "override_source": "https://github.com/Azure/terraform-azurerm-naming/blob/fc289126c9c888393ff02a79e1babadd6865861c/main.tf"
+      "override_reason": "Reviewed modern authorization-rule abbreviation replacing the unrelated DNS-record slug.",
+      "override_source": "https://github.com/Azure/terraform-azurerm-naming/issues/206"
     },
     "namespace_queue_authorization_rule": {
       "slug": "sbqar",
@@ -3106,10 +3262,10 @@
       "override_source": "https://github.com/Azure/terraform-azurerm-naming/blob/fc289126c9c888393ff02a79e1babadd6865861c/main.tf"
     },
     "namespace_topic_authorization_rule": {
-      "slug": "dnsrec",
+      "slug": "sbtar",
       "slug_source": "manual",
-      "override_reason": "Use the original slug where the selected sources have no unambiguous CAF abbreviation.",
-      "override_source": "https://github.com/Azure/terraform-azurerm-naming/blob/fc289126c9c888393ff02a79e1babadd6865861c/main.tf"
+      "override_reason": "Reviewed modern authorization-rule abbreviation replacing the unrelated DNS-record slug.",
+      "override_source": "https://github.com/Azure/terraform-azurerm-naming/issues/206"
     },
     "namespace_topic_subscription_rule": {
       "slug": "sbsr",
@@ -3202,9 +3358,19 @@
       "override_source": "https://github.com/Azure/terraform-azurerm-naming/blob/fc289126c9c888393ff02a79e1babadd6865861c/main.tf"
     },
     "policy_definition": {
-      "max_length": 128,
-      "override_reason": "Conservative maximum retained from the original naming entries while the selected documentation does not establish a universal maximum: policy_definition Use the original slug where the selected sources have no unambiguous CAF abbreviation.",
-      "override_source": "https://github.com/Azure/terraform-azurerm-naming/blob/fc289126c9c888393ff02a79e1babadd6865861c/main.tf",
+      "min_length": 1,
+      "max_length": 64,
+      "regex": "^[^#<>%&:\\\\?/\\p{Cc}]+$",
+      "dashes": false,
+      "lowercase": true,
+      "forbidden_suffixes": [
+        ".",
+        " "
+      ],
+      "validation_complete": true,
+      "validation_notes": [],
+      "override_reason": "Apply resource-name rather than display-name constraints, retaining the existing slug and separator/case conventions.",
+      "override_source": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-name-rules#microsoftauthorization",
       "slug": "pdef",
       "slug_source": "manual"
     },
@@ -3826,27 +3992,38 @@
       "min_length": 3,
       "max_length": 63,
       "scope": "parent",
-      "regex": "^[a-z0-9][a-z0-9-]+[a-z0-9]$",
-      "dashes": true,
+      "regex": "^[a-zA-Z][a-zA-Z0-9]*$",
+      "dashes": false,
       "lowercase": true,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Manual fallback imported from the original module; constraints require review against the linked resource documentation."
+      "validation_complete": true,
+      "validation_notes": [],
+      "forbidden_prefixes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
       ],
-      "forbidden_prefixes": [],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
-      "reserved_names": [],
+      "reserved_names": [
+        "tables"
+      ],
       "source": {
         "legacy_name": "storage_table",
         "status": "outside_selected_source_tables",
         "identity_evidence": "https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/storage_table.html.markdown#L83-L85",
         "identity_notes": null
       },
-      "override_reason": "Use the original slug where the selected sources have no unambiguous CAF abbreviation.",
-      "override_source": "https://github.com/Azure/terraform-azurerm-naming/blob/fc289126c9c888393ff02a79e1babadd6865861c/main.tf"
+      "override_reason": "Apply the Table service's letter-first alphanumeric rules without changing the existing lowercase convention.",
+      "override_source": "https://learn.microsoft.com/en-us/rest/api/storageservices/understanding-the-table-service-data-model#table-names"
     },
     "streamingjob": {
       "slug": "asa",
@@ -4148,6 +4325,7 @@
     "data_box_job": "microsoft.databox/jobs|",
     "data_collection_endpoint": "microsoft.insights/datacollectionendpoints|",
     "data_collection_rule": "microsoft.insights/datacollectionrules|",
+    "data_collection_rule_association": "microsoft.insights/datacollectionruleassociations|",
     "data_lake_analytics_account": "microsoft.datalakeanalytics/accounts|",
     "data_lake_analytics_account_firewall_rule": "microsoft.datalakeanalytics/accounts/firewallrules|",
     "data_lake_store_account": "microsoft.datalakestore/accounts|",
@@ -4184,6 +4362,7 @@
     "device_security_group": "microsoft.security/devicesecuritygroups|",
     "digital_twins_instance": "microsoft.digitaltwins/digitaltwinsinstances|",
     "disk": "microsoft.compute/disks|",
+    "disk_access": "microsoft.compute/diskaccesses|",
     "disk_encryption_set": "microsoft.compute/diskencryptionsets|",
     "disk_managed_disk_data": "microsoft.compute/disks|managed_disk_data",
     "disk_managed_disk_o": "microsoft.compute/disks|managed_disk_o",
@@ -4348,6 +4527,7 @@
     "mobile_network_site": "microsoft.mobilenetwork/mobilenetworks/sites|",
     "mobile_network_slice": "microsoft.mobilenetwork/mobilenetworks/slices|",
     "monitor_diagnostic_setting": "microsoft.insights/diagnosticsettings|",
+    "monitor_workspace": "microsoft.monitor/accounts|",
     "namespace_event_hub": "microsoft.eventhub/namespaces/eventhubs|",
     "namespace_eventhub_authorization_rule": "microsoft.eventhub/namespaces/eventhubs/authorizationrules|",
     "namespace_eventhub_consumergroup": "microsoft.eventhub/namespaces/eventhubs/consumergroups|",

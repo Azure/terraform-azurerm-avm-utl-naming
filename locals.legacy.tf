@@ -1,14 +1,14 @@
 # Frozen Azure/naming renderer at fc289126c9c888393ff02a79e1babadd6865861c.
-# Shared root random resources preserve existing Terraform state addresses.
+# Legacy-only random resources retain their seed through moved blocks.
 locals {
-  legacy_random_safe_generation = join("", [random_string.first_letter.result, random_string.main.result])
-  legacy_random                 = substr(coalesce(local.unique_seed_input, local.legacy_random_safe_generation), 0, local.unique_length)
-  legacy_prefix                 = join("-", var.prefix)
-  legacy_prefix_safe            = lower(join("", var.prefix))
-  legacy_suffix                 = join("-", var.suffix)
-  legacy_suffix_unique          = join("-", concat(var.suffix, [local.legacy_random]))
-  legacy_suffix_safe            = lower(join("", var.suffix))
-  legacy_suffix_unique_safe     = lower(join("", concat(var.suffix, [local.legacy_random])))
+  legacy_random_safe_generation = var.legacy_mode ? join("", [random_string.first_letter[0].result, random_string.main[0].result]) : ""
+  legacy_random                 = var.legacy_mode ? substr(coalesce(local.unique_seed_input, local.legacy_random_safe_generation), 0, local.unique_length) : ""
+  legacy_prefix                 = var.legacy_mode ? join("-", var.prefix) : ""
+  legacy_prefix_safe            = var.legacy_mode ? lower(join("", var.prefix)) : ""
+  legacy_suffix                 = var.legacy_mode ? join("-", var.suffix) : ""
+  legacy_suffix_unique          = var.legacy_mode ? join("-", concat(var.suffix, [local.legacy_random])) : ""
+  legacy_suffix_safe            = var.legacy_mode ? lower(join("", var.suffix)) : ""
+  legacy_suffix_unique_safe     = var.legacy_mode ? lower(join("", concat(var.suffix, [local.legacy_random]))) : ""
   legacy_az = {
     analysis_services_server = {
       name        = substr(join("", compact([local.legacy_prefix_safe, "as", local.legacy_suffix_safe])), 0, 63)

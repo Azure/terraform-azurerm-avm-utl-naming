@@ -216,21 +216,24 @@ function ConvertTo-NamingRuntimeRule {
         $result.dashes = $allowed.Contains('-')
         $first = $allowed
         $last = $allowed
-        if ($remainder -match '(?i)Start with (?:a )?(lowercase letter|letter|alphanumeric)(?: character)?\.?') {
-            $matched = $Matches[0]
-            $first = if ($Matches[1] -eq 'alphanumeric') { $letters + $digits } else { $letters }
-            $remainder = $remainder.Replace($matched, '')
+        $boundaryClasses = [ordered]@{
+            'lowercase letter or number' = $lower + $digits
+            'letter, number, or underscore' = $letters + $digits + '_'
+            'letter or number' = $letters + $digits
+            'alphanumeric or underscore' = $letters + $digits + '_'
+            'lowercase letter' = $lower
+            'alphanumeric' = $letters + $digits
+            'letter' = $letters
         }
-        if ($remainder -match '(?i)Start and end with (?:an? )?alphanumeric(?: or underscore)?\.?') {
-            $matched = $Matches[0]
-            $first = $letters + $digits + $(if ($matched -match 'underscore') { '_' } else { '' })
-            $last = $first
-            $remainder = $remainder.Replace($matched, '')
-        }
-        if ($remainder -match '(?i)End with (?:an? )?(alphanumeric|letter)(?: character)?\.?') {
-            $matched = $Matches[0]
-            $last = if ($Matches[1] -eq 'letter') { $letters } else { $letters + $digits }
-            $remainder = $remainder.Replace($matched, '')
+        $boundaryPattern = '(?i)\b(?<position>Start and end|Start|End) (?:with )?(?:an? )?(?<characters>' +
+            (($boundaryClasses.Keys | ForEach-Object { [regex]::Escape($_) }) -join '|') +
+            ')(?: character)?(?:[.;](?=\s|$)|\s+and\s+(?=end\b)|(?=\s*(?:$|Start\b|End\b|Can''t\b|Cannot\b|Must\b|See\b|Use\b)))'
+        foreach ($boundary in [regex]::Matches($remainder, $boundaryPattern)) {
+            $characters = $boundaryClasses[$boundary.Groups['characters'].Value]
+            $position = $boundary.Groups['position'].Value
+            if ($position -ine 'End') { $first = $characters }
+            if ($position -ine 'Start') { $last = $characters }
+            $remainder = $remainder.Replace($boundary.Value, '')
         }
         foreach ($restriction in @(
             @('(?i)(?:Can''t|Cannot) (?:use|contain) consecutive hyphens\.?', 'forbidden_sequences', '--'),
@@ -242,6 +245,10 @@ function ConvertTo-NamingRuntimeRule {
                 $remainder = $remainder.Replace($Matches[0], '')
                 $result[$restriction[1]] = @($result[$restriction[1]]) + @($restriction[2])
             }
+        }
+        foreach ($restriction in [regex]::Matches($remainder, '(?i)(?:Can''t|Cannot) contain (?<literal>-[a-z0-9_-]+)(?:\.(?=\s|$)|$)')) {
+            $result.forbidden_sequences = @($result.forbidden_sequences) + @($restriction.Groups['literal'].Value)
+            $remainder = $remainder.Replace($restriction.Value, '')
         }
         if ($remainder -match '(?i)(?:Can''t|Cannot) start or end with (?:a )?hyphen\.?') {
             $remainder = $remainder.Replace($Matches[0], '')
@@ -603,12 +610,15 @@ function ConvertTo-ResourceNameCatalog {
     }
     $seen = [System.Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
     $generated = [ordered]@{
+        '$schema' = '../schemas/naming-catalog.schema.json'
         schema_version = 2
         sources = @((Get-ResourceNameRulesSourceUrl), $script:AbbreviationsUrl)
         resources = [ordered]@{}
     }
-    $manualResult = [ordered]@{}
-    foreach ($field in $Manual.Keys) { $manualResult[$field] = $Manual[$field] }
+    $manualResult = [ordered]@{ '$schema' = '../schemas/naming-overrides.schema.json' }
+    foreach ($field in $Manual.Keys) {
+        if ($field -cne '$schema') { $manualResult[$field] = $Manual[$field] }
+    }
     $manualResult.schema_version = 2
     $manualResult.resources = [ordered]@{}
     foreach ($candidate in ($candidates | Sort-Object { $_.key } -CaseSensitive)) {

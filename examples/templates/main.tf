@@ -4,10 +4,24 @@ module "naming" {
   naming_template_variables = {
     environment = "dev"
     location    = "uks"
+    sequence    = "001"
   }
   naming_templates = {
-    name        = "$${join(separator, compact([slug, environment, location]))}"
-    name_unique = "$${join(separator, compact([unique, name]))}"
+    name = "$${slug}-$${environment}-$${location}-$${sequence}"
   }
-  unique_seed = "abcd1234"
+  unique_length = 0
+}
+
+module "separator_aware" {
+  source = "../.."
+
+  naming_template_variables = {
+    environment = "dev"
+    location    = "uks"
+    sequence    = "001"
+  }
+  naming_templates = {
+    name = "$${slug}$${separator}$${environment}$${separator}$${location}$${separator}$${sequence}"
+  }
+  unique_length = 0
 }

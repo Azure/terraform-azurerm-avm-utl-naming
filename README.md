@@ -54,9 +54,21 @@ Invalid keys, property names/types, naming modes, regexes, and reversed bounds a
 
 Missing constraints remain null unless an override supplies them. Clearing a bound or regex also makes validation incomplete, even if `validation_complete = true` was inherited. Incomplete modern validation returns null flags with `validation_notes`; these are candidate names, not verified Azure names. Name availability is not checked.
 
+### Editor validation
+
+`$schema` annotations in the bundled catalogs and customer example point to the committed [generated catalog schema](schemas/naming-catalog.schema.json) and [partial override schema](schemas/naming-overrides.schema.json). The updater writes the catalog references, so editor support survives regeneration and AVM synchronization without custom managed VS Code settings. Partial entries need not repeat inherited properties such as `slug`. Schemas check structure and types; merged-entry requirements, bound ordering, and Terraform RE2/template validity remain runtime checks.
+
+## Numbered instances
+
+Set `instance` to a nonnegative whole number. `instance_format` defaults to Terraform's `"%03d"` format: `instance = 7` produces `007`. The default convention appends this token after the suffix, using the resource's separator. A null instance leaves existing names unchanged.
+
+The [instances example](examples/instances) uses `for_each` for numbers 1 through 20 and returns resource-group and storage-account names ending in `001` through `020`. It sets `unique_length = 0`, so no randomness is needed.
+
+When numeric `instance` is set, it supplies the `instance` template token; also setting `naming_template_variables.instance` is an error. Without a numeric instance, that custom token remains available.
+
 ## Naming templates
 
-Modern mode defaults to the familiar prefix, slug, suffix, and uniqueness pattern, using the entry's separator and casing rules. Override the convention with escaped `$${token}` expressions.
+Modern mode defaults to prefix, slug, suffix, optional instance, and uniqueness, using the entry's separator and casing rules. Null and empty prefix/suffix elements are ignored. Override the convention with escaped `$${token}` expressions.
 
 In HCL string inputs, the extra `$` in `$${token}` passes literal `${token}` to this module's `templatestring` call instead of resolving it in the caller. Without escaping, module tokens such as `slug` can cause invalid-reference validation errors before the module evaluates the template.
 
@@ -64,18 +76,32 @@ In HCL string inputs, the extra `$` in `$${token}` passes literal `${token}` to 
 naming_template_variables = {
   environment = "prod"
   location    = "uks"
+  sequence    = "001"
 }
 naming_templates = {
-  name        = "$${join(separator, compact([slug, environment, location]))}"
-  name_unique = "$${join(separator, compact([unique, name]))}"
+  name = "$${slug}-$${environment}-$${location}-$${sequence}"
 }
 ```
 
-Built-in tokens are `prefix` and `suffix` lists, `slug`, `separator`, `unique`, `unique_seed`, `terraform_key`, `resource_type`, `variant`, `min_length`, and `max_length`. The unique template also receives `name`, with space reserved for the template's overhead. Custom string tokens cannot replace built-in tokens.
+This reads directly as `rg-prod-uks-001` for a resource group. `environment`, `location`, and `sequence` are custom string tokens. For module-managed number formatting and retention, set `instance = 1` and use `$${instance}` instead of `$${sequence}`.
 
-The default unique template preserves the uniqueness token when truncating. Custom unique templates must interpolate the complete `unique` token directly or through a case conversion such as `upper(unique)`. Token-aware probe rendering distinguishes interpolation from a coincidental match in a prefix. Arbitrary hashing, slicing, or conditional transformations are not claimed to preserve the complete token.
+Literal hyphens suit resource groups but not storage accounts. Use the built-in separator token to support both without functions:
 
-Feasibility is per entry: an oversized or unverifiable unique name returns `name_unique = null`, `name_unique_available = false`, and explanatory `name_unique_errors`. Other entries remain usable. `fits_max_length` describes the unique-name candidate and is null when no maximum is known. Check the selected entry before using it:
+```hcl
+naming_templates = {
+  name = "$${slug}$${separator}$${environment}$${separator}$${location}$${separator}$${sequence}"
+}
+```
+
+Omitting `name_unique` keeps its default behavior, including avoiding a trailing separator when uniqueness is disabled. See the [simple templates example](examples/templates) for both versions.
+
+Built-in tokens are `prefix` and `suffix` lists, `slug`, `separator`, `unique`, `unique_seed`, `terraform_key`, `resource_type`, `variant`, `min_length`, and `max_length`, plus `instance` when its numeric input is set. The unique template also receives `name`, with space reserved for the template's overhead. Custom string tokens cannot replace built-in tokens.
+
+Default truncation preserves the complete formatted instance and uniqueness tokens. Custom name templates must retain the complete `instance` token when supplied; unique templates must also retain the complete `unique` token. Interpolate these tokens directly or through whole-token case conversions such as `upper(unique)`. Arbitrary hashing, slicing, or conditional transformations of protected tokens are not supported.
+
+For shorter names, use a compact template rather than additional padded/short output fields. The [compact example](examples/compact) hashes only workload prefix/suffix content and directly interpolates the complete instance and unique tokens.
+
+Feasibility is per entry: an oversized or unverifiable name returns null with `name_available = false` and `name_errors`, or `name_unique_available = false` and `name_unique_errors`. Other entries remain usable. These flags describe rendering and token retention, not Azure name availability. `fits_max_length` describes the unique-name candidate and is null when no maximum is known. Check the selected entry before using it:
 
 ```hcl
 output "storage_account_name" {
@@ -88,9 +114,23 @@ output "storage_account_name" {
 }
 ```
 
-Entries also expose `unique_suffix_retained`. Literal names remain fixed; GUID-only names use deterministic UUID rendering. For Windows consumers whose `computer_name` defaults to the resource name, use `names.virtual_machine_windows` (15-character cap) instead of the generic 64-character ARM-name entry.
+Entries expose `unique_suffix_retained`, the formatted `instance`, and `instance_retained.name` / `instance_retained.name_unique`. `separator` reports the catalog-derived separator even when a custom template does not use it. Literal names remain fixed; GUID-only names use deterministic UUID rendering. For Windows consumers whose `computer_name` defaults to the resource name, use `names.virtual_machine_windows` (15-character cap) instead of the generic 64-character ARM-name entry.
 
 `slug_overrides` is a nullable map keyed by the JSON key. An empty override omits the slug.
+
+## Stable names and randomness
+
+Modern mode creates random resources only when `unique_length` is nonzero and no nonempty `unique_seed` is supplied. A supplied seed is returned unchanged. With `unique_length = 0`, `name_unique` equals `name`; without a supplied seed, `unique_seed` is null. Keep the inputs that determine whether random resources are needed known during planning.
+
+Modern mode now uses separate random resources. **Upgrading modern mode from v0.1.0 intentionally regenerates generated seeds when randomness is needed.** This one-time change can alter names and cause replacement of consumer resources; subsequent runs retain the new seed in state.
+
+To preserve the previous uniqueness token, capture the full previous `unique_seed` before upgrading, for example from `module.naming.names.storage_account.unique_seed`, and supply that exact string through the `unique_seed` input. This preserves the seed/token, not necessarily complete modern names: catalog and slug corrections can also change names. Keep other naming inputs unchanged and inspect the plan. Retain Terraform state; selecting an explicit seed or zero uniqueness length can remove now-unused random resources.
+
+Boundary-rule fixes preserve documented trailing digits across services such as Event Hubs and Key Vault, and permitted trailing underscores on network resources. Some previously incomplete rules now return validation results. Review selected names and validation flags when upgrading, even with a fixed seed.
+
+Azure can reserve names after deletion, including soft-deleted Key Vault names. This module does not check availability or rotate names automatically. When a genuinely new name is required, deliberately change a stable `instance` or `unique_seed`. Do not use timestamps or routine state deletion to rotate names.
+
+The bare CAF Log Analytics workspace slug `log` is shorter than its four-character minimum, so `names.operational_insights_workspace.validation.valid_name` is false without an affix or instance. Use `suffix = ["workload"]` for `log-workload`, `instance = 1` for `log-001`, or a unique name with sufficient length. The module does not pad the name or change the CAF abbreviation.
 
 ## Migrating from the original module
 
@@ -110,7 +150,7 @@ output "resource_group_name" {
 }
 ```
 
-Run `terraform init -upgrade` and inspect the plan. Keep any existing seed and uniqueness-length configuration unchanged. Both original random-resource addresses are retained.
+Run `terraform init -upgrade` and inspect the plan. Keep any existing seed and uniqueness-length configuration unchanged. The included moved blocks retain the original random values at indexed addresses; do not delete state to perform this migration. These original random resources are now legacy-only and remain present in legacy mode even with a supplied seed or zero uniqueness length.
 
 Legacy mode uses the frozen [original renderer](https://github.com/Azure/terraform-azurerm-naming/tree/fc289126c9c888393ff02a79e1babadd6865861c) in `locals.legacy.tf`, not the current JSON rules. It retains original separators, casing, per-alias limits, regexes, scope tokens, and boolean validation, including historical quirks. Continue using the deprecated named outputs in `outputs.legacy.tf`; the modern dynamic maps are empty in this mode. Modern templates, custom tokens, slug overrides, bundled rule patches, and customer files do not change legacy results.
 
@@ -124,7 +164,7 @@ See [the override-free legacy example](examples/legacy). `legacy_mode` defaults 
 | `unique-length` | `unique_length` |
 | `unique-seed` | `unique_seed` |
 
-The old inputs remain in `variables.deprecated.tf`. A non-null replacement takes precedence in either mode; null uses the deprecated input. Effective defaults remain `true`, `4`, and a state-persisted random seed. Explicit `false`, `0`, and empty `unique_seed` values are honored.
+The old inputs remain in `variables.deprecated.tf`. A non-null replacement takes precedence in either mode; null uses the deprecated input. Effective defaults remain `true`, `4`, and a state-persisted random seed. Explicit `false` and `0` are honored; an empty seed requests the default seed behavior for the selected mode.
 
 ## Updates
 
@@ -133,6 +173,10 @@ The Monday 06:23 UTC/manual workflow regenerates modern runtime data and propose
 Manual additions, property overrides, and public-key assignments persist across regeneration, including when an entry becomes documented. Removed generated entries are retained beneath any existing manual patch so omitted properties are not lost.
 
 Repository settings must permit GitHub Actions to create pull requests. Requests created with `GITHUB_TOKEN` do not automatically trigger other workflows; validation runs before publication.
+
+## Contributing
+
+See the [naming contribution guide](docs/contributing.md) for editable files, PowerShell catalog checks, schemas, and managed documentation commands.
 
 <!-- markdownlint-disable MD033 -->
 ## Requirements
@@ -149,6 +193,8 @@ The following resources are used by this module:
 
 - [random_string.first_letter](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string) (resource)
 - [random_string.main](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string) (resource)
+- [random_string.modern](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string) (resource)
+- [random_string.modern_first_letter](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string) (resource)
 
 <!-- markdownlint-disable MD013 -->
 ## Required Inputs
@@ -166,6 +212,22 @@ Description: Path to a customer JSON naming catalog, merged after the generated 
 Type: `string`
 
 Default: `null`
+
+### <a name="input_instance"></a> [instance](#input\_instance)
+
+Description: Optional nonnegative whole-number instance identifier for modern names. The module formats it with instance\_format and appends it after suffix in the default template. Null preserves names without an instance. Ignored in legacy\_mode.
+
+Type: `number`
+
+Default: `null`
+
+### <a name="input_instance_format"></a> [instance\_format](#input\_instance\_format)
+
+Description: Terraform format string for the modern numeric instance. The default renders 0 as 000 and 1 through 20 as 001 through 020; width is a minimum, not a limit. The formatted string is the instance template token. Ignored when instance is null or legacy\_mode is enabled.
+
+Type: `string`
+
+Default: `"%03d"`
 
 ### <a name="input_legacy_mode"></a> [legacy\_mode](#input\_legacy\_mode)
 
@@ -185,13 +247,13 @@ Default: `{}`
 
 ### <a name="input_naming_templates"></a> [naming\_templates](#input\_naming\_templates)
 
-Description: Modern templates rendered with templatestring. In HCL string inputs, use $${token} to pass literal ${token} to the module and avoid caller-side interpolation and validation errors for module tokens. The name\_unique template receives a bounded name and must interpolate the full unique token directly or through a whole-token case conversion. Unverifiable or oversized unique names are null with per-entry diagnostics, not catalog-wide failures. Available tokens are name (unique template only), prefix/suffix lists, slug, separator, unique, unique\_seed, terraform\_key, resource\_type, variant, min\_length, max\_length, and naming\_template\_variables. Ignored in legacy\_mode.
+Description: Modern templates rendered with templatestring. In HCL inputs, use $${token} to pass literal ${token} to the module. A null name selects the default prefix, slug, suffix, and optional formatted instance convention. The name\_unique template receives a bounded name. Templates must retain the complete unique and supplied instance tokens, directly or through whole-token case conversions; unusable names are null with per-entry diagnostics. Tokens are name (unique template only), compacted prefix/suffix lists, slug, separator, unique, unique\_seed, instance (when supplied), terraform\_key, resource\_type, variant, min\_length, max\_length, and naming\_template\_variables. Ignored in legacy\_mode.
 
 Type:
 
 ```hcl
 object({
-    name        = optional(string, "$${join(separator, compact([join(separator, prefix), slug, join(separator, suffix)]))}")
+    name        = optional(string)
     name_unique = optional(string, "$${join(separator, compact([name, unique]))}")
   })
 ```
@@ -200,7 +262,7 @@ Default: `{}`
 
 ### <a name="input_prefix"></a> [prefix](#input\_prefix)
 
-Description: Name components placed before the resource slug. Prefer suffixes when following Azure naming recommendations.
+Description: Name components placed before the resource slug. Modern mode removes null and empty components. Prefer suffixes when following Azure naming recommendations.
 
 Type: `list(string)`
 
@@ -216,7 +278,7 @@ Default: `null`
 
 ### <a name="input_suffix"></a> [suffix](#input\_suffix)
 
-Description: Name components placed after the resource slug. Lowercase components are recommended.
+Description: Name components placed after the resource slug. Modern mode removes null and empty components. Lowercase components are recommended.
 
 Type: `list(string)`
 
@@ -256,7 +318,7 @@ Default: `null`
 
 ### <a name="input_unique_length"></a> [unique\_length](#input\_unique\_length)
 
-Description: Maximum number of seed characters appended to unique names before maximum-length truncation. A non-null value takes precedence over unique-length. The effective default is 4.
+Description: Maximum number of seed characters appended to unique names before maximum-length truncation. A non-null value takes precedence over unique-length. The effective default is 4. In modern mode, zero skips random resources and the default name\_unique equals name. Inputs controlling whether randomness is needed must be known during planning.
 
 Type: `number`
 
@@ -264,7 +326,7 @@ Default: `null`
 
 ### <a name="input_unique_seed"></a> [unique\_seed](#input\_unique\_seed)
 
-Description: Custom uniqueness seed. A non-null value takes precedence over unique-seed, including an empty string, which selects the state-persisted random seed. If neither input supplies a nonempty seed, a random seed beginning with a lowercase letter is used.
+Description: Custom uniqueness seed. A non-null value takes precedence over unique-seed, including an empty string, which selects random fallback when needed. Modern mode skips random resources for a nonempty supplied seed or zero unique\_length; when no seed is needed or supplied, unique\_seed outputs are null. Inputs controlling whether randomness is needed must be known during planning. Legacy mode retains its original random resources and seed behavior.
 
 Type: `string`
 
@@ -996,7 +1058,7 @@ Description: DEPRECATED: Use the dynamic names output instead. Mysql Virtual Net
 
 ### <a name="output_names"></a> [names](#output\_names)
 
-Description: Modern names keyed by the snake-case JSON keys; empty in legacy\_mode. Unusable unique names are null with name\_unique\_available=false and per-entry name\_unique\_errors. Entries expose source, constraints, token retention, and validation; incomplete rule validation is null.
+Description: Modern names keyed by the snake-case JSON keys; empty in legacy\_mode. Unusable names are null with name\_available/name\_errors or name\_unique\_available/name\_unique\_errors diagnostics. Entries expose the catalog separator, formatted instance, source, constraints, token retention, and validation; incomplete rule validation is null. Availability checks token retention and capacity, not Azure name availability.
 
 ### <a name="output_names_by_azure_type"></a> [names\_by\_azure\_type](#output\_names\_by\_azure\_type)
 

@@ -1,5 +1,5 @@
 output "names" {
-  description = "Modern names keyed by the snake-case JSON keys; empty in legacy_mode. Unusable unique names are null with name_unique_available=false and per-entry name_unique_errors. Entries expose source, constraints, token retention, and validation; incomplete rule validation is null."
+  description = "Modern names keyed by the snake-case JSON keys; empty in legacy_mode. Unusable names are null with name_available/name_errors or name_unique_available/name_unique_errors diagnostics. Entries expose the catalog separator, formatted instance, source, constraints, token retention, and validation; incomplete rule validation is null. Availability checks token retention and capacity, not Azure name availability."
 
   precondition {
     condition     = local.generated_catalog.schema_version == 2 && local.manual_catalog.schema_version == 2
