@@ -76,24 +76,37 @@ In HCL string inputs, the extra `$` in `$${token}` passes literal `${token}` to 
 naming_template_variables = {
   environment = "prod"
   location    = "uks"
-  sequence    = "001"
 }
 naming_templates = {
-  name = "$${slug}-$${environment}-$${location}-$${sequence}"
+  name        = "$${join(separator, compact([slug, environment, location]))}"
+  name_unique = "$${join(separator, compact([unique, name]))}"
 }
 ```
 
-This reads directly as `rg-prod-uks-001` for a resource group. `environment`, `location`, and `sequence` are custom string tokens. For module-managed number formatting and retention, set `instance = 1` and use `$${instance}` instead of `$${sequence}`.
+The function-based template composes the components and places uniqueness first. Alternatively, use direct interpolation with the module's built-in instance formatting:
+
+```hcl
+instance = 1
+naming_template_variables = {
+  environment = "prod"
+  location    = "uks"
+}
+naming_templates = {
+  name = "$${slug}-$${environment}-$${location}-$${instance}"
+}
+```
+
+This reads directly as `rg-prod-uks-001` for a resource group. `environment` and `location` are custom string tokens; the module formats numeric `instance = 1` as `001`. Override `instance_format` to change the formatting.
 
 Literal hyphens suit resource groups but not storage accounts. Use the built-in separator token to support both without functions:
 
 ```hcl
 naming_templates = {
-  name = "$${slug}$${separator}$${environment}$${separator}$${location}$${separator}$${sequence}"
+  name = "$${slug}$${separator}$${environment}$${separator}$${location}$${separator}$${instance}"
 }
 ```
 
-Omitting `name_unique` keeps its default behavior, including avoiding a trailing separator when uniqueness is disabled. See the [simple templates example](examples/templates) for both versions.
+Omitting `name_unique` keeps its default behavior, including avoiding a trailing separator when uniqueness is disabled. The [templates example](examples/templates) includes the original function-based convention and both additional direct-interpolation versions.
 
 Built-in tokens are `prefix` and `suffix` lists, `slug`, `separator`, `unique`, `unique_seed`, `terraform_key`, `resource_type`, `variant`, `min_length`, and `max_length`, plus `instance` when its numeric input is set. The unique template also receives `name`, with space reserved for the template's overhead. Custom string tokens cannot replace built-in tokens.
 

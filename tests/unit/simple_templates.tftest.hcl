@@ -1,11 +1,11 @@
 mock_provider "random" {}
 
 variables {
+  instance      = 1
   unique_length = 0
   naming_template_variables = {
     environment = "dev"
     location    = "uks"
-    sequence    = "001"
   }
 }
 
@@ -14,7 +14,7 @@ run "literal_tokens" {
 
   variables {
     naming_templates = {
-      name = "$${slug}-$${environment}-$${location}-$${sequence}"
+      name = "$${slug}-$${environment}-$${location}-$${instance}"
     }
   }
 
@@ -34,7 +34,7 @@ run "separator_tokens" {
 
   variables {
     naming_templates = {
-      name = "$${slug}$${separator}$${environment}$${separator}$${location}$${separator}$${sequence}"
+      name = "$${slug}$${separator}$${environment}$${separator}$${location}$${separator}$${instance}"
     }
   }
 
