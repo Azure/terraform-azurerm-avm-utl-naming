@@ -1,14 +1,14 @@
 mock_provider "random" {}
 
 override_resource {
-  target = random_string.first_letter
+  target = random_string.modern_first_letter
   values = {
     result = "a"
   }
 }
 
 override_resource {
-  target = random_string.main
+  target = random_string.modern
   values = {
     result = "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
   }
@@ -25,7 +25,8 @@ run "deprecated_inputs" {
 
   assert {
     condition = (
-      random_string.main.numeric == false &&
+      local.unique_include_numbers == false &&
+      length(random_string.modern) == 0 &&
       output.names.storage_account.unique_seed == "Z9abcdefgh" &&
       endswith(output.names.storage_account.name_unique, "z9")
     )
@@ -43,7 +44,7 @@ run "replacement_inputs" {
   }
 
   assert {
-    condition     = output.names == run.deprecated_inputs.names && random_string.main.numeric == false
+    condition     = output.names == run.deprecated_inputs.names && local.unique_include_numbers == false && length(random_string.modern) == 0
     error_message = "The replacement inputs must produce the same current naming results as their deprecated aliases."
   }
 }
@@ -62,7 +63,8 @@ run "replacement_values_take_precedence" {
 
   assert {
     condition = (
-      random_string.main.numeric == true &&
+      local.unique_include_numbers == true &&
+      length(random_string.modern) == 0 &&
       output.names.storage_account.unique_seed == "NewSeed" &&
       endswith(output.names.storage_account.name_unique, "new") &&
       output.unique-seed == "NewSeed"
@@ -85,8 +87,10 @@ run "false_zero_and_empty_are_explicit" {
 
   assert {
     condition = (
-      random_string.main.numeric == false &&
-      output.names.storage_account.unique_seed == "abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" &&
+      local.unique_include_numbers == false &&
+      length(random_string.modern) == 0 &&
+      length(random_string.modern_first_letter) == 0 &&
+      output.names.storage_account.unique_seed == null &&
       output.unique-seed == output.names.storage_account.unique_seed &&
       alltrue([for entry in values(output.names) : entry.name == entry.name_unique])
     )
@@ -107,7 +111,7 @@ run "null_replacements_use_aliases" {
   }
 
   assert {
-    condition     = output.names == run.deprecated_inputs.names && random_string.main.numeric == false
+    condition     = output.names == run.deprecated_inputs.names && local.unique_include_numbers == false && length(random_string.modern) == 0
     error_message = "Explicit null replacements must leave the deprecated inputs effective."
   }
 }

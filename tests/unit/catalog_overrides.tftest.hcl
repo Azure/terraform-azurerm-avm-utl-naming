@@ -13,7 +13,7 @@ run "bundled_layers" {
       local.manual_catalog.resources.database_account.slug == "cosmos" &&
       output.names.database_account.slug == "cosmos" &&
       output.names.database_account.slug_source == "manual" &&
-      output.names.database_account.regex == local.generated_catalog.resources.database_account.regex &&
+      output.names.database_account.regex == try(local.manual_catalog.resources.database_account.regex, local.generated_catalog.resources.database_account.regex) &&
       output.names.static_site.max_length == 40
     )
     error_message = "Manual fallback slugs and limits must override individual generated properties."
@@ -22,10 +22,10 @@ run "bundled_layers" {
   assert {
     condition = alltrue([
       for key, definition in local.catalog :
-      output.names[key].slug == definition.legacy_slug
+      output.names[key].slug == try(local.manual_catalog.resources[key].slug, definition.legacy_slug)
       if definition.legacy_slug != null && try(local.generated_catalog.resources[key].slug_source, "manual") != "caf"
     ])
-    error_message = "Every legacy-mapped entry without a documented CAF abbreviation must use its original slug."
+    error_message = "Undocumented entries must retain their original fallback unless an explicit manual slug overrides it."
   }
 
   assert {

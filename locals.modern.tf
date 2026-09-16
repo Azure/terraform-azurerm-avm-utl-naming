@@ -28,17 +28,41 @@ locals {
   }
   name_bounded = {
     for key, definition in local.catalog :
-    key => definition.max_length == null ? local.name_base[key] : substr(local.name_base[key], 0, definition.max_length)
+    key => !local.default_instance_template ? (
+      definition.max_length == null ? local.name_base[key] : substr(local.name_base[key], 0, definition.max_length)
+      ) : join(local.template_context[key].separator, compact([
+        definition.max_length == null ? local.default_name_base[key] : substr(
+          local.default_name_base[key], 0, max(0, definition.max_length - local.instance_overhead[key]),
+        ),
+        definition.lowercase ? lower(local.instance_value) : local.instance_value,
+    ]))
+  }
+  name_available = {
+    for key, definition in local.catalog :
+    key => length(local.name_errors[key]) == 0
+  }
+  name_errors = {
+    for key, definition in local.catalog : key => compact([
+      local.name_fits[key] ? null : "The name exceeds max_length after retaining the instance; shorten instance_format or the template. Other catalog entries remain usable.",
+      definition.name_kind == "literal" || local.name_instance_retained[key] ? null : "Complete instance-token interpolation was omitted, truncated, or could not be verified. Use direct interpolation or a whole-token case conversion.",
+    ])
+  }
+  name_fits = {
+    for key, definition in local.catalog :
+    key => definition.max_length == null ? true : length(local.rendered_names[key].name) <= definition.max_length
   }
   name_templates_rendered = {
     for key, definition in local.catalog :
-    key => templatestring(var.naming_templates.name, local.template_context[key])
+    key => templatestring(local.name_template, local.template_context[key])
   }
   names = {
     for key, definition in local.catalog : key => {
-      name                   = local.rendered_names[key].name
+      name                   = local.name_available[key] ? local.rendered_names[key].name : null
       name_unique            = local.unique_name_available[key] ? local.rendered_names[key].name_unique : null
+      name_available         = local.name_available[key]
+      name_errors            = local.name_errors[key]
       dashes                 = definition.dashes
+      separator              = local.template_context[key].separator
       slug                   = local.selected_slugs[key]
       slug_source            = local.slug_sources[key]
       min_length             = definition.min_length
@@ -49,6 +73,7 @@ locals {
       terraform_key          = key
       variant                = definition.variant
       name_kind              = definition.name_kind
+      instance               = local.instance_enabled ? local.instance_value : null
       unique_seed            = local.unique_seed
       unique_suffix_retained = local.unique_suffix_retained[key]
       name_unique_available  = local.unique_name_available[key]
@@ -56,8 +81,12 @@ locals {
       name_unique_errors     = local.unique_name_errors[key]
       validation_complete    = definition.validation_complete
       validation_notes       = definition.validation_notes
+      instance_retained = {
+        name        = local.name_instance_retained[key]
+        name_unique = local.unique_name_instance_retained[key]
+      }
       validation = {
-        valid_name        = local.validation_results[key].name
+        valid_name        = local.name_available[key] ? local.validation_results[key].name : false
         valid_name_unique = local.unique_name_available[key] ? local.validation_results[key].name_unique : false
       }
     }
@@ -108,8 +137,8 @@ locals {
   }
   template_context = {
     for key, definition in local.catalog : key => merge(var.naming_template_variables, {
-      prefix        = var.prefix
-      suffix        = var.suffix
+      prefix        = compact(var.prefix)
+      suffix        = compact(var.suffix)
       slug          = local.selected_slugs[key]
       separator     = definition.dashes ? "-" : ""
       unique        = local.random
@@ -119,7 +148,7 @@ locals {
       variant       = definition.variant
       min_length    = definition.min_length
       max_length    = definition.max_length
-    })
+    }, local.instance_enabled ? { instance = local.instance_value } : {})
   }
   trailing_patterns = {
     for key, definition in local.catalog :
@@ -129,8 +158,17 @@ locals {
   }
   unique_base = {
     for key, definition in local.catalog :
-    key => definition.max_length == null ? local.name_base[key] : substr(
-      local.name_base[key], 0, max(0, definition.max_length - local.unique_overhead[key]),
+    key => definition.name_kind == "uuid" && local.random == "" && var.naming_templates.name_unique == local.default_unique_template ? local.name_base[key] : (
+      !local.default_instance_template ? (
+        definition.max_length == null ? local.name_base[key] : substr(
+          local.name_base[key], 0, max(0, definition.max_length - local.unique_overhead[key]),
+        )
+        ) : join(local.template_context[key].separator, compact([
+          definition.max_length == null ? local.default_name_base[key] : substr(
+            local.default_name_base[key], 0, max(0, definition.max_length - local.unique_overhead[key] - local.instance_overhead[key]),
+          ),
+          definition.lowercase ? lower(local.instance_value) : local.instance_value,
+      ]))
     )
   }
   unique_names = {
@@ -145,6 +183,7 @@ locals {
     for key, definition in local.catalog : key => compact([
       local.unique_name_fits[key] ? null : "The unique name exceeds max_length; shorten the template or reduce unique_length. Other catalog entries remain usable.",
       definition.name_kind == "literal" || local.unique_suffix_retained[key] ? null : "Complete unique-token interpolation could not be verified. Use direct interpolation or a whole-token case conversion.",
+      definition.name_kind == "literal" || local.unique_name_instance_retained[key] ? null : "Complete instance-token interpolation was omitted, truncated, or could not be verified. Use direct interpolation or a whole-token case conversion.",
     ])
   }
   unique_name_fits = {
@@ -157,7 +196,7 @@ locals {
   }
   unique_suffix_retained = {
     for key, definition in local.catalog :
-    key => local.random == "" ? true : definition.name_kind == "literal" ? false : alltrue([
+    key => local.random == "" ? true : definition.name_kind == "literal" ? false : var.naming_templates.name_unique == local.default_unique_template ? true : alltrue([
       for marker, rendering in local.unique_token_probes[key] :
       strcontains(lower(rendering), marker) &&
       replace(lower(rendering), marker, lower(local.random)) == lower(local.unique_names[key])
@@ -176,7 +215,7 @@ locals {
     for key, definition in local.catalog : key => {
       for marker in ["avmuniquemarker${sha256(key)}a", "avmuniquemarker${sha256(key)}b"] :
       marker => templatestring(var.naming_templates.name_unique, merge(local.unique_template_context[key], { unique = marker }))
-    }
+    } if local.random != "" && var.naming_templates.name_unique != local.default_unique_template
   }
   validation_results = {
     for key, definition in local.catalog : key => {

@@ -9,6 +9,32 @@ variable "custom_override_file" {
   }
 }
 
+variable "instance" {
+  type        = number
+  default     = null
+  description = "Optional nonnegative whole-number instance identifier for modern names. The module formats it with instance_format and appends it after suffix in the default template. Null preserves names without an instance. Ignored in legacy_mode."
+
+  validation {
+    condition     = var.legacy_mode || var.instance == null ? true : var.instance >= 0 && floor(var.instance) == var.instance
+    error_message = "instance must be a nonnegative whole number or null."
+  }
+}
+
+variable "instance_format" {
+  type        = string
+  default     = "%03d"
+  description = "Terraform format string for the modern numeric instance. The default renders 0 as 000 and 1 through 20 as 001 through 020; width is a minimum, not a limit. The formatted string is the instance template token. Ignored when instance is null or legacy_mode is enabled."
+  nullable    = false
+
+  validation {
+    condition = var.legacy_mode || var.instance == null ? true : (
+      var.instance < 0 || floor(var.instance) != var.instance ? true :
+      try(length(format(var.instance_format, var.instance)) > 0, false)
+    )
+    error_message = "instance_format must format the supplied instance into a nonempty string."
+  }
+}
+
 variable "legacy_mode" {
   type        = bool
   default     = false
@@ -29,22 +55,26 @@ variable "naming_template_variables" {
     ]))) == 0
     error_message = "naming_template_variables must not replace built-in naming tokens."
   }
+  validation {
+    condition     = var.legacy_mode || var.instance == null ? true : !contains(keys(var.naming_template_variables), "instance")
+    error_message = "naming_template_variables must not replace the formatted instance token when instance is supplied."
+  }
 }
 
 variable "naming_templates" {
   type = object({
-    name        = optional(string, "$${join(separator, compact([join(separator, prefix), slug, join(separator, suffix)]))}")
+    name        = optional(string)
     name_unique = optional(string, "$${join(separator, compact([name, unique]))}")
   })
   default     = {}
-  description = "Modern templates rendered with templatestring. In HCL string inputs, use $$${token} to pass literal $${token} to the module and avoid caller-side interpolation and validation errors for module tokens. The name_unique template receives a bounded name and must interpolate the full unique token directly or through a whole-token case conversion. Unverifiable or oversized unique names are null with per-entry diagnostics, not catalog-wide failures. Available tokens are name (unique template only), prefix/suffix lists, slug, separator, unique, unique_seed, terraform_key, resource_type, variant, min_length, max_length, and naming_template_variables. Ignored in legacy_mode."
+  description = "Modern templates rendered with templatestring. In HCL inputs, use $$${token} to pass literal $${token} to the module. A null name selects the default prefix, slug, suffix, and optional formatted instance convention. The name_unique template receives a bounded name. Templates must retain the complete unique and supplied instance tokens, directly or through whole-token case conversions; unusable names are null with per-entry diagnostics. Tokens are name (unique template only), compacted prefix/suffix lists, slug, separator, unique, unique_seed, instance (when supplied), terraform_key, resource_type, variant, min_length, max_length, and naming_template_variables. Ignored in legacy_mode."
   nullable    = false
 }
 
 variable "prefix" {
   type        = list(string)
   default     = []
-  description = "Name components placed before the resource slug. Prefer suffixes when following Azure naming recommendations."
+  description = "Name components placed before the resource slug. Modern mode removes null and empty components. Prefer suffixes when following Azure naming recommendations."
   nullable    = false
 }
 
@@ -62,7 +92,7 @@ variable "slug_overrides" {
 variable "suffix" {
   type        = list(string)
   default     = []
-  description = "Name components placed after the resource slug. Lowercase components are recommended."
+  description = "Name components placed after the resource slug. Modern mode removes null and empty components. Lowercase components are recommended."
   nullable    = false
 }
 
@@ -75,11 +105,11 @@ variable "unique_include_numbers" {
 variable "unique_length" {
   type        = number
   default     = null
-  description = "Maximum number of seed characters appended to unique names before maximum-length truncation. A non-null value takes precedence over unique-length. The effective default is 4."
+  description = "Maximum number of seed characters appended to unique names before maximum-length truncation. A non-null value takes precedence over unique-length. The effective default is 4. In modern mode, zero skips random resources and the default name_unique equals name. Inputs controlling whether randomness is needed must be known during planning."
 }
 
 variable "unique_seed" {
   type        = string
   default     = null
-  description = "Custom uniqueness seed. A non-null value takes precedence over unique-seed, including an empty string, which selects the state-persisted random seed. If neither input supplies a nonempty seed, a random seed beginning with a lowercase letter is used."
+  description = "Custom uniqueness seed. A non-null value takes precedence over unique-seed, including an empty string, which selects random fallback when needed. Modern mode skips random resources for a nonempty supplied seed or zero unique_length; when no seed is needed or supplied, unique_seed outputs are null. Inputs controlling whether randomness is needed must be known during planning. Legacy mode retains its original random resources and seed behavior."
 }

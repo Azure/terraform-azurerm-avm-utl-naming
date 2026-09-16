@@ -1,4 +1,5 @@
 {
+  "$schema": "../schemas/naming-catalog.schema.json",
   "schema_version": 2,
   "sources": [
     "https://raw.githubusercontent.com/MicrosoftDocs/azure-docs/main/articles/azure-resource-manager/management/resource-name-rules.md",
@@ -3154,10 +3155,8 @@
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "0",
         "1",
@@ -3256,15 +3255,13 @@
       "min_length": 1,
       "max_length": 80,
       "scope": "resource group",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "-",
         "_",
@@ -3272,7 +3269,6 @@
       ],
       "forbidden_suffixes": [
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -3357,43 +3353,20 @@
       "min_length": 3,
       "max_length": 64,
       "scope": "resource group",
-      "regex": "^(?:[a-zA-Z]|[a-zA-Z][a-zA-Z0-9\\-_.]*[a-zA-Z])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
         "-",
         "_",
         "."
       ],
       "forbidden_suffixes": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -3435,15 +3408,13 @@
       "min_length": 1,
       "max_length": 80,
       "scope": "resource group",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "-",
         "_",
@@ -3451,7 +3422,6 @@
       ],
       "forbidden_suffixes": [
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -3763,7 +3733,6 @@
       "fixed_name": null,
       "validation_complete": false,
       "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted.",
         "Provider-section notes are retained for review and are not universally interpreted."
       ],
       "forbidden_prefixes": [
@@ -4185,14 +4154,13 @@
       "min_length": 1,
       "max_length": 80,
       "scope": "resource group",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
       "validation_complete": false,
       "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted.",
         "Provider-section notes are retained for review and are not universally interpreted."
       ],
       "forbidden_prefixes": [
@@ -4202,7 +4170,6 @@
       ],
       "forbidden_suffixes": [
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -4246,15 +4213,13 @@
       "min_length": 1,
       "max_length": 80,
       "scope": "resource group",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "-",
         "_",
@@ -4262,7 +4227,6 @@
       ],
       "forbidden_suffixes": [
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -4524,15 +4488,13 @@
       "min_length": 1,
       "max_length": 80,
       "scope": "resource group",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "-",
         "_",
@@ -4540,7 +4502,6 @@
       ],
       "forbidden_suffixes": [
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -5676,27 +5637,17 @@
       "min_length": 3,
       "max_length": 59,
       "scope": "global",
-      "regex": "^(?:[a-zA-Z]|[a-zA-Z0-9\\-][a-zA-Z0-9\\-]*[a-zA-Z])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
+      "validation_complete": true,
+      "validation_notes": [],
+      "forbidden_prefixes": [
+        "-"
       ],
-      "forbidden_prefixes": [],
       "forbidden_suffixes": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
         "-"
       ],
       "forbidden_sequences": [],
@@ -5783,27 +5734,17 @@
       "min_length": 3,
       "max_length": 59,
       "scope": "global",
-      "regex": "^(?:[a-zA-Z]|[a-zA-Z0-9\\-][a-zA-Z0-9\\-]*[a-zA-Z])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
+      "validation_complete": true,
+      "validation_notes": [],
+      "forbidden_prefixes": [
+        "-"
       ],
-      "forbidden_prefixes": [],
       "forbidden_suffixes": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
         "-"
       ],
       "forbidden_sequences": [],
@@ -5890,27 +5831,17 @@
       "min_length": 3,
       "max_length": 59,
       "scope": "global",
-      "regex": "^(?:[a-zA-Z]|[a-zA-Z0-9\\-][a-zA-Z0-9\\-]*[a-zA-Z])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
+      "validation_complete": true,
+      "validation_notes": [],
+      "forbidden_prefixes": [
+        "-"
       ],
-      "forbidden_prefixes": [],
       "forbidden_suffixes": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
         "-"
       ],
       "forbidden_sequences": [],
@@ -5997,27 +5928,17 @@
       "min_length": 3,
       "max_length": 59,
       "scope": "global",
-      "regex": "^(?:[a-zA-Z]|[a-zA-Z0-9\\-][a-zA-Z0-9\\-]*[a-zA-Z])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
+      "validation_complete": true,
+      "validation_notes": [],
+      "forbidden_prefixes": [
+        "-"
       ],
-      "forbidden_prefixes": [],
       "forbidden_suffixes": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
         "-"
       ],
       "forbidden_sequences": [],
@@ -6184,27 +6105,17 @@
       "min_length": 3,
       "max_length": 59,
       "scope": "global",
-      "regex": "^(?:[a-zA-Z]|[a-zA-Z0-9\\-][a-zA-Z0-9\\-]*[a-zA-Z])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
+      "validation_complete": true,
+      "validation_notes": [],
+      "forbidden_prefixes": [
+        "-"
       ],
-      "forbidden_prefixes": [],
       "forbidden_suffixes": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
         "-"
       ],
       "forbidden_sequences": [],
@@ -6291,27 +6202,17 @@
       "min_length": 3,
       "max_length": 59,
       "scope": "global",
-      "regex": "^(?:[a-zA-Z]|[a-zA-Z0-9\\-][a-zA-Z0-9\\-]*[a-zA-Z])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
+      "validation_complete": true,
+      "validation_notes": [],
+      "forbidden_prefixes": [
+        "-"
       ],
-      "forbidden_prefixes": [],
       "forbidden_suffixes": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
         "-"
       ],
       "forbidden_sequences": [],
@@ -6398,27 +6299,17 @@
       "min_length": 3,
       "max_length": 59,
       "scope": "global",
-      "regex": "^(?:[a-zA-Z]|[a-zA-Z0-9\\-][a-zA-Z0-9\\-]*[a-zA-Z])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
+      "validation_complete": true,
+      "validation_notes": [],
+      "forbidden_prefixes": [
+        "-"
       ],
-      "forbidden_prefixes": [],
       "forbidden_suffixes": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
         "-"
       ],
       "forbidden_sequences": [],
@@ -6505,27 +6396,17 @@
       "min_length": 3,
       "max_length": 59,
       "scope": "global",
-      "regex": "^(?:[a-zA-Z]|[a-zA-Z0-9\\-][a-zA-Z0-9\\-]*[a-zA-Z])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
+      "validation_complete": true,
+      "validation_notes": [],
+      "forbidden_prefixes": [
+        "-"
       ],
-      "forbidden_prefixes": [],
       "forbidden_suffixes": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
         "-"
       ],
       "forbidden_sequences": [],
@@ -7288,15 +7169,13 @@
       "min_length": 1,
       "max_length": 80,
       "scope": "resource group",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "-",
         "_",
@@ -7304,7 +7183,6 @@
       ],
       "forbidden_suffixes": [
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -7387,10 +7265,8 @@
       "lowercase": true,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "0",
         "1",
@@ -7931,26 +7807,14 @@
       "min_length": 3,
       "max_length": 44,
       "scope": "global",
-      "regex": "^(?:[a-z]|[a-z][a-z0-9\\-]*[a-z0-9\\-])$",
+      "regex": "^(?:[a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9\\-])$",
       "dashes": true,
       "lowercase": true,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
         "-"
       ],
       "forbidden_suffixes": [],
@@ -8029,26 +7893,14 @@
       "min_length": 3,
       "max_length": 44,
       "scope": "global",
-      "regex": "^(?:[a-z]|[a-z][a-z0-9\\-]*[a-z0-9\\-])$",
+      "regex": "^(?:[a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9\\-])$",
       "dashes": true,
       "lowercase": true,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
         "-"
       ],
       "forbidden_suffixes": [],
@@ -8127,26 +7979,14 @@
       "min_length": 3,
       "max_length": 44,
       "scope": "global",
-      "regex": "^(?:[a-z]|[a-z][a-z0-9\\-]*[a-z0-9\\-])$",
+      "regex": "^(?:[a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9\\-])$",
       "dashes": true,
       "lowercase": true,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
         "-"
       ],
       "forbidden_suffixes": [],
@@ -8225,26 +8065,14 @@
       "min_length": 3,
       "max_length": 44,
       "scope": "global",
-      "regex": "^(?:[a-z]|[a-z][a-z0-9\\-]*[a-z0-9\\-])$",
+      "regex": "^(?:[a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9\\-])$",
       "dashes": true,
       "lowercase": true,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
         "-"
       ],
       "forbidden_suffixes": [],
@@ -8323,26 +8151,14 @@
       "min_length": 3,
       "max_length": 44,
       "scope": "global",
-      "regex": "^(?:[a-z]|[a-z][a-z0-9\\-]*[a-z0-9\\-])$",
+      "regex": "^(?:[a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9\\-])$",
       "dashes": true,
       "lowercase": true,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
         "-"
       ],
       "forbidden_suffixes": [],
@@ -8421,26 +8237,14 @@
       "min_length": 3,
       "max_length": 44,
       "scope": "global",
-      "regex": "^(?:[a-z]|[a-z][a-z0-9\\-]*[a-z0-9\\-])$",
+      "regex": "^(?:[a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9\\-])$",
       "dashes": true,
       "lowercase": true,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
         "-"
       ],
       "forbidden_suffixes": [],
@@ -9205,43 +9009,20 @@
       "min_length": 3,
       "max_length": 64,
       "scope": "resource group",
-      "regex": "^(?:[a-zA-Z]|[a-zA-Z][a-zA-Z0-9\\-_.]*[a-zA-Z])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
         "-",
         "_",
         "."
       ],
       "forbidden_suffixes": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -10062,7 +9843,7 @@
       "min_length": 3,
       "max_length": 24,
       "scope": "global",
-      "regex": "^(?:[a-z]|[a-z][a-z0-9\\-_]*[a-z])$",
+      "regex": "^(?:[a-z0-9]|[a-z0-9][a-z0-9\\-_]*[a-z0-9])$",
       "dashes": true,
       "lowercase": true,
       "name_kind": "standard",
@@ -10072,30 +9853,10 @@
         "Additional character-rule prose is retained but not completely interpreted."
       ],
       "forbidden_prefixes": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
         "-",
         "_"
       ],
       "forbidden_suffixes": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
         "-",
         "_"
       ],
@@ -10126,7 +9887,7 @@
       "min_length": 3,
       "max_length": 63,
       "scope": "elastic san",
-      "regex": "^(?:[a-z]|[a-z][a-z0-9\\-]*[a-z])$",
+      "regex": "^(?:[a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9])$",
       "dashes": true,
       "lowercase": true,
       "name_kind": "standard",
@@ -10136,29 +9897,9 @@
         "Additional character-rule prose is retained but not completely interpreted."
       ],
       "forbidden_prefixes": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
         "-"
       ],
       "forbidden_suffixes": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
         "-"
       ],
       "forbidden_sequences": [],
@@ -10474,15 +10215,13 @@
       "min_length": 6,
       "max_length": 50,
       "scope": "resource group",
-      "regex": "^(?:[a-zA-Z]|[a-zA-Z][a-zA-Z0-9\\-]*[a-zA-Z])$",
+      "regex": "^(?:[a-zA-Z]|[a-zA-Z][a-zA-Z0-9\\-]*[a-zA-Z0-9])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "0",
         "1",
@@ -10497,16 +10236,6 @@
         "-"
       ],
       "forbidden_suffixes": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
         "-"
       ],
       "forbidden_sequences": [],
@@ -10538,15 +10267,13 @@
       "min_length": 6,
       "max_length": 50,
       "scope": "global",
-      "regex": "^(?:[a-zA-Z]|[a-zA-Z][a-zA-Z0-9\\-]*[a-zA-Z])$",
+      "regex": "^(?:[a-zA-Z]|[a-zA-Z][a-zA-Z0-9\\-]*[a-zA-Z0-9])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "0",
         "1",
@@ -10561,16 +10288,6 @@
         "-"
       ],
       "forbidden_suffixes": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
         "-"
       ],
       "forbidden_sequences": [],
@@ -10612,27 +10329,19 @@
       "min_length": 1,
       "max_length": 50,
       "scope": "namespace",
-      "regex": "^(?:[a-zA-Z]|[a-zA-Z0-9\\-_.][a-zA-Z0-9\\-_.]*[a-zA-Z])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
+      "validation_complete": true,
+      "validation_notes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
       ],
-      "forbidden_prefixes": [],
       "forbidden_suffixes": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
         "-",
         "_",
         "."
@@ -10766,15 +10475,13 @@
       "min_length": 1,
       "max_length": 80,
       "scope": "resource group",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "-",
         "_",
@@ -10782,7 +10489,6 @@
       ],
       "forbidden_suffixes": [
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -11676,15 +11382,13 @@
       "min_length": 1,
       "max_length": 80,
       "scope": "resource group",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "-",
         "_",
@@ -11692,7 +11396,6 @@
       ],
       "forbidden_suffixes": [
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -11734,15 +11437,13 @@
       "min_length": 1,
       "max_length": 80,
       "scope": "firewall policy",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "-",
         "_",
@@ -11750,7 +11451,6 @@
       ],
       "forbidden_suffixes": [
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -12307,43 +12007,20 @@
       "min_length": 3,
       "max_length": 64,
       "scope": "resource group",
-      "regex": "^(?:[a-zA-Z]|[a-zA-Z][a-zA-Z0-9\\-_.]*[a-zA-Z])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
         "-",
         "_",
         "."
       ],
       "forbidden_suffixes": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -13112,14 +12789,13 @@
       "min_length": 1,
       "max_length": 80,
       "scope": "resource group",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
       "validation_complete": false,
       "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted.",
         "Provider-section notes are retained for review and are not universally interpreted."
       ],
       "forbidden_prefixes": [
@@ -13129,7 +12805,6 @@
       ],
       "forbidden_suffixes": [
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -13735,26 +13410,14 @@
       "min_length": 2,
       "max_length": 63,
       "scope": "global",
-      "regex": "^(?:[a-z]|[a-z][a-z0-9\\-]*[a-z0-9\\-])$",
+      "regex": "^(?:[a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9\\-])$",
       "dashes": true,
       "lowercase": true,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
         "-"
       ],
       "forbidden_suffixes": [],
@@ -13990,15 +13653,13 @@
       "min_length": 3,
       "max_length": 24,
       "scope": "global",
-      "regex": "^(?:[a-zA-Z]|[a-zA-Z][a-zA-Z0-9\\-]*[a-zA-Z])$",
+      "regex": "^(?:[a-zA-Z]|[a-zA-Z][a-zA-Z0-9\\-]*[a-zA-Z0-9])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "0",
         "1",
@@ -14013,16 +13674,6 @@
         "-"
       ],
       "forbidden_suffixes": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
         "-"
       ],
       "forbidden_sequences": [
@@ -14412,10 +14063,8 @@
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "0",
         "1",
@@ -14601,10 +14250,8 @@
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "0",
         "1",
@@ -14694,15 +14341,13 @@
       "min_length": 1,
       "max_length": 80,
       "scope": "resource group",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "-",
         "_",
@@ -14710,7 +14355,6 @@
       ],
       "forbidden_suffixes": [
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -14761,15 +14405,13 @@
       "min_length": 1,
       "max_length": 80,
       "scope": "load balancer",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "-",
         "_",
@@ -14777,7 +14419,6 @@
       ],
       "forbidden_suffixes": [
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -14817,15 +14458,13 @@
       "min_length": 1,
       "max_length": 80,
       "scope": "resource group",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "-",
         "_",
@@ -14833,7 +14472,6 @@
       ],
       "forbidden_suffixes": [
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -14882,15 +14520,13 @@
       "min_length": 1,
       "max_length": 80,
       "scope": "resource group",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "-",
         "_",
@@ -14898,7 +14534,6 @@
       ],
       "forbidden_suffixes": [
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -14999,15 +14634,13 @@
       "min_length": 1,
       "max_length": 80,
       "scope": "resource group",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "-",
         "_",
@@ -15015,7 +14648,6 @@
       ],
       "forbidden_suffixes": [
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -15541,26 +15173,14 @@
       "min_length": 1,
       "max_length": 90,
       "scope": "tenant",
-      "regex": "^(?:[a-zA-Z]|[a-zA-Z][a-zA-Z0-9\\-_.()]*[a-zA-Z0-9\\-_()])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.()]*[a-zA-Z0-9\\-_()])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
         "-",
         "_",
         ".",
@@ -16138,27 +15758,19 @@
       "min_length": 1,
       "max_length": 256,
       "scope": "namespace",
-      "regex": "^(?:[a-zA-Z]|[a-zA-Z0-9\\-_.][a-zA-Z0-9\\-_.]*[a-zA-Z])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
+      "validation_complete": true,
+      "validation_notes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
       ],
-      "forbidden_prefixes": [],
       "forbidden_suffixes": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
         "-",
         "_",
         "."
@@ -16202,27 +15814,19 @@
       "min_length": 1,
       "max_length": 50,
       "scope": "event hub",
-      "regex": "^(?:[a-zA-Z]|[a-zA-Z0-9\\-_.][a-zA-Z0-9\\-_.]*[a-zA-Z])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
+      "validation_complete": true,
+      "validation_notes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
       ],
-      "forbidden_prefixes": [],
       "forbidden_suffixes": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
         "-",
         "_",
         "."
@@ -16256,27 +15860,19 @@
       "min_length": 1,
       "max_length": 50,
       "scope": "event hub",
-      "regex": "^(?:[a-zA-Z]|[a-zA-Z0-9\\-_.][a-zA-Z0-9\\-_.]*[a-zA-Z])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
+      "validation_complete": true,
+      "validation_notes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
       ],
-      "forbidden_prefixes": [],
       "forbidden_suffixes": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
         "-",
         "_",
         "."
@@ -16441,16 +16037,18 @@
       "min_length": 1,
       "max_length": 260,
       "scope": "namespace",
-      "regex": "^(?:[a-zA-Z0-9\\-_.]|[a-zA-Z0-9\\-_.][a-zA-Z0-9\\-_.]*[a-zA-Z0-9\\-_.])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9\\-_.])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
+      "validation_complete": true,
+      "validation_notes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
       ],
-      "forbidden_prefixes": [],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -16491,16 +16089,18 @@
       "min_length": 1,
       "max_length": 256,
       "scope": "notification hub",
-      "regex": "^(?:[a-zA-Z0-9\\-_.]|[a-zA-Z0-9\\-_.][a-zA-Z0-9\\-_.]*[a-zA-Z0-9\\-_.])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9\\-_.])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
+      "validation_complete": true,
+      "validation_notes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
       ],
-      "forbidden_prefixes": [],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -17423,15 +17023,13 @@
       "min_length": 1,
       "max_length": 80,
       "scope": "resource group",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "-",
         "_",
@@ -17439,7 +17037,6 @@
       ],
       "forbidden_suffixes": [
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -17524,15 +17121,13 @@
       "min_length": 1,
       "max_length": 80,
       "scope": "resource group",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "-",
         "_",
@@ -17540,7 +17135,6 @@
       ],
       "forbidden_suffixes": [
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -17583,15 +17177,13 @@
       "min_length": 1,
       "max_length": 80,
       "scope": "network security group",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "-",
         "_",
@@ -17599,7 +17191,6 @@
       ],
       "forbidden_suffixes": [
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -17682,15 +17273,13 @@
       "min_length": 1,
       "max_length": 80,
       "scope": "resource group",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "-",
         "_",
@@ -17698,7 +17287,6 @@
       ],
       "forbidden_suffixes": [
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -17800,16 +17388,18 @@
       "min_length": 1,
       "max_length": 256,
       "scope": "namespace",
-      "regex": "^(?:[a-zA-Z0-9\\-_.]|[a-zA-Z0-9\\-_.][a-zA-Z0-9\\-_.]*[a-zA-Z0-9\\-_.])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9\\-_.])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
+      "validation_complete": true,
+      "validation_notes": [],
+      "forbidden_prefixes": [
+        "-",
+        "_",
+        "."
       ],
-      "forbidden_prefixes": [],
       "forbidden_suffixes": [],
       "forbidden_sequences": [],
       "reserved_names": [],
@@ -18359,15 +17949,13 @@
       "min_length": 1,
       "max_length": 80,
       "scope": "resource group",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "-",
         "_",
@@ -18375,7 +17963,6 @@
       ],
       "forbidden_suffixes": [
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -18456,15 +18043,13 @@
       "min_length": 1,
       "max_length": 80,
       "scope": "private Domain Name System zone",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "-",
         "_",
@@ -18472,7 +18057,6 @@
       ],
       "forbidden_suffixes": [
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -18504,15 +18088,13 @@
       "min_length": 2,
       "max_length": 64,
       "scope": "resource group",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "-",
         "_",
@@ -18520,7 +18102,6 @@
       ],
       "forbidden_suffixes": [
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -18651,15 +18232,13 @@
       "min_length": 2,
       "max_length": 64,
       "scope": "resource group",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "-",
         "_",
@@ -18667,7 +18246,6 @@
       ],
       "forbidden_suffixes": [
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -18707,15 +18285,13 @@
       "min_length": 2,
       "max_length": 64,
       "scope": "private link service",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "-",
         "_",
@@ -18723,7 +18299,6 @@
       ],
       "forbidden_suffixes": [
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -19279,15 +18854,13 @@
       "min_length": 1,
       "max_length": 80,
       "scope": "resource group",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "-",
         "_",
@@ -19295,7 +18868,6 @@
       ],
       "forbidden_suffixes": [
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -19337,15 +18909,13 @@
       "min_length": 1,
       "max_length": 80,
       "scope": "resource group",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "-",
         "_",
@@ -19353,7 +18923,6 @@
       ],
       "forbidden_suffixes": [
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -20176,15 +19745,13 @@
       "min_length": 6,
       "max_length": 50,
       "scope": "global",
-      "regex": "^(?:[a-zA-Z]|[a-zA-Z][a-zA-Z0-9\\-]*[a-zA-Z])$",
+      "regex": "^(?:[a-zA-Z]|[a-zA-Z][a-zA-Z0-9\\-]*[a-zA-Z0-9])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "0",
         "1",
@@ -20199,16 +19766,6 @@
         "-"
       ],
       "forbidden_suffixes": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
         "-"
       ],
       "forbidden_sequences": [],
@@ -20540,15 +20097,13 @@
       "min_length": 1,
       "max_length": 80,
       "scope": "resource group",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "-",
         "_",
@@ -20556,7 +20111,6 @@
       ],
       "forbidden_suffixes": [
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -20596,15 +20150,13 @@
       "min_length": 1,
       "max_length": 80,
       "scope": "route filter",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "-",
         "_",
@@ -20612,7 +20164,6 @@
       ],
       "forbidden_suffixes": [
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -20644,15 +20195,13 @@
       "min_length": 1,
       "max_length": 80,
       "scope": "resource group",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "-",
         "_",
@@ -20660,7 +20209,6 @@
       ],
       "forbidden_suffixes": [
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -20702,15 +20250,13 @@
       "min_length": 1,
       "max_length": 80,
       "scope": "route table",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "-",
         "_",
@@ -20718,7 +20264,6 @@
       ],
       "forbidden_suffixes": [
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -21349,10 +20894,8 @@
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "0",
         "1",
@@ -21401,10 +20944,8 @@
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "0",
         "1",
@@ -21453,10 +20994,8 @@
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "0",
         "1",
@@ -21505,10 +21044,8 @@
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "0",
         "1",
@@ -21557,10 +21094,8 @@
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "0",
         "1",
@@ -21609,10 +21144,8 @@
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "0",
         "1",
@@ -21701,10 +21234,8 @@
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "0",
         "1",
@@ -21753,10 +21284,8 @@
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "0",
         "1",
@@ -21805,10 +21334,8 @@
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "0",
         "1",
@@ -21857,10 +21384,8 @@
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "0",
         "1",
@@ -21909,10 +21434,8 @@
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "0",
         "1",
@@ -21961,10 +21484,8 @@
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "0",
         "1",
@@ -22010,7 +21531,7 @@
       "min_length": 6,
       "max_length": 50,
       "scope": "global",
-      "regex": "^(?:[a-zA-Z]|[a-zA-Z][a-zA-Z0-9\\-]*[a-zA-Z])$",
+      "regex": "^(?:[a-zA-Z]|[a-zA-Z][a-zA-Z0-9\\-]*[a-zA-Z0-9])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
@@ -22033,16 +21554,6 @@
         "-"
       ],
       "forbidden_suffixes": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
         "-"
       ],
       "forbidden_sequences": [],
@@ -22177,10 +21688,8 @@
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "0",
         "1",
@@ -22229,10 +21738,8 @@
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "0",
         "1",
@@ -22278,15 +21785,13 @@
       "min_length": 1,
       "max_length": 80,
       "scope": "resource group",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "-",
         "_",
@@ -22294,7 +21799,6 @@
       ],
       "forbidden_suffixes": [
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -22336,15 +21840,13 @@
       "min_length": 4,
       "max_length": 23,
       "scope": "region",
-      "regex": "^(?:[a-z]|[a-z][a-z0-9\\-]*[a-z0-9\\-])$",
+      "regex": "^(?:[a-z]|[a-z][a-z0-9\\-]*[a-z0-9])$",
       "dashes": true,
       "lowercase": true,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "0",
         "1",
@@ -22358,7 +21860,9 @@
         "9",
         "-"
       ],
-      "forbidden_suffixes": [],
+      "forbidden_suffixes": [
+        "-"
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -22442,10 +21946,8 @@
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "0",
         "1",
@@ -22494,10 +21996,8 @@
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "0",
         "1",
@@ -22546,10 +22046,8 @@
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "0",
         "1",
@@ -22598,10 +22096,8 @@
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "0",
         "1",
@@ -22650,10 +22146,8 @@
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "0",
         "1",
@@ -22702,10 +22196,8 @@
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "0",
         "1",
@@ -22754,10 +22246,8 @@
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "0",
         "1",
@@ -22806,10 +22296,8 @@
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "0",
         "1",
@@ -22858,10 +22346,8 @@
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "0",
         "1",
@@ -22910,10 +22396,8 @@
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "0",
         "1",
@@ -22962,10 +22446,8 @@
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "0",
         "1",
@@ -23014,10 +22496,8 @@
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "0",
         "1",
@@ -23108,10 +22588,8 @@
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "0",
         "1",
@@ -23160,10 +22638,8 @@
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "0",
         "1",
@@ -23212,10 +22688,8 @@
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "0",
         "1",
@@ -23264,10 +22738,8 @@
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "0",
         "1",
@@ -23316,10 +22788,8 @@
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "0",
         "1",
@@ -23404,15 +22874,13 @@
       "min_length": 3,
       "max_length": 63,
       "scope": "global",
-      "regex": "^(?:[a-zA-Z]|[a-zA-Z][a-zA-Z0-9\\-]*[a-zA-Z])$",
+      "regex": "^(?:[a-zA-Z]|[a-zA-Z][a-zA-Z0-9\\-]*[a-zA-Z0-9])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "0",
         "1",
@@ -23427,16 +22895,6 @@
         "-"
       ],
       "forbidden_suffixes": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
         "-"
       ],
       "forbidden_sequences": [],
@@ -23622,14 +23080,13 @@
       "min_length": 2,
       "max_length": 64,
       "scope": "site",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9\\-_.])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
       "validation_complete": false,
       "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted.",
         "Provider-section notes are retained for review and are not universally interpreted."
       ],
       "forbidden_prefixes": [
@@ -23637,7 +23094,10 @@
         "_",
         "."
       ],
-      "forbidden_suffixes": [],
+      "forbidden_suffixes": [
+        "-",
+        "."
+      ],
       "forbidden_sequences": [],
       "reserved_names": [],
       "source": {
@@ -23782,14 +23242,13 @@
       "min_length": 1,
       "max_length": 80,
       "scope": "resource group",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
       "validation_complete": false,
       "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted.",
         "Provider-section notes are retained for review and are not universally interpreted."
       ],
       "forbidden_prefixes": [
@@ -23799,7 +23258,6 @@
       ],
       "forbidden_suffixes": [
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -24282,26 +23740,14 @@
       "min_length": 3,
       "max_length": 63,
       "scope": "storage account",
-      "regex": "^(?:[a-z]|[a-z][a-z0-9\\-]*[a-z0-9\\-])$",
+      "regex": "^(?:[a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9\\-])$",
       "dashes": true,
       "lowercase": true,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
         "-"
       ],
       "forbidden_suffixes": [],
@@ -24336,26 +23782,14 @@
       "min_length": 3,
       "max_length": 63,
       "scope": "storage account",
-      "regex": "^(?:[a-z]|[a-z][a-z0-9\\-]*[a-z0-9\\-])$",
+      "regex": "^(?:[a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9\\-])$",
       "dashes": true,
       "lowercase": true,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
         "-"
       ],
       "forbidden_suffixes": [],
@@ -24390,26 +23824,14 @@
       "min_length": 3,
       "max_length": 63,
       "scope": "storage account",
-      "regex": "^(?:[a-z]|[a-z][a-z0-9\\-]*[a-z0-9\\-])$",
+      "regex": "^(?:[a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9\\-])$",
       "dashes": true,
       "lowercase": true,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
         "-"
       ],
       "forbidden_suffixes": [],
@@ -25366,30 +24788,22 @@
       "min_length": 1,
       "max_length": 50,
       "scope": "global",
-      "regex": "^(?:[a-z]|[a-z0-9\\-][a-z0-9\\-]*[a-z])$",
+      "regex": "^(?:[a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9])$",
       "dashes": true,
       "lowercase": true,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
-      "forbidden_prefixes": [],
-      "forbidden_suffixes": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
+      "validation_complete": true,
+      "validation_notes": [],
+      "forbidden_prefixes": [
         "-"
       ],
-      "forbidden_sequences": [],
+      "forbidden_suffixes": [
+        "-"
+      ],
+      "forbidden_sequences": [
+        "-ondemand"
+      ],
       "reserved_names": [],
       "source": {
         "naming_rules_url": "https://raw.githubusercontent.com/MicrosoftDocs/azure-docs/main/articles/azure-resource-manager/management/resource-name-rules.md",
@@ -25774,26 +25188,14 @@
       "min_length": 3,
       "max_length": 128,
       "scope": "resource group",
-      "regex": "^(?:[a-zA-Z]|[a-zA-Z][a-zA-Z0-9\\-_]*[a-zA-Z0-9\\-_])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_]*[a-zA-Z0-9\\-_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
         "-",
         "_"
       ],
@@ -26394,15 +25796,13 @@
       "min_length": 2,
       "max_length": 64,
       "scope": "resource group",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "-",
         "_",
@@ -26410,7 +25810,6 @@
       ],
       "forbidden_suffixes": [
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -26452,15 +25851,13 @@
       "min_length": 1,
       "max_length": 80,
       "scope": "resource group",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "-",
         "_",
@@ -26468,7 +25865,6 @@
       ],
       "forbidden_suffixes": [
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -26517,15 +25913,13 @@
       "min_length": 1,
       "max_length": 80,
       "scope": "resource group",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "-",
         "_",
@@ -26533,7 +25927,6 @@
       ],
       "forbidden_suffixes": [
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -26584,15 +25977,13 @@
       "min_length": 1,
       "max_length": 80,
       "scope": "virtual network",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "-",
         "_",
@@ -26600,7 +25991,6 @@
       ],
       "forbidden_suffixes": [
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -26642,15 +26032,13 @@
       "min_length": 1,
       "max_length": 80,
       "scope": "virtual network",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "-",
         "_",
@@ -26658,7 +26046,6 @@
       ],
       "forbidden_suffixes": [
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -26700,15 +26087,13 @@
       "min_length": 1,
       "max_length": 80,
       "scope": "resource group",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "-",
         "_",
@@ -26716,7 +26101,6 @@
       ],
       "forbidden_suffixes": [
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -26800,15 +26184,13 @@
       "min_length": 1,
       "max_length": 80,
       "scope": "resource group",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "-",
         "_",
@@ -26816,7 +26198,6 @@
       ],
       "forbidden_suffixes": [
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -26858,15 +26239,13 @@
       "min_length": 1,
       "max_length": 80,
       "scope": "VPN gateway",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "-",
         "_",
@@ -26874,7 +26253,6 @@
       ],
       "forbidden_suffixes": [
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
@@ -26916,15 +26294,13 @@
       "min_length": 1,
       "max_length": 80,
       "scope": "resource group",
-      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9])$",
+      "regex": "^(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-_.]*[a-zA-Z0-9_])$",
       "dashes": true,
       "lowercase": false,
       "name_kind": "standard",
       "fixed_name": null,
-      "validation_complete": false,
-      "validation_notes": [
-        "Additional character-rule prose is retained but not completely interpreted."
-      ],
+      "validation_complete": true,
+      "validation_notes": [],
       "forbidden_prefixes": [
         "-",
         "_",
@@ -26932,7 +26308,6 @@
       ],
       "forbidden_suffixes": [
         "-",
-        "_",
         "."
       ],
       "forbidden_sequences": [],
