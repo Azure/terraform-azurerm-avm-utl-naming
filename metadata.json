@@ -1,0 +1,9 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/azure-verified-modules-tools/main/src/Avm.Authoring/Resources/Schemas/v1/avm-module-metadata.schema.json",
+  "moduleDisplayName": "Module Naming",
+  "moduleDescription": "AVM utility Module for Module Naming",
+  "canonicalType": "naming",
+  "owners": [
+    "jaredfholgate"
+  ]
+}
